@@ -1,0 +1,21 @@
+
++++ {{ 'mail.customer.registration.welcome' | trans }} +++
+
+==================================================
+
+{{ 'mail.customer.registration.hello' | trans({'%firstname%': mail.customer.firstName}) }},
+
+{{ 'mail.customer.registration.text' | trans | raw }}
+
+
+Bei Fragen steht Dir unser Kundenservice gerne unter service@durst.shop zur Verfügung.
+
+==================================================
+
+{% if mail.footerBannerLink | trans %}
+    {{ mail.footerBannerCta | trans }}
+    {{ mail.footerBannerLink | trans }}
+{% endif %}
+
+-----------------
+{% include '@Oms/Mail/partials/footer.text.twig' with {'mail': mail} %}

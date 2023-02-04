@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="GraphhopperCoordinates">
+        <property name="query" type="string"/>
+        <property name="lat" type="float"/>
+        <property name="lng" type="float"/>
+    </transfer>
+
+    <transfer name="GraphhopperTour">
+        <property name="tourId" type="int"/>
+        <property name="startLocation" type="GraphhopperStop"/>
+        <property name="stops" type="GraphhopperStop[]"/>
+        <property name="endLocation" type="GraphhopperStop"/>
+        <property name="vehicleTypeName" type="string" />
+        <property name="vehicleCategoryProfile" type="string" />
+    </transfer>
+
+    <transfer name="GraphhopperStop">
+        <property name="id" type="string"/>
+        <property name="vehicleId" type="int"/>
+        <property name="name" type="string"/>
+        <property name="locationId" type="string"/>
+        <property name="addressLat" type="float"/>
+        <property name="addressLng" type="float"/>
+        <property name="timeslotId" type="int"/>
+        <property name="constraintEarliest" type="string"/>
+        <property name="constraintLatest" type="string"/>
+        <property name="itemCount" type="int"/>
+    </transfer>
+
+</transfers>

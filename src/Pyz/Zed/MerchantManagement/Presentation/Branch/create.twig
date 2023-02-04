@@ -1,0 +1,121 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Create branch' %}
+
+{% block action %}
+    {{ backActionButton('/merchant-management/branch', 'List Branches' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(branchForm) }}
+
+            {{ form_row(branchForm.name) }}
+            {{ form_row(branchForm.fkMerchant) }}
+            {{ form_row(branchForm.termsOfService) }}
+            {{ form_row(branchForm.companyProfile) }}
+            {{ form_row(branchForm.code) }}
+
+            <fieldset>
+                <h2>Kontakt</h2>
+                {{ form_row(branchForm.email) }}
+                {{ form_row(branchForm.phone) }}
+                {{ form_row(branchForm.street) }}
+                {{ form_row(branchForm.number) }}
+                {{ form_row(branchForm.zip) }}
+                {{ form_row(branchForm.city) }}
+
+                <h3>Ansprechpartner</h3>
+                {{ form_row(branchForm.contactPersonSalutationId) }}
+                {{ form_row(branchForm.contactPersonPreName) }}
+                {{ form_row(branchForm.contactPersonName) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Standardwerte</h2>
+                {{ form_row(branchForm.defaultMinValueFirst) }}
+                {{ form_row(branchForm.defaultMinValueFollowing) }}
+                {{ form_row(branchForm.defaultDeliveryCosts) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Rechtliches</h2>
+                {{ form_row(branchForm.gln) }}
+                {{ form_row(branchForm.durstGln) }}
+                {{ form_row(branchForm.corporateName) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>API Keys</h2>
+                {{ form_row(branchForm.sumupAffiliateKey) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>EDI-Schnittstelle</h2>
+                {{ form_row(branchForm.ediEndpointUrl) }}
+                {{ form_row(branchForm.ediDepositEndpointUrl) }}
+                {{ form_row(branchForm.accessToken) }}
+                {{ form_row(branchForm.basicAuthUsername) }}
+                {{ form_row(branchForm.basicAuthPassword) }}
+                {{ form_row(branchForm.autoEdiExport) }}
+                {{ form_row(branchForm.ediExcludeMissingItemReturns) }}
+                {{ form_row(branchForm.ediExportVersion) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Lager Geo-Koordinaten</h2>
+                {{ form_row(branchForm.warehouseLat) }}
+                {{ form_row(branchForm.warehouseLng) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Rechnungsdaten</h2>
+                {{ form_row(branchForm.billingCompany) }}
+                {{ form_row(branchForm.billingStreet) }}
+                {{ form_row(branchForm.billingNumber) }}
+                {{ form_row(branchForm.billingZip) }}
+                {{ form_row(branchForm.billingCity) }}
+                {{ form_row(branchForm.salesTaxId) }}
+                {{ form_row(branchForm.placeJurisdiction) }}
+                {{ form_row(branchForm.ecoControlNumber) }}
+                {{ form_row(branchForm.personResponsible) }}
+                {{ form_row(branchForm.billingEmail) }}
+                {{ form_row(branchForm.billingBranchInformation) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Heidelpay</h2>
+                {{ form_row(branchForm.heidelpayPrivateKey) }}
+                {{ form_row(branchForm.heidelpayPublicKey) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Abrechnung</h2>
+                {{ form_row(branchForm.billingStartDate) }}
+                {{ form_row(branchForm.billingCycle) }}
+                <quote>Hinweis: Hier kann eine relative Zeitangabe nach dem PHP Standard angegeben werden. Alle Optionen finden sich hier: <a href="https://www.php.net/manual/de/datetime.formats.relative.php" target="_blank">https://www.php.net/manual/de/datetime.formats.relative.php</a></quote>
+                <br>
+                <br>
+                {{ form_row(branchForm.billingEndOfMonth) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Verschiedenes</h2>
+                {{ form_row(branchForm.orderOnTimeslot) }}
+                {{ form_row(branchForm.offersDepositPickup) }}
+                {{ form_row(branchForm.dataRetentionDays) }}
+            </fieldset>
+
+            {{ form_row(branchForm.submit, { attr: { class: 'btn btn-primary' } }) }}
+
+            {{ form_end(branchForm) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

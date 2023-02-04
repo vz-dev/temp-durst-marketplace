@@ -1,0 +1,3 @@
+fk_branch,fk_deposit,sku,sku_case,sku_bottle
+8,123,BEER_BIG,BIG_CASE,BIG_BOTTLE
+8,146,BEER_SMALL,BIG_SMALL,BIG_SMALL

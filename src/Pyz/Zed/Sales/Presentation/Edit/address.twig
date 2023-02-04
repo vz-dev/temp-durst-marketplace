@@ -1,0 +1,34 @@
+{% extends '@Sales/Layout/layout.twig' %}
+
+{% set widget_title = 'Address details' %}
+{% block section_title 'Edit Address for Order: ' ~ idSalesOrder %}
+
+{% block action %}
+    {{ viewActionButton('/sales/detail/?id-sales-order=' ~ idSalesOrder, 'View Order' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Address Details' } %}
+
+        {% block widget_header_content %}
+            {% if invoiceCreated == true %}
+                <b>{{ "Es wurde bereits eine Rechnung verschickt, keine Änderung mehr möglich" | trans }}</b>
+            {% endif %}
+        {% endblock %}
+
+
+        {% block widget_content %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            {% if invoiceCreated != true %}
+                <input type="submit" class="btn btn-primary safe-submit" value="{{ 'Save' | trans }}" />
+            {% endif %}
+            {{ form_end(form) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

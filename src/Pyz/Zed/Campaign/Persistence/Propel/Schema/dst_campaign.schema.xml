@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd" namespace="Orm\Zed\Campaign\Persistence" package="src.Orm.Zed.Campaign.Persistence">
+
+    <table name="dst_campaign_period" phpName="DstCampaignPeriod" idMethod="native">
+        <column name="id_campaign_period" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="campaign_name" required="true" type="VARCHAR" size="255"/>
+        <column name="campaign_description" required="false" type="LONGVARCHAR"/>
+        <column name="campaign_start_date" required="true" type="DATE"/>
+        <column name="campaign_end_date" required="true" type="DATE"/>
+        <column name="campaign_lead_time" required="false" type="INTEGER" defaultValue="0"/>
+        <column name="is_active" required="true" defaultValue="false" type="BOOLEAN"/>
+        <column name="is_bookable" required="true" defaultValue="false" type="BOOLEAN"/>
+
+        <behavior name="timestampable"/>
+
+        <id-method-parameter value="dst_campaign_period_pk_seq"/>
+
+    </table>
+
+    <table name="dst_campaign_advertising_material" phpName="DstCampaignAdvertisingMaterial" idMethod="native">
+        <column name="id_campaign_advertising_material" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="campaign_advertising_material_name" required="true" type="VARCHAR" size="255"/>
+        <column name="campaign_advertising_material_description" required="false" type="LONGVARCHAR"/>
+        <column name="campaign_advertising_material_lead_time" required="false" type="INTEGER" defaultValue="0"/>
+        <column name="is_active" required="true" defaultValue="false" type="BOOLEAN"/>
+
+        <behavior name="timestampable"/>
+
+        <id-method-parameter value="dst_campaign_advertising_material_pk_seq"/>
+
+    </table>
+
+    <table name="dst_campaign_period_campaign_advertising_material" isCrossRef="true">
+        <column name="id_campaign_period" type="INTEGER" primaryKey="true"/>
+        <column name="id_campaign_advertising_material" type="INTEGER" primaryKey="true"/>
+
+        <foreign-key foreignTable="dst_campaign_period">
+            <reference local="id_campaign_period" foreign="id_campaign_period"/>
+        </foreign-key>
+
+        <foreign-key foreignTable="dst_campaign_advertising_material">
+            <reference local="id_campaign_advertising_material" foreign="id_campaign_advertising_material"/>
+        </foreign-key>
+
+    </table>
+
+    <table name="dst_campaign_period_branch_order" phpName="DstCampaignPeriodBranchOrder" idMethod="native">
+        <column name="id_campaign_period_branch_order" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" required="true" type="INTEGER"/>
+        <column name="fk_campaign_period" required="true" type="INTEGER"/>
+
+        <foreign-key name="dst_campaign_period_branch_order-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <foreign-key name="dst_campaign_period_branch_order-fk_campaign_period" foreignTable="dst_campaign_period" phpName="DstCampaignPeriod">
+            <reference local="fk_campaign_period" foreign="id_campaign_period"/>
+        </foreign-key>
+
+        <behavior name="timestampable"/>
+        <id-method-parameter value="dst_campaign_period_branch_order_pk_seq"/>
+
+    </table>
+
+    <table name="dst_campaign_period_branch_order_product" phpName="DstCampaignPeriodBranchOrderProduct" idMethod="native">
+        <column name="id_campaign_period_branch_order_product" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="sku" required="true" type="VARCHAR"/>
+        <column name="is_expired_discount" type="BOOLEAN" defaultValue="false"/>
+        <column name="is_carousel" type="BOOLEAN" defaultValue="true"/>
+        <column name="carousel_priority" required="false" type="integer" defaultValue="0"/>
+        <column name="fk_campaign_period_branch_order" required="true" type="INTEGER"/>
+        <column name="fk_discount" required="false" type="INTEGER"/>
+
+        <foreign-key name="dst_campaign_period_branch_order_product-fk_campaign_period_branch_order" foreignTable="dst_campaign_period_branch_order" phpName="DstCampaignPeriodBranchOrder">
+            <reference local="fk_campaign_period_branch_order" foreign="id_campaign_period_branch_order"/>
+        </foreign-key>
+
+        <foreign-key name="dst_campaign_period_branch_order_product-fk_discount" foreignTable="spy_discount" phpName="SpyDiscount">
+            <reference local="fk_discount" foreign="id_discount"/>
+        </foreign-key>
+
+        <behavior name="timestampable"/>
+
+        <id-method-parameter value="dst_campaign_period_branch_order_product_pk_seq"/>
+
+    </table>
+
+    <table name="dst_campaign_branch_product_campaign_advertising_material" isCrossRef="true">
+        <column name="fk_campaign_period_branch_order_product" type="INTEGER" primaryKey="true"/>
+        <column name="fk_campaign_advertising_material" type="INTEGER" primaryKey="true"/>
+
+        <foreign-key foreignTable="dst_campaign_period_branch_order_product">
+            <reference local="fk_campaign_period_branch_order_product" foreign="id_campaign_period_branch_order_product"/>
+        </foreign-key>
+
+        <foreign-key foreignTable="dst_campaign_advertising_material">
+            <reference local="fk_campaign_advertising_material" foreign="id_campaign_advertising_material"/>
+        </foreign-key>
+
+    </table>
+
+</database>

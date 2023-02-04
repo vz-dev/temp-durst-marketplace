@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\PriceImport\Persistence"
+          package="src.Orm.Zed.PriceImport.Persistence">
+
+    <table name="dst_price_import" phpName="DstPriceImport" idMethod="native" >
+        <column name="id_price_import" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="recipient" required="true" type="VARCHAR" size="255"/>
+        <column name="fk_branch" required="true" type="INTEGER"/>
+        <column name="status" required="true" size="10" type="ENUM" valueSet="waiting,running,sending,done,failed" defaultValue="waiting"/>
+        <column name="cnt_updated" required="false" type="INTEGER"/>
+        <column name="cnt_ignored" required="false" type="INTEGER"/>
+        <column name="cnt_deleted" required="false" type="INTEGER"/>
+        <column name="cnt_created" required="false" type="INTEGER"/>
+        <column name="csv_file" required="false" type="VARCHAR"/>
+        <column name="mapping_type" required="true" type="VARCHAR"/>
+
+        <behavior name="timestampable"/>
+
+        <foreign-key name="dst-price-import-fk_branch" foreignTable="spy_branch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_price_import_pk_seq"/>
+
+    </table>
+
+</database>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\DeliveryArea\Persistence"
+          package="src.Orm.Zed.DeliveryArea.Persistence">
+
+    <table name="spy_time_slot">
+        <column name="integra_tour_no" required="false" size="255" type="VARCHAR"/>
+        <column name="integra_delivery_window_no" required="false" size="255" type="VARCHAR"/>
+    </table>
+</database>

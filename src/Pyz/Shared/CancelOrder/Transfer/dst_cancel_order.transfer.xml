@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="CancelOrder">
+        <property name="idCancelOrder" type="int" />
+        <property name="fkSalesOrder" type="int" />
+        <property name="fkSalesOrderAddressBilling" type="int" />
+        <property name="fkSalesOrderAddressShipping" type="int" />
+        <property name="fkConcreteTour" type="int" />
+        <property name="fkDriver" type="int" />
+        <property name="email" type="string" />
+        <property name="token" type="string" />
+        <property name="createdAt" type="string" />
+        <property name="updatedAt" type="string" />
+        <property name="salesOrder" type="Order" />
+        <property name="billingAddress" type="Address" />
+        <property name="shippingAddress" type="Address" />
+        <property name="concreteTour" type="ConcreteTour" />
+        <property name="driver" type="Driver" />
+        <property name="jwt" type="Jwt" />
+    </transfer>
+
+    <transfer name="Mail">
+        <property name="cancelOrderToken" type="string" />
+        <property name="cancelOrderLink" type="string" />
+        <property name="cancelOrderExpiration" type="string" />
+    </transfer>
+
+    <transfer name="Order">
+        <property name="cancelIssuer" type="string" />
+        <property name="cancelMessage" type="string" />
+        <property name="cancelAt" type="string" />
+    </transfer>
+
+    <transfer name="CancelOrderApiRequest">
+        <property name="token" type="string" />
+        <property name="orderId" type="integer" />
+        <property name="cancelMessage" type="string" />
+    </transfer>
+
+    <transfer name="CancelOrderApiResponse">
+        <property name="authValid" type="bool" />
+        <property name="orderCanceled" type="bool" />
+        <property name="alreadyCanceled" type="bool" />
+        <property name="errorMessage" type="string" />
+    </transfer>
+
+    <transfer name="CancelOrderCustomerRequest">
+        <property name="token" type="string" />
+        <property name="signer" type="string" />
+    </transfer>
+
+    <transfer name="CancelOrderCustomerResponse">
+        <property name="jwt" type="Jwt" />
+        <property name="salesOrder" type="Order" />
+        <property name="baseUrl" type="string" />
+        <property name="durst" type="DurstCompany" />
+        <property name="footerBannerLink" type="string" />
+        <property name="footerBannerImg" type="string" />
+        <property name="footerBannerAlt" type="string" />
+        <property name="footerBannerCta" type="string" />
+        <property name="errorMessage" type="string" />
+    </transfer>
+
+</transfers>

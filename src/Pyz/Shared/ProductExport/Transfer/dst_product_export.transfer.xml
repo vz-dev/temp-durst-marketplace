@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="ProductExport">
+        <property name="idProductExport" type="int" />
+        <property name="recipient" type="string" />
+        <property name="recipientCc" type="string" />
+        <property name="fkBranch" type="int" />
+        <property name="status" type="string" />
+        <property name="cntTotalProducts" type="int" />
+        <property name="cntMerchantProducts" type="int" />
+        <property name="fileName" type="string" />
+        <property name="createdAt" type="string" />
+        <property name="updatedAt" type="string" />
+        <property name="branch" type="Branch" />
+    </transfer>
+
+</transfers>

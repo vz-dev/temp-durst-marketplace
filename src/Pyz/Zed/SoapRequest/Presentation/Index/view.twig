@@ -1,0 +1,53 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'SOAP-Request ID: %d ansehen'|format(idSoapRequest) %}
+
+{% block action %}
+    {{ backActionButton('/soap-request/index/', 'List SOAP-Requests' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {% if soapRequest != null %}
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                        <h3>Request</h3>
+                        <p><b>{{ ' ID' | trans }}:</b> {{ soapRequest.idSoapRequest }}</p>
+                        <p><b>{{ 'Service' | trans }}:</b> {{ soapRequest.requestService }}</p>
+                        <p><b>{{ 'Function' | trans }}:</b> {{ soapRequest.requestFunction }}</p>
+                        <p><b>{{ 'Args' | trans }}:</b> {{ soapRequest.requestArgs|json_encode(constant('JSON_PRETTY_PRINT')) }}</p>
+                        <p><b>{{ 'Headers' | trans }}:</b> {{ soapRequest.requestHeaders|nl2br }}</p>
+                        <p><b>{{ 'XML' | trans }}:</b> {{ soapRequest.requestXml }}</p>
+                    </div>
+
+                    <div class="col-xs-12 col-md-4">
+                        <h3>Response</h3>
+                        <p><b>{{ 'Code' | trans }}:</b> {{ soapRequest.responseCode }}</p>
+                        <p><b>{{ 'Headers' | trans }}:</b><br/> {{ soapRequest.responseHeaders|nl2br }}</p>
+                        <p><b>{{ 'XML' | trans }}:</b> {{ soapRequest.responseXml }}</p>
+                        <p><b>{{ 'Data' | trans }}:</b> {{ soapRequest.responseData|json_encode(constant('JSON_PRETTY_PRINT')) }}</p>
+                        <p><b>{{ 'Error' | trans }}:</b> {{ soapRequest.responseError|raw }}</p>
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                        <p><b>{{ "Ein SOAP-Request mit der ID %d exisiert nicht."|format(idSoapRequest) }}</b></p>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

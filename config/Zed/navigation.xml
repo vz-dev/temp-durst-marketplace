@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <!-- You can control navigation order here and add your custom navigation entries -->
+    <software-package/>
+    <merchant-management/>
+    <billing/>
+    <integra/>
+    <graph-masters/>
+    <tour/>
+    <delivery-area/>
+    <pim/>
+    <terms-of-service/>
+    <sales/>
+    <heidelpay-rest/>
+    <customer/>
+    <marketing-management/>
+    <campaign/>
+    <category/>
+    <vehicle/>
+    <cms-gui/>
+    <glossary/>
+    <product/>
+    <product-export/>
+    <search-and-filters/>
+    <discount/>
+    <navigation/>
+    <tax/>
+    <shipment/>
+    <acl/>
+    <salutation/>
+    <driver-app/>
+    <maintenance/>
+</config>

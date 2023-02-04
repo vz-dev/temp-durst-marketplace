@@ -1,0 +1,20 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Aktionspreise List' %}
+
+{% block action %}
+{% endblock %}
+
+{% block content %}
+
+{% embed '@Gui/Partials/widget.twig' %}
+
+{% block widget_content %}
+
+{{ vouchers | raw }}
+
+{% endblock %}
+
+{% endembed %}
+
+{% endblock %}

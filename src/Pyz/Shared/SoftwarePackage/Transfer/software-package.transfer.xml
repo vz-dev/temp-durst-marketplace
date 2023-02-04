@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="SoftwarePackage">
+        <property name="idSoftwarePackage" type="int"/>
+        <property name="code" type="string"/>
+        <property name="name" type="string"/>
+        <property name="quotaDeliveryArea" type="int"/>
+        <property name="quotaBranch" type="int"/>
+        <property name="quotaOrder" type="int"/>
+        <property name="quotaProductConcrete" type="int"/>
+        <property name="paymentMethods" type="PaymentMethod[]"/>
+        <property name="paymentMethodIds" type="array"/>
+        <property name="softwareFeatures" type="SoftwareFeature[]"/>
+        <property name="softwareFeatureIds" type="array"/>
+    </transfer>
+
+    <transfer name="SoftwareFeature">
+        <property name="idSoftwareFeature" type="int" />
+        <property name="name" type="string" />
+        <property name="code" type="string"/>
+        <property name="description" type="string"/>
+    </transfer>
+
+    <transfer name="Branch">
+        <property name="softwareFeatureIds" type="array" />
+        <property name="softwareFeatures" type="SoftwareFeature[]"/>
+    </transfer>
+
+    <transfer name="Merchant">
+        <property name="softwarePackage" type="SoftwarePackage" />
+        <property name="fkSoftwarePackage" type="int"/>
+    </transfer>
+
+    <transfer name="License">
+        <property name="idLicense" type="int" />
+        <property name="licenseId" type="int" />
+        <property name="fkBranch" type="int" />
+        <property name="fkSoftwarePackage" type="int" />
+        <property name="licenseKey" type="string" />
+        <property name="units" type="int" />
+        <property name="validFrom" type="string" />
+        <property name="validTo" type="string" />
+        <property name="status" type="string" />
+        <property name="redeemedAt" type="string" />
+    </transfer>
+
+</transfers>

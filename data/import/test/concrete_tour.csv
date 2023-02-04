@@ -1,0 +1,2 @@
+tour_reference,fk_branch,fk_abstract_tour,date,comment,exportable,is_commissioned,preparation_start,prep_time
+DE-TOUR-1000,8,1,03.06.2019,imported test tour,false,false,03.06.2019 14:00:00,10

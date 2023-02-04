@@ -1,0 +1,15 @@
+{
+  "title": "MerchantProductsRequest",
+  "type": "object",
+  "required":
+  [
+    "branch_id"
+  ],
+  "properties":
+  {
+    "branch_id":
+    {
+      "type": "number"
+    }
+  }
+}

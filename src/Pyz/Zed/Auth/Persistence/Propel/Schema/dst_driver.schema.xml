@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Driver\Persistence"
+          package="src.Orm.Zed.Driver.Persistence">
+
+    <table name="dst_driver" idMethod="native" phpName="DstDriver">
+        <column name="current_sequence" required="false" type="VARCHAR" />
+    </table>
+
+</database>

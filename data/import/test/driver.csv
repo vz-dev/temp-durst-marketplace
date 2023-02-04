@@ -1,0 +1,4 @@
+first_name,last_name,salutation,email,driving_licence,branch,status,password
+Frida,Fahrerin,Ms,frida.fahrerin@durst.shop,A,Durst Wholesale Köln,active,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G
+Fritz,Fahrer,Mr,fritz.fahrer@durst.shop,B,Durst Wholesale Köln,inactive,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G
+Udo,Unfall,Mr,udo.unfall@durst.de,A,Durst Köln,active,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G

@@ -1,0 +1,7 @@
+fk_acl_group,software_package,merchantname,salutation,first_name,last_name,company,password,status
+1,digitaler_heimservice,retail@durst.shop,Mr,Durst,Retail,Durststrecke GmbH,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active
+1,digitaler_heimservice,merchant@getraenke.de,Mr,Karl,Schneider,Getränke Schneider,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active
+1,digitaler_heimservice,m.bicker@kernpunkt.de,Mr,Mathias,Bicker,Mathiashatdurst AG,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active
+1,digitaler_heimservice,w.vendel@vendel.de,Mr,Werner,Vendel,Getränke-Service Vendel e.K.,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active
+1,digitale_sofort_lieferung,wholesale@durst.shop,Mr,Durst,Wholesale,Durststrecke GmbH,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active
+1,digitale_sofort_lieferung,till.brinkmann@durst.shop,Mr,Till,Brinkmann,Till Testic GmbH,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active

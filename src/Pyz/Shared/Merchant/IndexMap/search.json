@@ -1,0 +1,59 @@
+{
+  "settings": {
+    "index.mapper.dynamic": false
+  },
+  "mappings": {
+    "branch": {
+      "_all": {
+        "enabled": false
+      },
+      "dynamic": "strict",
+      "properties": {
+        "id_branch": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "keyword"
+        },
+        "street": {
+          "type": "keyword"
+        },
+        "zip": {
+          "type": "keyword"
+        },
+        "city": {
+          "type": "keyword"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "terms_of_service": {
+          "type": "string"
+        },
+        "company_profile": {
+          "type": "string"
+        },
+        "payment_provider_ids": {
+          "type": "integer"
+        }
+      }
+    },
+    "payment_provider": {
+      "_all": {
+        "enabled": false
+      },
+      "dynamic": "strict",
+      "properties": {
+        "id_payment_method": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "keyword"
+        },
+        "code": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}

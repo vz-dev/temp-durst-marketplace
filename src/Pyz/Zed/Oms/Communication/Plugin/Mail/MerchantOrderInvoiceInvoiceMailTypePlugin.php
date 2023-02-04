@@ -1,0 +1,147 @@
+<?php
+/**
+ * Durst - project - MerchantOrderInvoiceSepaMailTypePlugin.php.
+ *
+ * Initial version by:
+ * User: Ike Simmons, <issac.simmons@durst.shop>
+ * Date: 2019-11-06
+ * Time: 20:06
+ */
+
+namespace Pyz\Zed\Oms\Communication\Plugin\Mail;
+
+
+use Generated\Shared\Transfer\MailTransfer;
+use Spryker\Zed\Kernel\Communication\AbstractPlugin;
+use Spryker\Zed\Mail\Business\Model\Mail\Builder\MailBuilderInterface;
+use Spryker\Zed\Mail\Dependency\Plugin\MailTypePluginInterface;
+
+class MerchantOrderInvoiceInvoiceMailTypePlugin extends AbstractPlugin implements MailTypePluginInterface
+{
+    const MAIL_TYPE = 'merchant order invoice invoice mail';
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return static::MAIL_TYPE;
+    }
+
+    /**
+     * @param MailBuilderInterface $mailBuilder
+     * @return void
+     */
+    public function build(MailBuilderInterface $mailBuilder)
+    {
+        $this
+            ->setSubject($mailBuilder)
+            ->setHtmlTemplate($mailBuilder)
+            ->setTextTemplate($mailBuilder)
+            ->setSender($mailBuilder)
+            ->setRecipient($mailBuilder);
+    }
+
+    /**
+     * @param MailBuilderInterface $mailBuilder
+     * @return $this
+     */
+    protected function setSubject(MailBuilderInterface $mailBuilder)
+    {
+        $mailBuilder->setSubject('mail.merchant.order.invoice');
+
+        return $this;
+    }
+
+    /**
+     * @param MailBuilderInterface $mailBuilder
+     * @return $this
+     */
+    protected function setHtmlTemplate(MailBuilderInterface $mailBuilder)
+    {
+        $mailBuilder->setHtmlTemplate('oms/mail/merchant-order-invoice-invoice-mail.html.twig');
+
+        return $this;
+    }
+
+    /**
+     * @param MailBuilderInterface $mailBuilder
+     * @return $this
+     */
+    protected function setTextTemplate(MailBuilderInterface $mailBuilder)
+    {
+        $mailBuilder->setTextTemplate('oms/mail/merchant-order-invoice-invoice-mail.text.twig');
+
+        return $this;
+    }
+
+    /**
+     * @param MailBuilderInterface $mailBuilder
+     * @return $this
+     */
+    protected function setSender(MailBuilderInterface $mailBuilder)
+    {
+        $mailBuilder->setSender('mail.sender.email', 'mail.sender.name');
+
+        return $this;
+    }
+
+    /**
+     * @param \Spryker\Zed\Mail\Business\Model\Mail\Builder\MailBuilderInterface $mailBuilder
+     *
+     * @return $this
+     */
+    protected function setRecipient(MailBuilderInterface $mailBuilder)
+    {
+        $this->assertRequirements($mailBuilder->getMailTransfer());
+
+        $orderTransfer = $mailBuilder
+            ->getMailTransfer()
+            ->getOrder();
+
+        $mailBuilder->addRecipient(
+            $orderTransfer->getEmail(),
+            $orderTransfer->getFirstName() . ' ' . $orderTransfer->getLastName()
+        );
+
+        return $this;
+    }
+
+    /**
+     * @param MailTransfer $mailTransfer
+     * @return void
+     */
+    protected function assertRequirements(
+        MailTransfer $mailTransfer
+    )
+    {
+        $mailTransfer
+            ->requireOrder()
+            ->requireBranch()
+            ->requireSurveyUrls();
+
+        if($mailTransfer
+            ->getOrder()
+            ->getTotals()
+            ->getGrandTotal() > 0){
+            $mailTransfer
+                ->requireHeidelpayBic()
+                ->requireHeidelpayIban()
+                ->requireHeidelpayHolder()
+                ->requireHeidelpayDescriptor();
+        }
+
+        $mailTransfer
+            ->getOrder()
+            ->requireEmail()
+            ->requireFirstName()
+            ->requireLastName()
+            ->requireInvoiceCreatedAt()
+            ->requireInvoiceReference()
+            ->requirePaymentMethodName();
+
+        $mailTransfer
+            ->getBranch()
+            ->requireTermsOfService();
+    }
+}

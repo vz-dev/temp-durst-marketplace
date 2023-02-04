@@ -1,0 +1,3 @@
+name,status,profile,speed_factor
+Auto/LKW,active,car,1
+Fahrrad,active,bike,0.5

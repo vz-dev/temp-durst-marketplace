@@ -1,0 +1,7 @@
+{% for orderItem in items %}
+    <tr>
+{# disabled because we dont ahve images in metadata and integra items for ure dont have metadata #}
+{% embed '@Sales/Detail/boxes/order-item.twig' with {orderItem: orderItem, displayImage: true, displayTotals: true, group: false} %}{% endembed %}
+</tr>
+{% embed '@Sales/Detail/boxes/order-item-option.twig' with {orderItem: orderItem} %} {% endembed %}
+{% endfor %}

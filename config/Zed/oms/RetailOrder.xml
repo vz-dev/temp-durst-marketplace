@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="RetailOrder" main="true">
+
+        <states>
+            <state name="new"/>
+            <state name="order.state.confirmed"/>
+            <state name="order.state.accepted" />
+            <state name="order.state.declined" />
+            <state name="order.state.delivered" />
+            <state name="order.state.closed"/>
+        </states>
+
+        <transitions>
+            <transition happy="true">
+                <source>new</source>
+                <target>order.state.confirmed</target>
+                <event>confirm</event>
+            </transition>
+
+            <transition happy="true">
+                <source>order.state.confirmed</source>
+                <target>order.state.accepted</target>
+                <event>accept</event>
+            </transition>
+
+            <transition>
+                <source>order.state.confirmed</source>
+                <target>order.state.declined</target>
+                <event>decline</event>
+            </transition>
+
+            <transition>
+                <source>order.state.confirmed</source>
+                <target>order.state.delivered</target>
+                <event>deliver</event>
+            </transition>
+
+            <transition happy="true">
+                <source>order.state.accepted</source>
+                <target>order.state.delivered</target>
+                <event>deliver</event>
+            </transition>
+
+            <transition>
+                <source>order.state.declined</source>
+                <target>order.state.closed</target>
+                <event>close</event>
+            </transition>
+
+
+            <transition happy="true">
+                <source>order.state.delivered</source>
+                <target>order.state.closed</target>
+                <event>closeWithoutRating</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="accept" manual="true" command="RetailOrder/AcceptOrder"/>
+            <event name="decline" manual="true" command="RetailOrder/DeclineOrder"/>
+            <event name="confirm" onEnter="true" command="RetailOrder/ConfirmOrder"/>
+            <event name="deliver" manual="true" command="RetailOrder/DeliverOrder"/>
+            <event name="closeWithoutRating" timeout="30 days"/>
+            <event name="close" timeout="30 days"/>
+        </events>
+
+    </process>
+
+</statemachine>

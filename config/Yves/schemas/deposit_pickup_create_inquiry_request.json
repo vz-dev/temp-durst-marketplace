@@ -1,0 +1,45 @@
+{
+  "title": "DepositPickupCreateInquiryRequest",
+  "type": "object",
+  "required":
+  [
+    "branch_id",
+    "name",
+    "address",
+    "email",
+    "phone_number",
+    "preferred_date",
+    "message"
+  ],
+  "properties":
+  {
+    "branch_id":
+    {
+      "type": "integer"
+    },
+    "name":
+    {
+      "type": "string"
+    },
+    "address":
+    {
+      "type": "string"
+    },
+    "email":
+    {
+      "type": "string"
+    },
+    "phone_number":
+    {
+      "type": "string"
+    },
+    "preferred_date":
+    {
+      "type": "string"
+    },
+    "message":
+    {
+      "type": "string"
+    }
+  }
+}

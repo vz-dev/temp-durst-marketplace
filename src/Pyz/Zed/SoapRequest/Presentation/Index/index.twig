@@ -1,0 +1,18 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Liste der SOAP-Requests' %}
+
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ soapRequests | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

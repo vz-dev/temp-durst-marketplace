@@ -1,0 +1,22 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Salutations List' %}
+
+{% block action %}
+    {{ createActionButton('/merchant-management/salutation/create', 'Add New Salutation' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ salutations | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}
+

@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="HttpRequest">
+        <property name="uri" type="string"/>
+        <property name="options" type="HttpRequestOptions"/>
+        <property name="body" type="array"/>
+        <property name="timeout" type="int"/>
+        <property name="method" type="string"/>
+        <property name="headers" type="array"/>
+    </transfer>
+
+    <transfer name="HttpResponse">
+        <property name="code" type="int"/>
+        <property name="codeMessage" type="string"/>
+        <property name="headers" type="array"/>
+        <property name="body" type="string"/>
+        <property name="errors" type="HttpRequestError[]"/>
+    </transfer>
+
+    <transfer name="HttpRequestOptions">
+        <property name="allowRedirect" type="HttpRequestRedirect"/>
+        <property name="auth" type="HttpRequestAuth"/>
+        <property name="debug" type="bool"/>
+        <property name="formParams" type="array"/>
+        <property name="headers" type="array"/>
+        <property name="json" type="array"/>
+        <property name="multiparts" type="HttpRequestMultipart[]"/>
+        <property name="query" type="array"/>
+        <property name="verify" type="string"/>
+        <property name="timeout" type="string"/>
+        <property name="version" type="string"/>
+    </transfer>
+
+    <transfer name="HttpRequestRedirect">
+        <property name="allowRedirect" type="bool"/>
+        <property name="max" type="int"/>
+        <property name="strict" type="bool"/>
+        <property name="referer" type="bool"/>
+        <property name="protocols" type="array"/>
+        <property name="onRedirect" type="callable"/>
+        <property name="trackRedirects" type="bool"/>
+    </transfer>
+
+    <transfer name="HttpRequestAuth">
+        <property name="username" type="string"/>
+        <property name="password" type="string"/>
+        <property name="authType" type="string"/>
+    </transfer>
+
+    <transfer name="HttpRequestMultipart">
+        <property name="name" type="string"/>
+        <property name="contents" type="string"/>
+        <property name="headers" type="array"/>
+        <property name="filename" type="string"/>
+    </transfer>
+
+    <transfer name="HttpRequestError">
+        <property name="code" type="int"/>
+        <property name="message" type="string"/>
+    </transfer>
+
+    <transfer name="HttpRequestEntity">
+        <property name="idHttpRequest" type="int"/>
+        <property name="requestUri" type="string"/>
+        <property name="requestOptions" type="string"/>
+        <property name="requestBody" type="string"/>
+        <property name="requestTimeout" type="int"/>
+        <property name="requestMethod" type="int"/>
+        <property name="requestHeaders" type="string"/>
+        <property name="responseCode" type="int"/>
+        <property name="responseMessage" type="string"/>
+        <property name="responseHeaders" type="string"/>
+        <property name="responseBody" type="string"/>
+        <property name="responseErrors" type="string"/>
+    </transfer>
+
+</transfers>

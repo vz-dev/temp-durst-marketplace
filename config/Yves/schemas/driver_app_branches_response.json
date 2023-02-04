@@ -1,0 +1,33 @@
+{
+  "title": "DriverBranchResponse",
+  "type": "object",
+  "required": [
+    "auth_valid",
+    "branches"
+  ],
+  "properties": {
+    "auth_valid": {
+      "type": "boolean"
+    },
+    "branches": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

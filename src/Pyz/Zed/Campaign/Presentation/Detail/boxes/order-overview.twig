@@ -1,0 +1,46 @@
+{% embed '@Gui/Partials/widget.twig' with { widget_title: 'Campaign Order Overview' } %}
+
+    {% block widget_content %}
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <p><b>{{ 'Campaign ID' | trans }}:</b> {{ campaignPeriodBranchOrder.campaignPeriod.idcampaignPeriod }}</p>
+                <p><b>{{ 'Name' | trans }}:</b> {{ campaignPeriodBranchOrder.campaignPeriod.campaignName }}</p>
+                <p><b>{{ 'Description' | trans }}:</b> {{ campaignPeriodBranchOrder.campaignPeriod.campaignDescription }}</p>
+                <p><b>{{ 'Start date' | trans }}:</b> {{ campaignPeriodBranchOrder.campaignPeriod.campaignStartDate | formatDate }}</p>
+                <p><b>{{ 'End date' | trans }}:</b> {{ campaignPeriodBranchOrder.campaignPeriod.campaignEndDate | formatDate }}</p>
+                <p><b>{{ 'Lead time (days)' | trans }}:</b> {{ campaignPeriodBranchOrder.campaignPeriod.campaignLeadTime }}</p>
+                <p><b>{{ 'Days until start' | trans }}:</b> {{ campaignPeriodBranchOrder.campaignPeriod.daysLeft }}</p>
+                <p><b>{{ 'Campaign starts' | trans }}:</b> {{ campaignPeriodBranchOrder.campaignPeriod.campaignStart | formatDate }}</p>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <p><b>{{ 'Name' | trans }}:</b> {{ campaignPeriodBranchOrder.branch.name }}</p>
+                <p><b>{{ 'Contact' | trans }}:</b> {{ campaignPeriodBranchOrder.branch.contactPersonPreName }} {{ campaignPeriodBranchOrder.branch.contactPersonName }}</p>
+                <p><b>{{ 'Mail' | trans }}:</b> {{ campaignPeriodBranchOrder.branch.email }}</p>
+                <p><b>{{ 'Street' | trans }}:</b> {{ campaignPeriodBranchOrder.branch.street }} {{ campaignPeriodBranchOrder.branch.number }}</p>
+                <p><b>{{ 'City' | trans }}:</b> {{ campaignPeriodBranchOrder.branch.zip }} {{ campaignPeriodBranchOrder.branch.city }}</p>
+                <p><b>{{ 'Phone' | trans }}:</b> {{ campaignPeriodBranchOrder.branch.phone }}</p>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                {% for material in campaignPeriodBranchOrder.campaignPeriod.assignedCampaignAdvertisingMaterials %}
+                    <p><b>{{ 'Name' | trans }}:</b> {{ material.campaignAdvertisingMaterialName }}</p>
+                    {% if material.campaignAdvertisingMaterialDescription %}
+                        <p><b>{{ 'Description' | trans }}:</b> {{ material.campaignAdvertisingMaterialDescription }}</p>
+                    {% endif %}
+                    <p><b>{{ 'Lead time (weeks)' | trans }}:</b> {{ material.campaignAdvertisingMaterialLeadTime }}</p>
+                    <p><b>{{ 'Ordering until' | trans }}:</b> {{ material.campaignAdvertisingMaterialEndDate | formatDate }}</p>
+                    <p><b>{{ 'Days left' | trans }}:</b> {{ material.daysLeft }}</p>
+                    <p><b>{{ 'Active' | trans }}:</b>
+                        {% if material.isActive %}
+                            <i class="fa fa-check" style="color: #3adb76"></i>
+                        {% else %}
+                            <i class="fa fa-times" style="color: #851010"></i>
+                        {% endif %}
+                    </p>
+                    <hr />
+                {% endfor %}
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\SoapRequest\Persistence"
+          package="src.Orm.Zed.SoapRequest.Persistence">
+
+    <table name="dst_soap_request" idMethod="native" phpName="DstSoapRequest">
+        <column name="id_soap_request" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="request_service" required="false" type="VARCHAR"/>
+        <column name="request_function" required="false" type="LONGVARCHAR"/>
+        <column name="request_headers" required="false" type="LONGVARCHAR"/>
+        <column name="request_xml" required="false" type="LONGVARCHAR"/>
+        <column name="request_args" required="false" type="LONGVARCHAR"/>
+        <column name="response_code" required="false" type="INTEGER"/>
+        <column name="response_headers" required="false" type="LONGVARCHAR"/>
+        <column name="response_xml" required="false" type="LONGVARCHAR"/>
+        <column name="response_data" required="false" type="LONGVARCHAR"/>
+        <column name="response_error" required="false" type="LONGVARCHAR"/>
+
+        <id-method-parameter value="dst_soap_request_pk_seq"/>
+
+        <behavior name="timestampable">
+            <parameter name="disable_updated_at" value="true"/>
+        </behavior>
+
+    </table>
+</database>

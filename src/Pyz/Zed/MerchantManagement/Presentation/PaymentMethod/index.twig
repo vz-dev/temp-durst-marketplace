@@ -1,0 +1,22 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Payment Methods List' %}
+
+{% block action %}
+    {{ createActionButton('/merchant-management/payment-method/create', 'Add New Payment Method' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ paymentMethods | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}
+

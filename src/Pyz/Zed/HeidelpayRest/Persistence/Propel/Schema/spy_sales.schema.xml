@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Sales\Persistence"
+          package="src.Orm.Zed.Sales.Persistence">
+
+    <table name="spy_sales_order">
+        <column name="heidelpay_rest_customer_id" type="VARCHAR" size="255"/>
+        <column name="is_private" type="BOOLEAN"/>
+        <column name="oms_retry_counter" type="INTEGER" default="0"/>
+        <column name="confirmed_at" type="TIMESTAMP"/>
+        <column name="is_heidelpay_customer_valid" type="BOOLEAN" default="false"/>
+        <column name="is_heidelpay_customer_requested" type="BOOLEAN" default="false"/>
+    </table>
+
+</database>

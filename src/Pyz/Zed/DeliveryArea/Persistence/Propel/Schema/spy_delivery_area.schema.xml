@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\DeliveryArea\Persistence"
+          package="src.Orm.Zed.DeliveryArea.Persistence">
+
+    <table name="spy_delivery_area" idMethod="native" phpName="SpyDeliveryArea">
+        <column name="id_delivery_area" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="name" required="true" size="255" type="VARCHAR"/>
+        <column name="city" size="255" type="VARCHAR"/>
+        <column name="zip_code" size="15" type="VARCHAR"/>
+
+        <id-method-parameter value="spy_delivery_area_pk_seq"/>
+    </table>
+
+    <table name="spy_time_slot" idMethod="native" isCrossref="true">
+        <column name="id_time_slot" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_delivery_area" required="true" type="INTEGER"/>
+        <column name="fk_branch" required="true" type="INTEGER"/>
+        <column name="min_value_first" type="INTEGER" required="false" defaultValue="0"/>
+        <column name="min_value_following" type="INTEGER" required="false" defaultValue="0"/>
+        <column name="min_units" type="INTEGER" required="false" defaultValue="0"/>
+        <column name="prep_time" type="INTEGER"/>
+        <column name="delivery_costs" type="INTEGER" required="false" defaultValue="0"/>
+        <column name="max_customers" type="INTEGER" />
+        <column name="max_products" type="INTEGER"/>
+        <column name="is_active" required="true" defaultValue="false" type="BOOLEAN"/>
+        <column name="monday" defaultValue="false" type="BOOLEAN"/>
+        <column name="tuesday" defaultValue="false" type="BOOLEAN"/>
+        <column name="wednesday" defaultValue="false" type="BOOLEAN"/>
+        <column name="thursday" defaultValue="false" type="BOOLEAN"/>
+        <column name="friday" defaultValue="false" type="BOOLEAN"/>
+        <column name="saturday" defaultValue="false" type="BOOLEAN"/>
+        <column name="start_time" type="TIME"/>
+        <column name="end_time" type="TIME"/>
+        <column name="status" required="true" size="10" type="ENUM" valueSet="active,deleted" defaultValue="active"/>
+
+        <foreign-key name="spy_delivery_area-fk_delivery_area" foreignTable="spy_delivery_area">
+            <reference local="fk_delivery_area" foreign="id_delivery_area"/>
+        </foreign-key>
+
+        <foreign-key name="spy_delivery_area-fk_branch" foreignTable="spy_branch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <id-method-parameter value="spy_time_slot_pk_seq"/>
+        <behavior name="timestampable" />
+    </table>
+
+    <table name="spy_delivery_area_abstract_product" idMethod="native">
+        <column name="fk_delivery_area" type="integer" primaryKey="true"/>
+        <column name="fk_product_abstract" type="integer" primaryKey="true"/>
+
+        <foreign-key name="spy_delivery_area-fk_delivery_area" foreignTable="spy_delivery_area">
+            <reference local="fk_delivery_area" foreign="id_delivery_area"/>
+        </foreign-key>
+
+        <foreign-key name="spy_delivery_area-fk_product_abstract" foreignTable="spy_product_abstract">
+            <reference local="fk_product_abstract" foreign="id_product_abstract"/>
+        </foreign-key>
+    </table>
+
+    <table name="spy_concrete_time_slot" idMethod="native" phpName="SpyConcreteTimeSlot">
+        <column name="id_concrete_time_slot" required="true" type="integer" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_time_slot" type="integer"/>
+        <column name="fk_concrete_tour" type="integer"/>
+        <column name="start_time" type="TIMESTAMP"/>
+        <column name="end_time" type="TIMESTAMP"/>
+        <column name="is_active" required="true" defaultValue="true" type="BOOLEAN"/>
+
+        <foreign-key name="spy_concrete_time_slot-fk_time_slot" foreignTable="spy_time_slot">
+            <reference local="fk_time_slot" foreign="id_time_slot"/>
+        </foreign-key>
+
+        <foreign-key name="spy_concrete_time_slot-fk_concrete_tour" foreignTable="dst_concrete_tour">
+            <reference local="fk_concrete_tour" foreign="id_concrete_tour"/>
+        </foreign-key>
+
+        <id-method-parameter value="spy_concrete_time_slot_pk_seq"/>
+    </table>
+
+</database>

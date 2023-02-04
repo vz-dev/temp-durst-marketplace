@@ -1,0 +1,23 @@
+{% extends '@Application/Layout/layout.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    <fieldset>
+        <h3>Allgemein</h3>
+
+        {{ form_row(form.fkBranch) }}
+
+        {{ form_row(form.isActive) }}
+    </fieldset>
+
+    <fieldset>
+        <h3>Zeitfenster-einstellungen</h3>
+        {{ form_row(form.slotSize) }}
+        {{ form_row(form.minValue) }}
+    </fieldset>
+    <fieldset>
+        <h3>Liefergebiet</h3>
+
+    </fieldset>
+    {{ form_end(form) }}
+{% endblock %}

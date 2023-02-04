@@ -1,0 +1,67 @@
+version: "2"
+{% set strategy = (_platform == 'macos') ? 'native_osx' : 'unison' %}
+options:
+  verbose: true
+{% if docker['mount']['docker-sync']['image'] is not empty %}
+  {{ strategy }}_image: '{{ docker['mount']['docker-sync']['image'] }}'
+{% endif %}
+syncs:
+  {{ namespace }}_{{ tag }}_data_sync:
+    src: '.'
+    sync_strategy: {{ strategy }}
+    sync_excludes:
+      - 'Path .git'
+      - 'Path docker'
+      - 'Path data/*/cache'
+      - 'Name .docker-sync'
+      - 'Name .idea'
+      - 'Name .project'
+      - 'Name *.log'
+      - 'Name node_modules'
+      - 'Name .composer'
+      - 'Name .npm'
+    sync_excludes_type: 'none'
+{%  if _platform == 'macos' %}
+    host_disk_mount_mode: 'cached'
+{% endif %}
+    sync_userid: '1000'
+    sync_args:
+      - "-force newer"
+{% if _platform == 'windows' %}
+      - "-perms=0"
+{% endif %}
+    monit_enable: true
+    monit_interval: 3
+    monit_high_cpu_cycles: 2
+
+  {{ namespace }}_merchant_center_{{ tag }}_data_sync:
+{% if _pipeline == 'docker.dev' %}
+      src: './../merchant_center/'
+{% elseif _pipeline == 'docker.ci' %}
+      src: './merchant_center/'
+{% endif %}
+      sync_strategy: {{ strategy }}
+      sync_excludes:
+          - 'Path .git'
+          - 'Path docker'
+          - 'Path data/*/cache'
+          - 'Name .docker-sync'
+          - 'Name .idea'
+          - 'Name .project'
+          - 'Name *.log'
+          - 'Name node_modules'
+          - 'Name .composer'
+          - 'Name .npm'
+      sync_excludes_type: 'none'
+      {%  if _platform == 'macos' %}
+      host_disk_mount_mode: 'cached'
+      {% endif %}
+      sync_userid: '1000'
+      sync_args:
+          - "-force newer"
+          {% if _platform == 'windows' %}
+          - "-perms=0"
+      {% endif %}
+      monit_enable: true
+      monit_interval: 3
+      monit_high_cpu_cycles: 2

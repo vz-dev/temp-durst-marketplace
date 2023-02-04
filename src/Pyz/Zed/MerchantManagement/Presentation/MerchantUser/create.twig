@@ -1,0 +1,44 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Create merchant user' %}
+
+{% block action %}
+    {{ backActionButton('/merchant-management/merchant-user', 'List Merchant Users' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(merchantUserForm) }}
+
+            <fieldset>
+                <h2>Niederlassung</h2>
+                {{ form_row(merchantUserForm.fkMerchant) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Rechte</h2>
+                {{ form_row(merchantUserForm.fkAclGroup) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Benutzer</h2>
+                {{ form_row(merchantUserForm.salutation) }}
+                {{ form_row(merchantUserForm.firstName) }}
+                {{ form_row(merchantUserForm.lastName) }}
+                {{ form_row(merchantUserForm.email) }}
+                {{ form_row(merchantUserForm.password) }}
+            </fieldset>
+
+            {{ form_row(merchantUserForm.submit, { attr: { class: 'btn btn-primary' } }) }}
+
+            {{ form_end(merchantUserForm) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

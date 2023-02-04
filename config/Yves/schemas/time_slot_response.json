@@ -1,0 +1,99 @@
+{
+  "title": "TimeSlotResponse",
+  "type": "object",
+  "properties":
+  {
+    "time_slots":
+    {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items":
+      {
+        "type": "object",
+        "properties":
+        {
+          "time_slot_id":
+          {
+            "type": "integer",
+            "minimum": 0
+          },
+          "merchant_id":
+          {
+            "type": "integer",
+            "minimum": 0
+          },
+          "from":
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          "to":
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          "time_slot_string":
+          {
+            "type": "string"
+          },
+          "cheapest_slot":
+          {
+            "type": "boolean"
+          },
+          "total_cart":
+          {
+            "type": "number"
+          },
+          "total_delivery_cost":
+          {
+            "type": "number"
+          },
+          "total_deposit":
+          {
+            "type": "number"
+          },
+          "total_discount":
+          {
+            "type": "number"
+          },
+          "total_included_tax":
+          {
+            "type": "number"
+          },
+          "total_missing_min_value":
+          {
+            "type": "number"
+          },
+          "total":
+          {
+            "type": "number"
+          },
+          "currency":
+          {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "durst_terms":
+    {
+      "type": "object",
+      "properties":
+      {
+        "text":
+        {
+          "type": "string"
+        },
+        "hint_text":
+        {
+          "type": "string"
+        },
+        "button_text":
+        {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

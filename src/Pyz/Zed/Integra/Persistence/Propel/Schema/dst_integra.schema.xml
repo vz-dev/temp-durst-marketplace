@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Integra\Persistence"
+          package="src.Orm.Zed.Integra.Persistence">
+
+    <table name="dst_integra_webservice_token" idMethod="native" phpName="DstIntegraWebServiceToken">
+        <column name="id_integra_webservice_token" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" type="INTEGER" required="true"/>
+        <column name="token" required="false" type="VARCHAR"/>
+        <column name="is_valid" type="BOOLEAN"/>
+
+        <id-method-parameter value="dst_integra_webservice_token_pk_seq"/>
+
+        <foreign-key name="dst_integra_webservice_token-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <behavior name="timestampable" />
+
+    </table>
+</database>

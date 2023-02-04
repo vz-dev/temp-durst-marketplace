@@ -1,0 +1,19 @@
+{
+  "title": "DriverGtinRequest",
+  "type": "object",
+  "required":
+  [
+    "token"
+  ],
+  "properties":
+  {
+    "token":
+    {
+      "type":
+      [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

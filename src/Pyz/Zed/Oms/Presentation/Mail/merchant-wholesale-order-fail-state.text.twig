@@ -1,0 +1,10 @@
+{% set address = mail.order.billingAddress %}
+Bei der Bestellung “{{ mail.order.orderReference }}” mit der Order ID “{{ mail.order.idSalesOrder }}”
+von Kunde “{{ address.firstName }} {{ address.lastName }}” kam
+es beim Prozessschritt “{{ mail.processName }}” zu einem Fehler.
+
+Zahlungsmethode: {{ mail.order.paymentMethodName }}
+
+Die Bezahlung konnte nicht sauber abgeschlossen werden. Manuelle Nacharbeit ist erforderlich.
+
+{{ mail.fridgeUrl }}

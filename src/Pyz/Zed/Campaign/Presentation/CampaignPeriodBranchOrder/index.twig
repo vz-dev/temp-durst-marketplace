@@ -1,0 +1,17 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Campaign Period Branch Order List' %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ campaignPeriodBranchOrders | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

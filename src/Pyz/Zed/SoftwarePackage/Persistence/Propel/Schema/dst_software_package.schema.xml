@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd" namespace="Orm\Zed\Sales\Persistence" package="src.Orm.Zed.Sales.Persistence">
+
+    <table name="dst_software_package" phpName="DstSoftwarePackage">
+        <column name="id_software_package" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
+        <column name="code" type="VARCHAR" size="255" required="true" />
+        <column name="name" type="VARCHAR" size="255" required="true" />
+        <column name="quota_delivery_area" type="INTEGER" required="false" default="-1" />
+        <column name="quota_product_concrete" type="INTEGER" required="false" default="-1" />
+        <column name="quota_branch" type="INTEGER" required="false" default="-1" />
+        <column name="quota_order" type="INTEGER" required="false" default="-1" />
+        <column name="allow_order_comments" defaultValue="false" type="BOOLEAN"/>
+        <column name="status" required="true" size="10" type="ENUM" valueSet="active,inactive,deleted" defaultValue="active"/>
+
+        <unique name="dst_software_package-code">
+            <unique-column name="code"/>
+        </unique>
+
+        <id-method-parameter value="dst_software_package_pk_seq"/>
+    </table>
+
+    <table name="dst_software_package_to_payment_method" phpName="DstSoftwarePackageToPaymentMethod">
+        <column name="fk_software_package" required="true" type="INTEGER" primaryKey="true"/>
+        <column name="fk_payment_method" required="true" type="INTEGER" primaryKey="true"/>
+
+        <foreign-key name="dst_software_package_to_payment_method-fk_software_package" foreignTable="dst_software_package" phpName="DstSoftwarePackage">
+            <reference local="fk_software_package" foreign="id_software_package"/>
+        </foreign-key>
+
+        <foreign-key name="dst_software_package_to_payment_method-fk_payment_method" foreignTable="spy_payment_method" phpName="SpyPaymentMethod">
+            <reference local="fk_payment_method" foreign="id_payment_method"/>
+        </foreign-key>
+    </table>
+
+    <table name="dst_software_feature" idMethod="native" phpName="DstSoftwareFeature">
+        <column name="id_software_feature" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="name" required="true" size="255" type="VARCHAR"/>
+        <column name="code" required="true" size="255" type="VARCHAR"/>
+        <column name="description" required="true" size="255" type="VARCHAR"/>
+
+        <unique name="dst_software_feature-code">
+            <unique-column name="code"/>
+        </unique>
+
+        <id-method-parameter value="dst_software_feature_pk_seq"/>
+    </table>
+
+    <table name="dst_software_package_to_software_feature" phpName="DstSoftwarePackageToSoftwareFeature">
+        <column name="fk_software_package" required="true" type="INTEGER" primaryKey="true"/>
+        <column name="fk_software_feature" required="true" type="INTEGER" primaryKey="true"/>
+
+        <foreign-key name="dst_software_package_to_software_feature-fk_software_package" foreignTable="dst_software_package" phpName="DstSoftwarePackage">
+            <reference local="fk_software_package" foreign="id_software_package"/>
+        </foreign-key>
+
+        <foreign-key name="dst_software_package_to_software_feature-fk_software_feature" foreignTable="dst_software_feature" phpName="DstSoftwareFeature">
+            <reference local="fk_software_feature" foreign="id_software_feature"/>
+        </foreign-key>
+    </table>
+
+    <table name="spy_branch_to_software_feature" idMethod="native" phpName="SpyBranchToSoftwareFeature">
+        <column name="id_branch_to_software_feature" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" required="true" type="INTEGER"/>
+        <column name="fk_software_feature" required="true" type="INTEGER"/>
+        <foreign-key name="spy_branch_to_software_feature-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+        <foreign-key name="spy_branch_to_software_feature-fk_software_feature" foreignTable="dst_software_feature" phpName="DstSoftwareFeature">
+            <reference local="fk_software_feature" foreign="id_software_feature"/>
+        </foreign-key>
+
+        <id-method-parameter value="spy_branch_to_software_feature_pk_seq"/>
+    </table>
+
+    <table name="dst_license" phpName="DstLicense" idMethod="native">
+        <column name="id_license" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="license_id" required="true" type="INTEGER"/>
+        <column name="fk_branch" required="false" type="INTEGER"/>
+        <column name="fk_software_package" required="true" type="INTEGER"/>
+        <column name="license_key" type="VARCHAR" size="255" required="true"/>
+        <column name="units" type="INTEGER" required="true"/>
+        <column name="valid_from" type="DATE" required="false"/>
+        <column name="valid_to" type="DATE" required="false"/>
+        <column name="status" required="true" type="ENUM" valueSet="available,active,expired,inactive,returned,sold,redeemed" defaultValue="available"/>
+        <column name="redeemed_at" required="false" type="TIMESTAMP" />
+
+        <unique name="dst_license-unique-license_key">
+            <unique-column name="license_key"/>
+        </unique>
+
+        <foreign-key name="dst_license-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <foreign-key name="dst_license-fk_software_package" foreignTable="dst_software_package" phpName="DstSoftwarePackage">
+            <reference local="fk_software_package" foreign="id_software_package"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_license_pk_seq"/>
+    </table>
+
+</database>

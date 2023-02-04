@@ -1,0 +1,19 @@
+{
+  "title": "DiscountResponse",
+  "type": "object",
+  "properties":
+  {
+    "valid":
+    {
+      "type": "boolean"
+    },
+    "error_message":
+    {
+      "type":
+        [
+          "string",
+          "null"
+        ]
+    }
+  }
+}

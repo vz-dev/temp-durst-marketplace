@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="InvoiceInvoiceGuaranteed">
+        <states>
+            <state name="ready for invoice creation"/>
+            <state name="invoice created"/>
+            <state name="invoice sent"/>
+        </states>
+
+        <transitions>
+            <transition happy="true">
+                <source>ready for invoice creation</source>
+                <target>invoice created</target>
+                <event>create invoice</event>
+            </transition>
+
+            <transition happy="true">
+                <source>invoice created</source>
+                <target>invoice sent</target>
+                <event>send invoice</event>
+            </transition>
+
+        </transitions>
+
+        <events>
+            <event name="create invoice" onEnter="true" command="WholesaleOrder/CreateInvoice"/>
+            <event name="send invoice" onEnter="true" command="WholesaleOrder/SendInvoiceInvoice"/>
+        </events>
+    </process>
+</statemachine>

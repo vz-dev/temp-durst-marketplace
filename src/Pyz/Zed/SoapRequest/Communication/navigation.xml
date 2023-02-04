@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <soap-request>
+        <label>SOAP-Request</label>
+        <title>SOAP_Request</title>
+        <bundle>soap-request</bundle>
+        <controller>index</controller>
+        <action>index</action>
+        <icon>fa-exchange</icon>
+    </soap-request>
+</config>

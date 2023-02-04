@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <marketing-management>
+        <label>Marketing</label>
+        <title>Marketing</title>
+        <bundle>marketing-management</bundle>
+        <controller>index</controller>
+        <action>index</action>
+        <icon>fa-area-chart</icon>
+        <pages>
+            <discounts>
+                <label>Aktionen</label>
+                <title>Aktionen</title>
+                <bundle>marketing-management</bundle>
+                <controller>discount</controller>
+                <action>index</action>
+                <icon>fa-calendar</icon>
+            </discounts>
+            <vouchers>
+                <label>Discounts</label>
+                <title>Discounts</title>
+                <bundle>marketing-management</bundle>
+                <controller>voucher</controller>
+                <action>index</action>
+                <icon>fa-calendar</icon>
+            </vouchers>
+        </pages>
+    </marketing-management>
+</config>

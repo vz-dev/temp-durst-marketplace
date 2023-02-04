@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="Pdf">
+        <property name="fileName" type="string" />
+        <property name="dirPath" type="string"/>
+        <property name="pdfDestination" type="string" />
+        <property name="html" type="string" />
+        <property name="template" type="string" />
+        <property name="templateVariables" type="array" />
+        <property name="options" type="PdfOptions" />
+        <property name="pdfName" type="string" />
+        <property name="displayName" type="string" />
+        <property name="content" type="string" />
+    </transfer>
+
+    <transfer name="PdfOptions">
+        <property name="mode" type="string" />
+        <property name="format" type="string" />
+        <property name="defaultFontSize" type="int" />
+        <property name="defaultFont" type="string" />
+        <property name="marginLeft" type="int" />
+        <property name="marginRight" type="int" />
+        <property name="marginTop" type="int" />
+        <property name="marginBottom" type="int" />
+        <property name="marginHeader" type="int" />
+        <property name="marginFooter" type="int" />
+        <property name="orientation" type="string" />
+    </transfer>
+
+</transfers>

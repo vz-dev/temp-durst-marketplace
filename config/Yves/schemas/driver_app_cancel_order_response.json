@@ -1,0 +1,32 @@
+{
+  "title": "DriverCancelOrderResponse",
+  "type": "object",
+  "required":
+  [
+    "auth_valid",
+    "order_canceled"
+  ],
+  "properties":
+  {
+    "auth_valid":
+    {
+      "type": "boolean"
+    },
+    "order_canceled":
+    {
+      "type": "boolean"
+    },
+    "already_canceled":
+    {
+      "type": "boolean"
+    },
+    "error_message":
+    {
+      "type":
+      [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

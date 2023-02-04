@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\HttpRequest\Persistence"
+          package="src.Orm.Zed.HttpRequest.Persistence">
+
+    <table name="pyz_http_request" idMethod="native" phpName="PyzHttpRequest">
+
+        <column name="id_http_request" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="request_uri" required="true" type="LONGVARCHAR"/>
+        <column name="request_options" required="false" type="LONGVARCHAR"/>
+        <column name="request_body" required="false" type="LONGVARCHAR"/>
+        <column name="request_timeout" required="false" type="INTEGER"/>
+        <column name="request_method" required="true" type="ENUM" valueSet="POST,GET" defaultValue="GET"/>
+        <column name="request_headers" required="false" type="LONGVARCHAR"/>
+        <column name="response_code" required="true" type="INTEGER"/>
+        <column name="response_message" required="false" type="LONGVARCHAR"/>
+        <column name="response_headers" required="false" type="LONGVARCHAR"/>
+        <column name="response_body" required="false" type="LONGVARCHAR"/>
+        <column name="response_errors" required="false" type="LONGVARCHAR"/>
+
+        <id-method-parameter value="pyz_http_request_pk_seq"/>
+
+        <behavior name="timestampable">
+            <parameter name="disable_updated_at" value="true"/>
+        </behavior>
+
+    </table>
+</database>

@@ -1,0 +1,8 @@
+{% extends '@MerchantManagement/MerchantUser/create.twig' %}
+
+{% set widget_title = 'Update Merchant User #' ~ idMerchantUser %}
+
+{% block action %}
+    {{ backActionButton('/merchant-management/merchant-user', 'List Merchant Users' | trans) }}
+    {{ createActionButton('/merchant-management/merchant-user/create', 'Add Merchant User' | trans) }}
+{% endblock %}

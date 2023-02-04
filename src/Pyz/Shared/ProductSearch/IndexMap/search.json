@@ -1,0 +1,71 @@
+{
+  "settings": {
+    "index.mapper.dynamic": false
+  },
+  "mappings": {
+    "product": {
+      "_all": {
+        "enabled": false
+      },
+      "dynamic": "strict",
+      "properties": {
+        "id_product": {
+          "type": "integer"
+        },
+        "id_category": {
+          "type": "keyword"
+        },
+        "name": {
+          "type": "keyword"
+        },
+        "sku": {
+          "type": "keyword"
+        },
+        "image_bottle": {
+          "type": "keyword"
+        },
+        "image_bottle_thumb": {
+          "type": "keyword"
+        },
+        "product_logo": {
+          "type": "keyword"
+        },
+        "description": {
+          "type": "keyword"
+        },
+        "ingredients":{
+          "type": "keyword"
+        },
+        "nutritional_values": {
+          "type": "keyword"
+        },
+        "alcohol_by_volume": {
+          "type": "keyword"
+        },
+        "allergens": {
+          "type": "keyword"
+        },
+        "image_list": {
+          "type": "keyword"
+        },
+        "deposit": {
+          "type": "integer"
+        },
+        "manufacturer": {
+          "type": "nested",
+          "properties": {
+            "name": {
+              "type": "keyword"
+            },
+            "address_1": {
+              "type": "keyword"
+            },
+            "address_2": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    }
+  }
+}

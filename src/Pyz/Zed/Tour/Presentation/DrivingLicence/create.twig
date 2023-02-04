@@ -1,0 +1,27 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Neue Führerscheinklasse anlegen' %}
+
+{% block action %}
+    {{ backActionButton('/tour/driving-licence/', 'List Driving Licence' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(drivingLicenceForm) }}
+
+                {{ form_row(drivingLicenceForm.name) }}
+                {{ form_row(drivingLicenceForm.code) }}
+                {{ form_row(drivingLicenceForm.description) }}
+
+            {{ form_end(drivingLicenceForm) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

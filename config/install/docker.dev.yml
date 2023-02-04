@@ -1,0 +1,271 @@
+env:
+    APPLICATION_ENV: docker.dev
+    NEW_RELIC_ENABLED: 0
+
+command-timeout: 3600
+
+stores:
+    - DE
+
+sections:
+    build:
+        remove-logs:
+            command: "vendor/bin/console log:clear"
+
+        remove-cache:
+            command: "vendor/bin/console cache:empty-all"
+
+        remove-generated-files:
+            command: "vendor/bin/console setup:empty-generated-directory"
+
+        generate-transfers:
+            command: "vendor/bin/console transfer:generate"
+
+        twig-cache-warmup:
+            command: "vendor/bin/console twig:cache:warmer"
+
+        navigation-cache-warmup:
+            command: "vendor/bin/console navigation:build-cache"
+
+        rest-request-validation-cache-warmup:
+            command: "vendor/bin/console glue:rest:build-request-validation-cache"
+
+        propel-config:
+            command: "vendor/bin/console propel:config:convert"
+
+        propel-copy-schema:
+            command: "vendor/bin/console propel:schema:copy"
+
+        propel-build:
+            command: "vendor/bin/console propel:model:build"
+
+    build-production:
+        excluded: true
+
+    build-development:
+        generate-transfers:
+            command: "vendor/bin/console transfer:generate"
+
+        generate-transfer-databuilders:
+            command: "vendor/bin/console transfer:databuilder:generate"
+
+        generate-auto-completion:
+            command: "vendor/bin/console dev:ide:generate-auto-completion"
+
+        rest-api-generate-documentation:
+            command: "vendor/bin/console rest-api:generate:documentation"
+
+    build-static:
+        dependencies-install:
+            command: "vendor/bin/console frontend:project:install-dependencies"
+
+        yves-install-dependencies:
+            command: "vendor/bin/console frontend:yves:install-dependencies"
+
+        zed-install-dependencies:
+            command: "vendor/bin/console frontend:zed:install-dependencies"
+
+    build-static-production:
+        excluded: true
+        yves-build-frontend:
+            command: "vendor/bin/console frontend:yves:build -e production"
+
+        zed-build-frontend:
+            command: "vendor/bin/console frontend:zed:build -e production"
+
+    build-static-development:
+        yves-build-frontend:
+            command: "vendor/bin/console frontend:yves:build"
+
+        zed-build-frontend:
+            command: "vendor/bin/console frontend:zed:build"
+
+    scheduler-setup:
+        jenkins-generate:
+            command: "vendor/bin/console setup:jenkins:generate"
+
+        jenkins-enable:
+            command: "vendor/bin/console setup:jenkins:enable"
+
+    scheduler-suspend:
+        excluded: true
+        jenkins-stop:
+            command: "vendor/bin/console setup:jenkins:disable"
+
+    scheduler-clean:
+        excluded: true
+
+    init-storages-per-store:
+        set-permissions:
+            command: "vendor/bin/console queue:permission:set"
+
+        purge-all-queues:
+            command: "vendor/bin/console queue:queue:purge-all"
+
+        delete-all-queues:
+            command: "vendor/bin/console queue:queue:delete-all"
+
+        delete-all-exchanges:
+            command: "vendor/bin/console queue:exchanges:delete-all"
+
+        delete-elastic-search-index:
+            command: "vendor/bin/console search:index:delete"
+
+        delete-storage:
+            command: "vendor/bin/console storage:delete"
+
+        setup-search:
+            command: "vendor/bin/console setup:search"
+
+    init-storages-per-region:
+        propel-copy-schema:
+            command: "vendor/bin/console propel:schema:copy"
+
+        propel-postgres-compatibility:
+            command: "vendor/bin/console propel:pg-sql-compat"
+
+        propel-migration-delete:
+            command: "vendor/bin/console propel:migration:delete"
+
+        propel-tables-drop:
+            command: "vendor/bin/console propel:tables:drop"
+
+        propel-diff:
+            command: "vendor/bin/console propel:diff"
+
+        propel-migration-check:
+            command: "vendor/bin/console propel:migration:check"
+            breakOnFailure: false
+
+        propel-migrate:
+            command: "vendor/bin/console propel:migrate"
+
+        propel-migration-cleanup:
+            command: "vendor/bin/console propel:migration:delete"
+
+        init-database:
+            command: "vendor/bin/console setup:init-db"
+
+    demodata:
+        import-store:
+            command: "vendor/bin/console data:import:store"
+
+        import-enum-salutation:
+            command: "vendor/bin/console data:import:enum-salutation"
+
+        import-payment-method:
+            command: "vendor/bin/console data:import:payment-method"
+
+        import-software-package:
+            command: "vendor/bin/console data:import:software-package"
+
+        import-software-feature:
+            command: "vendor/bin/console data:import:software-feature"
+
+        import-merchant:
+            command: "vendor/bin/console data:import:merchant"
+
+        import-branch:
+            command: "vendor/bin/console data:import:branch"
+
+        import-delivery-area:
+            command: "vendor/bin/console data:import:delivery-area"
+
+        import-currency:
+            command: "vendor/bin/console data:import:currency"
+
+        import-category-template:
+            command: "vendor/bin/console data:import:category-template"
+
+        import-customer:
+            command: "vendor/bin/console data:import:customer"
+
+        import-glossary:
+            command: "vendor/bin/console data:import:glossary"
+
+        import-tax:
+            command: "vendor/bin/console data:import:tax"
+
+        import-shipment:
+            command: "vendor/bin/console data:import:shipment"
+
+        import-shipment-price:
+            command: "vendor/bin/console data:import:shipment-price"
+
+        import-discount:
+            command: "vendor/bin/console data:import:discount"
+
+        import-discount-voucher:
+            command: "vendor/bin/console data:import:discount-voucher"
+
+        import-stock:
+            command: "vendor/bin/console data:import:stock"
+
+        import-deposit:
+            command: "vendor/bin/console data:import:deposit"
+
+        import-time-slot:
+            command: "vendor/bin/console data:import:time-slot"
+
+        import-manufacturer:
+            command: "vendor/bin/console data:import:manufacturer"
+
+        akeneo-import:
+            command: "vendor/bin/console akeneo:import"
+
+        import-price:
+            command: "vendor/bin/console data:import:price"
+
+        import-category-style:
+            command: "vendor/bin/console data:import:category-style"
+
+        import-terms-of-service:
+            command: "vendor/bin/console data:import:terms-of-service"
+
+        import-vehicle-category:
+          command: "vendor/bin/console data:import:vehicle-category"
+
+        import-vehicle-type:
+            command: "vendor/bin/console data:import:vehicle-type"
+
+        import-tour:
+            command: "vendor/bin/console data:import:tour"
+
+        import-deposit-sku:
+            command: "vendor/bin/console data:import:deposit-sku"
+
+        import-driving-license:
+            command: "vendor/bin/console data:import:driving-license"
+
+        import-driver:
+            command: "vendor/bin/console data:import:driver"
+
+        import-driver-app-release:
+            command: "vendor/bin/console data:import:driver-app-release"
+
+        import-branch-user:
+            command: "vendor/bin/console data:import:branch-user"
+
+        # import-product-price:
+        #     command: "vendor/bin/console data:import:product-price"
+
+        # import-product-stock:
+        #     command: "vendor/bin/console data:import:product-stock"
+
+        # update-product-labels:
+        #     command: "vendor/bin/console product-label:relations:update"
+
+        search-collector:
+            command: "vendor/bin/console collector:search:export"
+
+        storage-collector:
+            command: "vendor/bin/console collector:storage:export"
+
+        touch-all:
+            command: "vendor/bin/console touch:all:now"
+
+        touch-search-truncate:
+            command: "vendor/bin/console touch:search:truncate"
+
+        export-csv:
+            command: "vendor/bin/console product:export"

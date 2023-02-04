@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Merchant\Persistence"
+          package="src.Orm.Zed.Merchant.Persistence">
+    <table name="spy_branch">
+        <column name="edi_export_version" type="VARCHAR" size="255" required="false" />
+        <column name="edi_deposit_endpoint_url" type="VARCHAR" size="255" required="false" />
+        <column name="edi_exclude_missing_item_returns" type="BOOLEAN" defaultValue="false" />
+    </table>
+</database>

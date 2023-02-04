@@ -1,0 +1,34 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% block head_css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/assets/jquery/css/jquery-ui.css">
+{% endblock %}
+
+{% set widget_title = 'Edit campaign period' %}
+
+{% block action %}
+    {{ backActionButton('/campaign/campaign-period/', 'Back' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(form) }}
+            {{ form_end(form) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}
+
+{% block footer_js %}
+    {{ parent() }}
+    <script src="/assets/jquery/js/jquery.js"></script>
+    <script src="/assets/jquery/js/jquery-ui.js"></script>
+    <script src="/assets/campaign/js/campaign-period.js"></script>
+{% endblock %}

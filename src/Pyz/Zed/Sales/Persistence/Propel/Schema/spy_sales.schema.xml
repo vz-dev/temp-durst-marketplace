@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd" namespace="Orm\Zed\Sales\Persistence" package="src.Orm.Zed.Sales.Persistence">
+
+    <table name="spy_sales_order_totals" phpName="SpySalesOrderTotals">
+        <column name="delivery_cost_total" type="INTEGER" required="false" default="0" />
+    </table>
+
+    <table name="spy_sales_order_item" phpName="SpySalesOrderItem">
+        <column name="deposit_amount" type="INTEGER" required="false" default="0" description="/Total item deposit amount/" />
+        <column name="delivery_status" type="ENUM" valueSet="delivered,declined,damaged,missing,cancelled" required="false"/>
+    </table>
+
+    <table name="spy_sales_order" phpName="SpySalesOrder">
+        <column name="invoice_reference" required="false" type="VARCHAR" size="255"/>
+        <column name="invoice_created_at" required="false" type="TIMESTAMP"/>
+        <column name="signature_file_path" required="false" type="VARCHAR" size="512"/>
+        <column name="signed_at" required="false" type="TIMESTAMP"/>
+        <column name="is_reseller" required="false" type="BOOLEAN"/>
+        <column name="delivery_order" type="INTEGER"/>
+        <column name="fk_driver" required="false" type="INTEGER"/>
+        <column name="platform" required="false" type="VARCHAR"/>
+        <column name="version" required="false" type="VARCHAR"/>
+        <column name="device_type" required="false" type="VARCHAR"/>
+        <column name="external_amount_paid" required="false" type="INTEGER"/>
+        <column name="durst_customer_reference" required="false" type="VARCHAR" size="255"/>
+        <column name="fk_graphmasters_tour" type="INTEGER" required="false"/>
+        <column name="graphmasters_stop_eta" type="TIMESTAMP" required="false"/>
+        <column name="graphmasters_status" type="VARCHAR" size="255" required="false"/>
+
+        <unique name="spy_sales-unique-invoice_reference">
+            <unique-column name="invoice_reference"/>
+        </unique>
+
+        <foreign-key name="spy_sales_order-fk_driver" foreignTable="dst_driver" phpName="DstDriver">
+            <reference local="fk_driver" foreign="id_driver"/>
+        </foreign-key>
+
+        <foreign-key name="spy_sales_order-fk_graphmasters_tour" foreignTable="dst_graphmasters_tour" phpName="DstGraphmastersTour">
+            <reference local="fk_graphmasters_tour" foreign="id_graphmasters_tour"/>
+        </foreign-key>
+    </table>
+
+    <table name="spy_sales_order_comment" phpName="SpySalesOrderComment">
+        <column name="type" type="VARCHAR" required="false" size="255" default="COMMENT_MERCHANT"/>
+    </table>
+
+    <table name="spy_sales_order_address" phpName="SpySalesOrderAddress">
+        <column name="lat" type="FLOAT"/>
+        <column name="lng" type="FLOAT"/>
+        <column name="floor" type="INTEGER" required="false"/>
+        <column name="elevator" type="BOOLEAN" required="false"/>
+    </table>
+
+</database>

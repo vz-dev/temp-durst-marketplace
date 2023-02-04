@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="EasybillDocument">
+        <property name="type" type="string"/>
+        <property name="pdfTemplate" type="string"/>
+        <property name="customerId" type="int"/>
+        <property name="number" type="string"/>
+        <property name="orderNumber" type="string"/>
+        <property name="dueInDays" type="int"/>
+        <property name="documentDate" type="string"/>
+        <property name="currency" type="string"/>
+        <property name="title" type="string"/>
+        <property name="items" type="EasybillDocumentPosition[]"/>
+    </transfer>
+
+    <transfer name="EasybillDocumentPosition">
+        <property name="number" type="string"/>
+        <property name="description" type="string"/>
+        <property name="quantity" type="float"/>
+        <property name="type" type="string"/>
+        <property name="position" type="int"/>
+        <property name="singlePriceNet" type="float"/>
+        <property name="vatPercent" type="float"/>
+        <property name="bookingAccount" type="string"/>
+        <property name="itemType" type="string"/>
+    </transfer>
+
+    <transfer name="EasybillAddress">
+        <property name="salutation" type="int"/>
+        <property name="firstName" type="string"/>
+        <property name="lastName" type="string"/>
+        <property name="companyName" type="string"/>
+        <property name="street" type="string"/>
+        <property name="zipCode" type="string"/>
+        <property name="city" type="string"/>
+    </transfer>
+
+    <transfer name="EasybillServiceDate">
+        <property name="type" type="string"/>
+        <property name="date" type="string"/>
+        <property name="dateFrom" type="string"/>
+        <property name="dateTo" type="string"/>
+    </transfer>
+
+    <transfer name="EasybillCustomer">
+        <property name="companyName" type="string"/>
+        <property name="country" type="string"/>
+        <property name="emails" type="array"/>
+        <property name="firstName" type="string"/>
+        <property name="lastName" type="string"/>
+        <property name="phone1" type="string"/>
+        <property name="vatIdentifier" type="string"/>
+        <property name="street" type="string"/>
+        <property name="zipCode" type="string"/>
+    </transfer>
+
+</transfers>

@@ -1,0 +1,59 @@
+{% macro address(order, addr, panelTitle, messageIfEmpty) %}
+
+    {% if addr is not defined %}
+        {{ messageIfEmpty | trans }}
+    {% else %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ panelTitle | trans }}</h3>
+            </div>
+            <div class="panel-body">
+                {% if order.invoiceReference == null %}
+                    <a href="{{ url('/sales/edit/address', {'id-sales-order': order.idSalesOrder, 'id-address': addr.idSalesOrderAddress}) }}" class="btn btn-sm btn-warning">
+                        Edit
+                    </a>
+                {% else %}
+                    <p><b>{{ "Es wurde bereits eine Rechnung verschickt, keine Änderung mehr möglich" | trans }}</b></p>
+                {% endif %}
+                <p>{{ addr.salutation }} {{ addr.firstName }} {{ addr.middleName }} {{ addr.lastName }}</p>
+                {% if addr.company is not empty %}
+                    <p>
+                        {{ addr.company }}{% if addr.phone is not empty %}, {{ addr.phone }}{% endif %}
+                    </p>
+                {% endif %}
+                {% if addr.address1 is not empty %}<p>{{ addr.address1 }}</p>{% endif %}
+                {% if addr.address2 is not empty %}<p>{{ addr.address2 }}</p>{% endif %}
+                {% if addr.address3 is not empty %}<p>{{ addr.address3 }}</p>{% endif %}
+                {% if addr.zipCode is not empty %}<p>{{ addr.zipCode }} {{ addr.city }}</p>{% endif %}
+                {% if addr.country %} {{ addr.country.name }}</p>{% endif %}
+                {% if addr.lat %}<p>Lat: {{ addr.lat }}</p>{% endif %}
+                {% if addr.lng %}<p>Lng: {{ addr.lng }}</p>{% endif %}
+                {% if addr.floor %}<p>Etage: {{ addr.floor }}</p>{% endif %}
+                {% if addr.elevator %}<p>Fahrstuhl vorhanden{% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endmacro %}
+
+{% import _self as show %}
+
+{% embed '@Gui/Partials/widget.twig' with { widget_title: 'Addresses' } %}
+
+    {% block widget_content %}
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                {{ show.address(order, order.billingAddress, 'Billing address', 'Billing address not provided') }}
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                {{ show.address(order, order.shippingAddress, 'Shipping address', 'Shipping address not provided') }}
+                {% if order.shippingAddress.lat %}
+                <iframe src="https://maps.google.com/maps?q={{ order.shippingAddress.lat }}, {{ order.shippingAddress.lng }}&z=15&output=embed" width="450" height="350" frameborder="0" style="border:0"></iframe>
+                {% endif %}
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

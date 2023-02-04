@@ -1,0 +1,38 @@
+{% extends '@MerchantCenter/Layout/layout.twig' %}
+
+{% form_theme form '@TermsOfService/Form/terms-of-service-form.twig' %}
+
+{% block header %}
+    {# don't display navigation on terms of service page #}
+{% endblock %}
+
+{% block content %}
+
+    <div>
+        <article class="teaser teaser--login content__centered wide">
+            <div>
+
+                <figure class="logo">
+                    <svg>
+                        <!--suppress HtmlUnknownAttribute -->
+                        <use xlink:href="#icon-durst-logo"></use>
+                    </svg>
+                </figure>
+
+                <h2 class="heading">{{ hintText }}</h2>
+
+                <div class="input-group terms">
+                    <div>
+                        {{ text | raw }}
+                    </div>
+                </div>
+
+                {{ form_start(form) }}
+                {{ form_row(form.accept, { 'attr': {'class': 'button secondary terms'}}) }}
+                {{ form_end(form) }}
+
+            </div>
+        </article>
+    </div>
+
+{% endblock %}

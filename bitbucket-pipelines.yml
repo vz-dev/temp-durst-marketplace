@@ -1,0 +1,45 @@
+image: docker/compose:debian-1.29.2
+
+definitions:
+  services:
+    docker:
+      image: docker:dind
+      memory: 3072
+
+pipelines:
+  pull-requests:
+    '{feature/*,bugfix/*}':
+      - step:
+          name: test-fridge
+          runs-on: self.hosted
+          script:
+            - apt update && apt install -y git iproute2
+            - docker/sdk boot deploy.ci.yml
+            - bash -c "echo '127.0.0.1 glue.de.durst.local merchant.de.durst.local www.de.durst.local zed.de.durst.local' >> /etc/hosts"
+            - docker/sdk up --build --assets --data
+            - docker/sdk testing 'codecept run --config=codeception.functional.yml'
+          services:
+            - docker
+          caches:
+            - docker
+
+  branches:
+    '{stage,demo,master}':
+      - step:
+          name: test-fridge-and-merchant-center
+          runs-on: self.hosted
+          script:
+            - apt update && apt install -y git iproute2
+            - git clone --branch $BITBUCKET_BRANCH git@bitbucket.org:ichhabdurst/merchant-center-backend.git merchant_center
+            - docker/sdk boot deploy.ci.yml
+            - bash -c "echo '127.0.0.1 glue.de.durst.local merchant.de.durst.local www.de.durst.local zed.de.durst.local' >> /etc/hosts"
+            - docker/sdk up --build --assets --data
+            - cd merchant_center && ./copy_marketplace_modules.sh ../src/Pyz && cd ..
+            - docker/sdk testing 'codecept run --config=codeception.functional.yml'
+            - docker/sdk cli 'cd merchant_center && composer install'
+            - docker/sdk cli 'cd merchant_center && vendor/bin/install'
+            - docker/sdk testing 'cd merchant_center && codecept run --config=codeception.functional.yml'
+          services:
+            - docker
+          caches:
+            - docker

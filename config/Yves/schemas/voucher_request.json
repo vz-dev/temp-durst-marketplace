@@ -1,0 +1,15 @@
+{
+  "title": "VoucherRequest",
+  "type": "object",
+  "required":
+  [
+    "voucher_code"
+  ],
+  "properties":
+  {
+    "voucher_code":
+    {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <graph-masters>
+        <label>Graph Masters</label>
+        <title>Graph Masters</title>
+        <bundle>graph-masters</bundle>
+        <controller>index</controller>
+        <action>index</action>
+        <icon>fa-location-arrow</icon>
+        <pages>
+            <settings>
+                <label>Konfigurationen</label>
+                <title>Konfigurationen</title>
+                <bundle>graph-masters</bundle>
+                <controller>index</controller>
+                <action>index</action>
+                <icon>fa-cog</icon>
+            </settings>
+            <category>
+                <label>Kategorien</label>
+                <title>Kategorie</title>
+                <bundle>graph-masters</bundle>
+                <controller>category</controller>
+                <action>index</action>
+                <icon>fa-map</icon>
+            </category>
+            <tour>
+                <label>Touren</label>
+                <title>Touren</title>
+                <bundle>graph-masters</bundle>
+                <controller>tour</controller>
+                <action>index</action>
+                <icon>fa-compass</icon>
+            </tour>
+        </pages>
+    </graph-masters>
+</config>

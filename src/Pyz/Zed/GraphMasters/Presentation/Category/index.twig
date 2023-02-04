@@ -1,0 +1,21 @@
+{% extends '@Application/Layout/layout.twig' %}
+
+{% set widget_title = 'Graphmasters Delivery Area Konfigurationen' %}
+
+{% block action %}
+    {{ createActionButton('/graph-masters/category/add', 'Kategorie anlegen' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ table | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

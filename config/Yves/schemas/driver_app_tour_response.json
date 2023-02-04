@@ -1,0 +1,348 @@
+{
+  "title": "DriverTourResponse",
+  "type": "object",
+  "required": [
+    "auth_valid"
+  ],
+  "properties": {
+    "auth_valid": {
+      "type": "boolean"
+    },
+    "tours": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "tour_id",
+          "orders"
+        ],
+        "properties": {
+          "tour_id": {
+            "type": "number"
+          },
+          "tour_reference": {
+            "type": "string"
+          },
+          "tour_date": {
+            "type": "string"
+          },
+          "tour_start": {
+            "type": "string"
+          },
+          "tour_end": {
+            "type": "string"
+          },
+          "comment": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "travel_mode": "string",
+          "warehouse_lat": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "warehouse_lng": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "orders": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "required": [
+                "order_id",
+                "customer",
+                "shipping_address"
+              ],
+              "properties": {
+                "order_id": {
+                  "type": "number"
+                },
+                "order_reference": {
+                  "type": "string"
+                },
+                "is_external": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "is_private": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "customer_note": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "payment_method": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "payment_code": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "gtin_to_order_item": {
+                  "type": "array",
+                  "minItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "gtin",
+                      "order_items"
+                    ],
+                    "properties": {
+                      "gtin": {
+                        "type": "string"
+                      },
+                      "order_items": {
+                        "type": "array",
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "order_item_id"
+                          ],
+                          "properties": {
+                            "order_item_id": {
+                              "type": "number"
+                            },
+                            "unit_name": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "order_items": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "order_item_id",
+                      "quantity",
+                      "product_name",
+                      "unit_name"
+                    ],
+                    "properties": {
+                      "order_item_id": {
+                        "type": "number"
+                      },
+                      "gtin": {
+                        "type": "array"
+                      },
+                      "sku": {
+                        "type": "string"
+                      },
+                      "quantity": {
+                        "type": "number"
+                      },
+                      "product_name": {
+                        "type": "string"
+                      },
+                      "unit_name": {
+                        "type": "string"
+                      },
+                      "price_single": {
+                        "type": "number"
+                      },
+                      "price_total": {
+                        "type": "number"
+                      },
+                      "deposit_single": {
+                        "type": "number"
+                      },
+                      "tax_rate": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "tax_amount": {
+                        "type": [
+                          "number",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "customer": {
+                  "type": "object",
+                  "required": [
+                    "salutation",
+                    "first_name",
+                    "last_name"
+                  ],
+                  "properties": {
+                    "salutation": {
+                      "type": "string"
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "company": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "phone": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "shipping_address": {
+                  "type": "object",
+                  "required": [
+                    "salutation",
+                    "first_name",
+                    "last_name",
+                    "address_1",
+                    "zip_code",
+                    "city"
+                  ],
+                  "properties": {
+                    "salutation": {
+                      "type": "string"
+                    },
+                    "elevator": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "floor": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "comment": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "address_1": {
+                      "type": "string"
+                    },
+                    "address_2": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "address_3": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "zip_code": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "company": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "phone": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "discounts":
+                {
+                  "type": "array",
+                  "minItems": 0,
+                  "uniqueItems": true,
+                  "items":
+                  {
+                    "type": "object",
+                    "required":
+                    [
+                      "id",
+                      "name",
+                      "amount"
+                    ],
+                    "properties":
+                    {
+                      "id":
+                      {
+                        "type": "number"
+                      },
+                      "name":
+                      {
+                        "type": "string"
+                      },
+                      "amount":
+                      {
+                        "type": "number"
+                      },
+                      "expense_type":
+                      {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "min_sub_total":
+                      {
+                        "type": [
+                          "number",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

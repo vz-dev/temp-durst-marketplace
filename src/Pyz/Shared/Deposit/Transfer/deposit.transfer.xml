@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="Deposit">
+        <property name="idDeposit" type="int" />
+        <property name="name" type="string" />
+        <property name="presentationName" type="string" />
+        <property name="deposit" type="int" />
+        <property name="code" type="string" />
+        <property name="bottles" type="int" />
+        <property name="material" type="string"/>
+        <property name="depositPerBottle" type="int" />
+        <property name="depositCase" type="int" />
+        <property name="volumePerBottle" type="int" />
+        <property name="weight" type="int" />
+        <property name="depositType" type="string" />
+    </transfer>
+
+    <transfer name="Expense">
+        <property name="isNegative" type="boolean"/>
+        <property name="weight" type="int" />
+        <property name="sumWeight" type="int" />
+        <property name="merchantSku" type="string" />
+    </transfer>
+
+    <transfer name="ProductConcrete">
+        <property name="fkDeposit" type="int" />
+    </transfer>
+
+    <transfer name="Item">
+        <property name="unitDeposit" type="int"/>
+        <property name="sumDeposit" type="int" />
+        <property name="unitDepositTaxAmount" type="int" />
+        <property name="sumDepositTaxAmount" type="int" />
+    </transfer>
+
+    <transfer name="Totals">
+        <property name="depositTotal" type="int" />
+        <property name="weightTotal" type="int" />
+    </transfer>
+
+</transfers>

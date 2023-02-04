@@ -1,0 +1,40 @@
+<td colspan="12">
+    <table class="footable table toggle-arrow-tiny" data-qa="order-item-list">
+        <thead>
+            <tr class="text-left">
+                <th colspan="2">{{ 'Name' | trans }}</th>
+                <th colspan="2">{{ 'Description' | trans }}</th>
+                <th>{{ 'Lead time' | trans }}</th>
+                <th>{{ 'Ordering until' | trans }}</th>
+                <th>{{ 'Days left' | trans }}</th>
+                <th>{{ 'Active' | trans }}</th>
+            </tr>
+        </thead>
+        {% for material in materials %}
+            <tr>
+                <td colspan="2">
+                    {{ material.campaignAdvertisingMaterialName }}
+                </td>
+                <td colspan="2">
+                    {{ material.campaignAdvertisingMaterialDescription }}
+                </td>
+                <td>
+                    {{ material.campaignAdvertisingMaterialLeadTime }} week(s)
+                </td>
+                <td>
+                    {{ material.campaignAdvertisingMaterialEndDate | formatDate }}
+                </td>
+                <td>
+                    {{ material.daysLeft }}
+                </td>
+                <td>
+                    {% if material.isActive %}
+                        <i class="fa fa-check" style="color: #3adb76"></i>
+                    {% else %}
+                        <i class="fa fa-times" style="color: #851010"></i>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</td>

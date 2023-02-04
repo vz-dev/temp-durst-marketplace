@@ -1,0 +1,58 @@
+{
+  "title": "DriverGtinResponse",
+  "type": "object",
+  "required":
+  [
+    "auth_valid",
+    "gtins"
+  ],
+  "properties":
+  {
+    "auth_valid":
+    {
+      "type": "boolean"
+    },
+    "gtins":
+    {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items":
+      {
+        "type": "object",
+        "properties":
+        {
+          "gtin":
+          {
+            "type": "string"
+          },
+          "productName":
+          {
+            "type": "string"
+          },
+          "skus":
+          {
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items":
+            {
+              "type": "object",
+              "properties":
+              {
+                "sku":
+                {
+                  "type": "string"
+                },
+                "deposit_id":
+                {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

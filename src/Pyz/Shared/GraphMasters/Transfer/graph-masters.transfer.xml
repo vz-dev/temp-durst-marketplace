@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="GraphMastersSettings">
+        <property name="idGraphmastersSettings" type="int"/>
+        <property name="fkBranch" type="int"/>
+        <property name="isActive" type="bool"/>
+        <property name="depotApiId" type="string"/>
+        <property name="depotPath" type="string"/>
+        <property name="openingTimes" type="GraphMastersOpeningTime[]"/>
+        <property name="leadTime" type="int"/>
+        <property name="bufferTime" type="int"/>
+        <property name="commissioningTimes" type="GraphMastersCommissioningTime[]"/>
+    </transfer>
+
+    <transfer name="GraphMastersDeliveryAreaCategory">
+        <property name="idDeliveryAreaCategory" type="int"/>
+        <property name="fkBranch" type="int"/>
+        <property name="categoryName" type="string"/>
+        <property name="slotSize" type="float"/>
+        <property name="edtmCutoffSmall" type="int"/>
+        <property name="edtmCutoffMedium" type="int"/>
+        <property name="edtmCutoffLarge" type="int"/>
+        <property name="edtmCutoffXlarge" type="int"/>
+        <property name="minValue" type="int"/>
+        <property name="isActive" type="bool"/>
+        <property name="deliveryAreas" type="GraphMastersDeliveryArea[]"/>
+        <property name="deliveryAreaIds" type="array"/>
+    </transfer>
+
+    <transfer name="GraphMastersDeliveryArea">
+        <property name="fkDeliveryAreaCategory" type="int"/>
+        <property name="fkDeliveryArea" type="int"/>
+        <property name="zipCode" type="string"/>
+        <property name="cityName" type="string"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiTimeSlotResponse">
+        <property name="startTime" type="string"/>
+        <property name="endTime" type="string"/>
+        <property name="importance" type="float"/>
+        <property name="reason" type="string"/>
+        <property name="evaluationSucceeded" type="bool"/>
+        <property name="numberOfActualOrders" type="int"/>
+        <property name="numberOfPredictedOrders" type="int"/>
+        <property name="numberOfUnperformedOrders" type="int"/>
+        <property name="timeSlotPossible" type="bool"/>
+        <property name="costInExtraDrivingMinutes" type="int"/>
+        <property name="extraWorkTimeMinutes" type="int"/>
+        <property name="extraDistanceKilometer" type="int"/>
+        <property name="eta" type="string"/>
+        <property name="error" type="string"/>
+        <property name="tourId" type="string"/>
+        <property name="driverId" type="int"/>
+        <property name="vehicleId" type="int"/>
+    </transfer>
+
+    <transfer name="GraphMastersOpeningTime">
+        <property name="idGraphmastersOpeningTime" type="int"/>
+        <property name="fkGraphmastersSettings" type="int"/>
+        <property name="weekday" type="int"/>
+        <property name="startTime" type="string"/>
+        <property name="endTime" type="string"/>
+        <property name="pauseStartTime" type="string"/>
+        <property name="pauseEndTime" type="string"/>
+    </transfer>
+
+    <transfer name="GraphMastersCommissioningTime">
+        <property name="idGraphmastersCommissioningTime" type="int"/>
+        <property name="fkGraphmastersSettings" type="int"/>
+        <property name="weekday" type="int"/>
+        <property name="startTime" type="string"/>
+        <property name="endTime" type="string"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiToursRequest">
+        <property name="depotId" type="string"/>
+        <property name="tourIds" type="array"/>
+        <property name="shifts" type="array"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiGetToursResponse">
+        <property name="tours" type="GraphMastersApiTour[]"/>
+        <property name="unassignedOrderIds" type="array"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiTour">
+        <property name="id" type="string"/>
+        <property name="shiftStart" type="string"/>
+        <property name="name" type="string"/>
+        <property name="vehicleId" type="string"/>
+        <property name="driverId" type="string"/>
+        <property name="startLocation" type="GraphMastersApiGeoLocation"/>
+        <property name="destinationLocation" type="GraphMastersApiGeoLocation"/>
+        <property name="tourStartEta" type="string"/>
+        <property name="tourDestinationEta" type="string"/>
+        <property name="tourStatus" type="string"/>
+        <property name="vehicleStatus" type="string"/>
+        <property name="totalDistanceMeters" type="float"/>
+        <property name="totalTimeSeconds" type="float"/>
+        <property name="openActions" type="GraphMastersApiAction[]"/>
+        <property name="finishedActions" type="GraphMastersApiAction[]"/>
+        <property name="suspendedOrderIds" type="string[]"/>
+        <property name="unperformedOrderIds" type="string[]"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiGeoLocation">
+        <property name="lat" type="float"/>
+        <property name="lng" type="float"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiAction">
+        <property name="actionType" type="string"/>
+        <property name="startTime" type="string"/>
+        <property name="orderIds" type="array"/>
+        <property name="location" type="GraphMastersApiGeoLocation"/>
+        <property name="distanceMeters" type="float"/>
+    </transfer>
+
+    <transfer name="GraphMastersTour">
+        <property name="idGraphmastersTour" type="int"/>
+        <property name="fkBranch" type="int"/>
+        <property name="reference" type="string"/>
+        <property name="originalId" type="string"/>
+        <property name="date" type="string" />
+        <property name="tourCommissioningCutOff" type="string"/>
+        <property name="tourStartEta" type="string"/>
+        <property name="tourDestinationEta" type="string"/>
+        <property name="tourStatus" type="string"/>
+        <property name="vehicleStatus" type="string"/>
+        <property name="totalDistanceMeters" type="float"/>
+        <property name="totalTimeSeconds" type="float"/>
+        <property name="orderCount" type="int"/>
+        <property name="totalWeightGrams" type="int"/>
+        <property name="comment" type="string"/>
+        <property name="graphmastersOrders" type="GraphmastersOrder[]"/>
+        <property name="branchName" type="string"/>
+        <property name="zipCodes" type="string[]"/>
+        <property name="ediGoodsExported" type="boolean"/>
+        <property name="ediDepositExported" type="boolean"/>
+    </transfer>
+
+    <transfer name="GraphMastersOrder">
+        <property name="fkOrderReference" type="string"/>
+        <property name="order" type="Order"/>
+        <property name="fkGraphmastersTour" type="int"/>
+        <property name="tourReference" type="string"/>
+        <property name="deliveryOrder" type="int"/>
+        <property name="stopEta" type="string"/>
+        <property name="status" type="string"/>
+        <property name="deliveredAt" type="string"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiOrderUpdate">
+        <property name="id" type="string"/>
+        <property name="depotId" type="string"/>
+        <property name="status" type="string"/>
+        <property name="timestampUnixMs" type="int"/>
+        <property name="customerUuid" type="string"/>
+        <property name="address" type="GraphMastersApiAddress"/>
+        <property name="geoLocation" type="GraphMastersApiGeoLocation"/>
+        <property name="dateOfDelivery" type="string"/>
+        <property name="timeSlot" type="GraphMastersApiTimeSlot"/>
+        <property name="stopTimeMinutes" type="float"/>
+        <property name="shipment" type="GraphMastersApiShipment"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiAddress">
+        <property name="street" type="string"/>
+        <property name="houseNumber" type="string"/>
+        <property name="zipCode" type="string"/>
+        <property name="city" type="string"/>
+        <property name="country" type="string"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiTimeSlot">
+        <property name="startTime" type="string"/>
+        <property name="endTime" type="string"/>
+        <property name="importance" type="float"/>
+        <property name="reason" type="string"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiShipment">
+        <property name="load" type="GraphMastersApiLoad"/>
+        <property name="recipient" type="string"/>
+        <property name="sender" type="string"/>
+        <property name="label" type="string"/>
+        <property name="barcode" type="string"/>
+    </transfer>
+
+    <transfer name="GraphMastersApiLoad">
+        <property name="itemCount" type="float"/>
+        <property name="weightKilogram" type="float"/>
+        <property name="volumeCubicMeter" type="float"/>
+        <property name="additionalDimensions" type="array"/>
+    </transfer>
+
+    <transfer name="Quote">
+        <property name="useFlexibleTimeSlots" type="boolean"/>
+    </transfer>
+
+    <transfer name="Order">
+        <property name="useFlexibleTimeSlots" type="boolean"/>
+        <property name="gmStartTime" type="string" />
+        <property name="gmEndTime" type="string" />
+    </transfer>
+
+</transfers>

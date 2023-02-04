@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="TermsOfService">
+        <property name="idTermsOfService" type="int" />
+        <property name="name" type="string" />
+        <property name="hintText" type="string" />
+        <property name="buttonText" type="string" />
+        <property name="text" type="string" />
+        <property name="activeUntil" type="string" />
+    </transfer>
+
+</transfers>

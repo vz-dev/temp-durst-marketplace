@@ -1,0 +1,23 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Software-Feature editieren' %}
+
+{% block action %}
+    {{ backActionButton('/software-package/software-feature/', 'Software-Features auflisten' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(softwareFeatureForm) }}
+
+            {{ form_end(softwareFeatureForm) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

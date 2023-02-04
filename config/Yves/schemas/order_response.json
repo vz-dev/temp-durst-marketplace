@@ -1,0 +1,19 @@
+{
+  "title": "OrderResponse",
+  "type": "object",
+  "properties":
+  {
+    "errors":
+    {
+      "type": "array"
+    },
+    "order_confirmation":
+    {
+      "type": "boolean"
+    },
+    "order_merchant_confirmation":
+    {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "title": "DriverLogoutResponse",
+  "type": "object",
+  "required":
+  [
+    "auth_valid"
+  ],
+  "properties":
+  {
+    "auth_valid": {
+      "type": "boolean"
+    }
+  }
+}

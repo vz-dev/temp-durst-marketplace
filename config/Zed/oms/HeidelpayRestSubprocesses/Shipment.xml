@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="Shipment">
+        <states>
+            <state name="ready for heidelpay shipment"/>
+            <state name="heidelpay shipment cancel amount"/>
+            <state name="heidelpay shipment cancel amount pending"/>
+            <state name="heidelpay shipment cancel amount invalid"/>
+            <state name="heidelpay shipment cancel amount invalid fail mail"/>
+            <state name="heidelpay shipment cancel amount failed"/>
+            <state name="heidelpay shipment cancel amount fail limit succeeded"/>
+            <state name="heidelpay shipment cancel amount fail limit mail"/>
+            <state name="heidelpay shipment finalize amount"/>
+            <state name="heidelpay shipment finalize amount pending"/>
+            <state name="heidelpay shipment finalize amount invalid"/>
+            <state name="heidelpay shipment finalize amount invalid fail mail"/>
+            <state name="heidelpay shipment finalize amount failed"/>
+            <state name="heidelpay shipment finalize amount fail limit succeeded"/>
+            <state name="heidelpay shipment finalize amount fail limit mail"/>
+            <state name="heidelpay shipment completed"/>
+        </states>
+
+        <transitions>
+            <transition happy="true">
+                <source>ready for heidelpay shipment</source>
+                <target>heidelpay shipment cancel amount</target>
+                <event>cancel heidelpay shipment</event>
+            </transition>
+
+            <transition happy="true" condition="HeidelpayRest/IsShipmentCancelCompleted">
+                <source>heidelpay shipment cancel amount</source>
+                <target>heidelpay shipment finalize amount</target>
+                <event>finalize heidelpay shipment</event>
+            </transition>
+
+            <transition>
+                <source>heidelpay shipment cancel amount</source>
+                <target>heidelpay shipment cancel amount pending</target>
+                <event>finalize heidelpay shipment</event>
+            </transition>
+
+            <transition condition="HeidelpayRest/IsShipmentCancelPendingOrCoreTimeout">
+                <source>heidelpay shipment cancel amount pending</source>
+                <target>heidelpay shipment cancel amount failed</target>
+                <event>pending heidelpay shipment</event>
+            </transition>
+
+            <transition>
+                <source>heidelpay shipment cancel amount pending</source>
+                <target>heidelpay shipment cancel amount invalid</target>
+                <event>pending heidelpay shipment</event>
+            </transition>
+
+            <transition>
+                <source>heidelpay shipment cancel amount invalid</source>
+                <target>heidelpay shipment cancel amount invalid fail mail</target>
+                <event>send heidelpay shipment cancel invalid fail mail</event>
+            </transition>
+
+            <transition condition="HeidelpayRest/IsShipmentCancelFailLimitSucceeded">
+                <source>heidelpay shipment cancel amount failed</source>
+                <target>heidelpay shipment cancel amount fail limit succeeded</target>
+            </transition>
+
+            <transition>
+                <source>heidelpay shipment cancel amount failed</source>
+                <target>heidelpay shipment cancel amount</target>
+                <event>retry heidelpay shipment cancel amount</event>
+            </transition>
+
+            <transition>
+                <source>heidelpay shipment cancel amount fail limit succeeded</source>
+                <target>heidelpay shipment cancel amount fail limit mail</target>
+                <event>send heidelpay shipment cancel amount fail limit mail</event>
+            </transition>
+
+            <transition happy="true" condition="HeidelpayRest/IsShipmentFinalizeCompleted">
+                <source>heidelpay shipment finalize amount</source>
+                <target>heidelpay shipment completed</target>
+                <event>complete heidelpay shipment</event>
+            </transition>
+
+            <transition>
+                <source>heidelpay shipment finalize amount</source>
+                <target>heidelpay shipment finalize amount pending</target>
+                <event>complete heidelpay shipment</event>
+            </transition>
+
+            <transition condition="HeidelpayRest/IsShipmentFinalizePendingOrCoreTimeout">
+                <source>heidelpay shipment finalize amount pending</source>
+                <target>heidelpay shipment finalize amount failed</target>
+                <event>pending heidelpay shipment finalize amount</event>
+            </transition>
+
+            <transition>
+                <source>heidelpay shipment finalize amount pending</source>
+                <target>heidelpay shipment finalize amount invalid</target>
+                <event>pending heidelpay shipment finalize amount</event>
+            </transition>
+
+            <transition>
+                <source>heidelpay shipment finalize amount invalid</source>
+                <target>heidelpay shipment finalize amount invalid fail mail</target>
+                <event>send heidelpay shipment finalize amount invalid fail mail</event>
+            </transition>
+
+            <transition condition="HeidelpayRest/IsShipmentFinalizeFailLimitSucceeded">
+                <source>heidelpay shipment finalize amount failed</source>
+                <target>heidelpay shipment finalize amount fail limit succeeded</target>
+            </transition>
+
+            <transition>
+                <source>heidelpay shipment finalize amount failed</source>
+                <target>heidelpay shipment finalize amount</target>
+                <event>retry heidelpay shipment finalize amount</event>
+            </transition>
+
+            <transition>
+                <source>heidelpay shipment finalize amount fail limit succeeded</source>
+                <target>heidelpay shipment finalize amount fail limit mail</target>
+                <event>send heidelpay shipment finalize amount fail limit mail</event>
+            </transition>
+
+        </transitions>
+
+        <events>
+            <event name="cancel heidelpay shipment" manual="true" onEnter="true" command="HeidelpayRest/ShipmentCancel"/>
+            <event name="pending heidelpay shipment" onEnter="true"/>
+            <event name="finalize heidelpay shipment" onEnter="true" manual="true"/>
+            <event name="send heidelpay shipment cancel invalid fail mail" onEnter="true" command="HeidelpayRest/SendFailMail"/>
+            <event name="send heidelpay shipment cancel amount fail limit mail" onEnter="true" command="HeidelpayRest/SendFailMail"/>
+            <event name="retry heidelpay shipment cancel amount" timeout="1 minutes" command="HeidelpayRest/ShipmentCancel"/>
+            <event name="pending heidelpay shipment finalize amount" onEnter="true"/>
+            <event name="send heidelpay shipment finalize amount invalid fail mail" onEnter="true" command="HeidelpayRest/SendFailMail"/>
+            <event name="retry heidelpay shipment finalize amount" timeout="1 minutes"/>
+            <event name="send heidelpay shipment finalize amount fail limit mail" onEnter="true" command="HeidelpayRest/SendFailMail"/>
+            <event name="complete heidelpay shipment" onEnter="true" manual="true" command="HeidelpayRest/ShipmentFinalize"/>
+        </events>
+    </process>
+</statemachine>

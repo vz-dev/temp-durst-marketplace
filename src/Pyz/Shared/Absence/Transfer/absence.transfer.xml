@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="Absence">
+        <property name="idAbsence" type="int" />
+        <property name="startDate" type="string" />
+        <property name="endDate" type="string" />
+        <property name="description" type="string" />
+    </transfer>
+
+</transfers>

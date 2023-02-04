@@ -1,0 +1,371 @@
+code,name,deposit,sort_order,bottles,material,deposit_case,deposit_per_bottle,volume_per_bottle,presentation_name,weight,deposit_type
+001,1 x 0.5L - Glas (pfandfrei),0,10,1,Glas,0,0,500,1 x 0.5L - Glas (pfandfrei),865,pfandfrei
+002,1 x 0.75L - Glas (pfandfrei),0,10,1,Glas,0,0,750,1 x 0.75L - Glas (pfandfrei),1290,pfandfrei
+003,1 x 0.7L - Glas (pfandfrei),0,10,1,Glas,0,0,700,1 x 0.7L - Glas (pfandfrei),1240,pfandfrei
+004,1 x 1.0L - Glas (pfandfrei),0,10,1,Glas,0,0,1000,1 x 1.0L - Glas (pfandfrei),1480,pfandfrei
+005,1 x 1.0L - Tetra Pak (pfandfrei),0,10,1,Tetra Pak,0,0,1000,1 x 1.0L - Tetra Pak (pfandfrei),1035,pfandfrei
+006,1 x 1.5L - Glas (pfandfrei),0,10,1,Glas,0,0,1500,1 x 1.5L - Glas (pfandfrei),2150,pfandfrei
+007,1 x 1.75L - Glas (pfandfrei),0,10,1,Glas,0,0,1750,1 x 1.75L - Glas (pfandfrei),2500,pfandfrei
+008,1 x 10.0L - Bag-in-Box (pfandfrei),0,10,1,Bag-in-Box,0,0,10000,1 x 10.0L - Bag-in-Box (pfandfrei),10700,pfandfrei
+009,1 x 10.0L - Fass (25.00),2500,10,1,Fass,2500,0,10000,1 x 10.0L - Fass (MEHRWEG),15400,Mehrweg
+010,1 x 10.0L - Fass (30.00),3000,10,1,Fass,3000,0,10000,1 x 10.0L - Fass (MEHRWEG),14500,Mehrweg
+011,1 x 10.0L - Fass (pfandfrei),0,10,1,Fass,0,0,10000,1 x 10.0L - Fass (pfandfrei),15400,pfandfrei
+012,1 x 10.0L - Kanister (pfandfrei),0,10,1,Kanister,0,0,10000,1 x 10.0L - Kanister (pfandfrei),10480,pfandfrei
+013,1 x 11.0L - Fass (25.00),2500,10,1,Fass,2500,0,11000,1 x 11.0L - Fass (MEHRWEG),22500,Mehrweg
+014,1 x 15.0L - Fass (25.00),2500,10,1,Fass,2500,0,15000,1 x 15.0L - Fass (MEHRWEG),22000,Mehrweg
+015,1 x 18.0L - Container (10.00),1000,10,1,Container,1000,0,18000,1 x 18.0L - Container (MEHRWEG),24000,Mehrweg
+016,1 x 2.0L - Tetra Pak (pfandfrei),0,10,1,Tetra Pak,0,0,2000,1 x 2.0L - Tetra Pak (pfandfrei),2065,pfandfrei
+017,1 x 20.0L - Container (10.00),1000,10,1,Container,1000,0,20000,1 x 20.0L - Container (MEHRWEG),26500,Mehrweg
+018,1 x 20.0L - Fass (25.00),2500,10,1,Fass,2500,0,20000,1 x 20.0L - Fass (MEHRWEG),28800,Mehrweg
+019,1 x 20.0L - Fass (pfandfrei),0,10,1,Fass,0,0,20000,1 x 20.0L - Fass (pfandfrei),28800,pfandfrei
+020,1 x 3.0L - Bag-in-Box (pfandfrei),0,10,1,Bag-in-Box,0,0,3000,1 x 3.0L - Bag-in-Box (pfandfrei),3300,pfandfrei
+021,1 x 3.0L - Glas (pfandfrei),0,10,1,Glas,0,0,3000,1 x 3.0L - Glas (pfandfrei),4400,pfandfrei
+022,1 x 30.0L - Fass (30.00),3000,10,1,Fass,3000,0,30000,1 x 30.0L - Fass (MEHRWEG),42000,Mehrweg
+023,1 x 30.0L - Fass (pfandfrei),0,10,1,Fass,0,0,30000,1 x 30.0L - Fass (pfandfrei),31500,pfandfrei
+024,1 x 4.5L - Glas (pfandfrei),0,10,1,Glas,0,0,4500,1 x 4.5L - Glas (pfandfrei),6200,pfandfrei
+025,1 x 5.0L - Bag-in-Box (pfandfrei),0,10,1,Bag-in-Box,0,0,5000,1 x 5.0L - Bag-in-Box (pfandfrei),5400,pfandfrei
+026,1 x 5.0L - Dose (pfandfrei),0,10,1,Dose,0,0,5000,1 x 5.0L - Dose (pfandfrei),5800,pfandfrei
+027,1 x 50.0L - Fass (30.00),3000,10,1,Fass,3000,0,50000,1 x 50.0L - Fass (MEHRWEG),62000,Mehrweg
+028,1 x 6.0L - Fass (6.50),650,10,1,Fass,150,500,6000,1 x 6.0L - Fass (MEHRWEG),7600,Mehrweg
+029,1 x 6.0L - Glas (pfandfrei),0,10,1,Glas,0,0,6000,1 x 6.0L - Glas (pfandfrei),8000,pfandfrei
+030,1 x 8.0L - PET (pfandfrei),0,10,1,PET,0,0,8000,1 x 8.0L - PET (pfandfrei),8500,pfandfrei
+031,10 x 0.02L - Glas (pfandfrei),0,10,10,Glas,0,0,20,10 x 0.02L - Glas (pfandfrei),600,pfandfrei
+032,10 x 0.2L - Trinkpack (pfandfrei),0,10,10,Trinkpack,0,0,200,10 x 0.2L - Trinkpack (pfandfrei),2100,pfandfrei
+033,10 x 0.33L - Glas (0.08 / 2.30),230,10,10,Glas,150,8,330,10 x 0.33L - Glas (MEHRWEG),7500,Mehrweg
+034,10 x 0.33L - Glas (0.15 / 3.00),300,10,10,Glas,150,15,330,10 x 0.33L - Glas (MEHRWEG),7500,Mehrweg
+035,10 x 0.5L - Glas (0.08 / 2.30),230,10,10,Glas,150,8,500,10 x 0.5L - Glas (MEHRWEG),9800,Mehrweg
+036,10 x 0.5L - Glas (0.15 / 3.00),300,10,10,Glas,150,15,500,10 x 0.5L - Glas (MEHRWEG),9800,Mehrweg
+037,10 x 0.5L - Glas (pfandfrei),0,10,10,Glas,0,0,500,10 x 0.5L - Glas (pfandfrei),8600,pfandfrei
+038,10 x 0.5L - PET (0.25 / 4.00),400,10,10,PET,150,25,500,10 x 0.5L - PET (EINWEG),6800,Einweg
+039,10 x 1.0L - PET (0.15 / 3.00),300,10,10,PET,150,15,1000,10 x 1.0L - PET (MEHRWEG),12200,Mehrweg
+040,11 x 0.33L - Glas (0.08 / 2.38),238,10,11,Glas,150,8,330,11 x 0.33L - Glas (MEHRWEG),8130,Mehrweg
+041,11 x 0.33L - Glas Bügelverschluss (0.30 / 4.80),480,10,11,Glas Bügelverschluss,150,30,330,11 x 0.33L - Glas (MEHRWEG),8350,Mehrweg
+042,11 x 0.5L - Glas (0.08 / 2.38),238,10,11,Glas,150,8,500,11 x 0.5L - Glas (MEHRWEG),10660,Mehrweg
+043,11 x 0.5L - Glas (0.15 / 3.15),315,10,11,Glas,150,15,500,11 x 0.5L - Glas (MEHRWEG),10660,Mehrweg
+044,11 x 0.5L - PET (0.25 / 4.25),425,10,11,PET,150,25,500,11 x 0.5L - PET (EINWEG),7360,Einweg
+045,12 x 0.02L - Glas (pfandfrei),0,10,12,Glas,0,0,20,12 x 0.02L - Glas (pfandfrei),1020,pfandfrei
+046,12 x 0.1L - Glas (pfandfrei),0,10,12,Glas,0,0,100,12 x 0.1L - Glas (pfandfrei),2400,pfandfrei
+047,12 x 0.25L - Dose (0.25 / 3.00),300,10,12,Dose,0,25,250,12 x 0.25L - Dose (EINWEG),3720,Einweg
+048,12 x 0.275L - Glas (pfandfrei),0,10,12,Glas,0,0,275,12 x 0.275L - Glas (pfandfrei),6300,pfandfrei
+049,12 x 0.2L - Dose (pfandfrei),0,10,12,Dose,0,0,200,12 x 0.2L - Dose (pfandfrei),3120,pfandfrei
+050,12 x 0.2L - Glas (0.15 / 3.30),330,10,12,Glas,150,15,200,12 x 0.2L - Glas (MEHRWEG),6240,Mehrweg
+051,12 x 0.2L - Glas (pfandfrei),0,10,12,Glas,0,0,200,12 x 0.2L - Glas (pfandfrei),5040,pfandfrei
+052,12 x 0.33L - Dose (0.25 / 3.00),300,10,12,Dose,0,25,330,12 x 0.33L - Dose (EINWEG),4200,Einweg
+053,12 x 0.33L - Dose (pfandfrei),0,10,12,Dose,0,0,330,12 x 0.33L - Dose (pfandfrei),4200,pfandfrei
+054,12 x 0.33L - Glas (0.08 / 2.46),246,10,12,Glas,150,8,330,12 x 0.33L - Glas (MEHRWEG),8760,Mehrweg
+055,12 x 0.33L - Glas (0.15 / 3.30),330,10,12,Glas,150,15,330,12 x 0.33L - Glas (MEHRWEG),8760,Mehrweg
+056,12 x 0.33L - PET (0.25 / 3.00),300,10,12,PET,0,25,330,12 x 0.33L - PET (EINWEG),4560,Einweg
+057,12 x 0.35L - Glas (pfandfrei),0,10,12,Glas,0,0,350,12 x 0.35L - Glas (pfandfrei),9000,pfandfrei
+058,12 x 0.375L - Glas (pfandfrei),0,10,12,Glas,0,0,375,12 x 0.375L - Glas (pfandfrei),9660,pfandfrei
+059,12 x 0.55L - Dose (0.25 / 3.00),300,10,12,Dose,0,25,550,12 x 0.55L - Dose (EINWEG),7320,Einweg
+060,12 x 0.57L - Glas (pfandfrei),0,10,12,Glas,0,0,570,12 x 0.57L - Glas (pfandfrei),11640,pfandfrei
+061,12 x 0.5L - Dose (0.25 / 3.00),300,10,12,Dose,0,25,500,12 x 0.5L - Dose (EINWEG),6240,Einweg
+062,12 x 0.5L - Glas (0.15 / 3.30),330,10,12,Glas,150,15,500,12 x 0.5L - Glas (MEHRWEG),11520,Mehrweg
+063,12 x 0.5L - Glas (pfandfrei),0,10,12,Glas,0,0,500,12 x 0.5L - Glas (pfandfrei),10320,pfandfrei
+064,12 x 0.5L - Glas Bügelverschluss (0.15 / 3.30),330,10,12,Glas Bügelverschluss,150,15,500,12 x 0.5L - Bügelflasche (MEHRWEG),11760,Mehrweg
+065,12 x 0.5L - Glas Bügelverschluss (0.40 / 6.30),630,10,12,Glas Bügelverschluss,150,40,500,12 x 0.5L - Bügelflasche (MEHRWEG),11760,Mehrweg
+066,12 x 0.5L - PET (0.15 / 3.30),330,10,12,PET,150,15,500,12 x 0.5L - PET (MEHRWEG),7920,Mehrweg
+067,12 x 0.5L - PET (0.25 / 4.50),450,10,12,PET,150,25,500,12 x 0.5L - PET (EINWEG),7920,Einweg
+068,12 x 0.5L - PET (0.25 / 3.00),300,10,12,PET,0,25,500,12 x 0.5L - PET (EINWEG),6720,Einweg
+069,12 x 0.5L - PET (pfandfrei),0,10,12,PET,0,0,500,12 x 0.5L - PET (pfandfrei),6720,pfandfrei
+070,12 x 0.5L - Tetra Pak (pfandfrei),0,10,12,Tetra Pak,0,0,500,12 x 0.5L - Tetra Pak (pfandfrei),6216,pfandfrei
+071,12 x 0.65L - Glas (0.15 / 3.30),330,10,12,Glas,150,15,650,12 x 0.65L - Glas (MEHRWEG),15200,Mehrweg
+072,12 x 0.75L - Glas (0.15 / 4.80),480,10,12,Glas,300,15,750,12 x 0.75L - Glas (MEHRWEG),16980,Mehrweg
+073,12 x 0.75L - Glas (0.15 / 3.30),330,10,12,Glas,150,15,750,12 x 0.75L - Glas (MEHRWEG),16880,Mehrweg
+074,12 x 0.75L - Glas (0.20 / 3.90),390,10,12,Glas,150,20,750,12 x 0.75L - Glas (MEHRWEG),16880,Mehrweg
+075,12 x 0.75L - Glas (pfandfrei),0,10,12,Glas,0,0,750,12 x 0.75L - Glas (pfandfrei),15480,pfandfrei
+076,12 x 0.75L - PET (0.15 / 3.30),330,10,12,PET,150,15,750,12 x 0.75L - PET (MEHRWEG),11360,Mehrweg
+077,12 x 0.7L - Glas (0.15 / 3.30),330,10,12,Glas,150,15,700,12 x 0.7L - Glas (MEHRWEG),17000,Mehrweg
+078,12 x 0.7L - Glas (pfandfrei),0,10,12,Glas,0,0,700,12 x 0.7L - Glas (pfandfrei),15600,pfandfrei
+079,12 x 1.0L - Dose (0.25 / 3.00),300,10,12,Dose,0,25,1000,12 x 1.0L - Dose (EINWEG),12720,Einweg
+080,12 x 1.0L - Glas (0.15 / 3.30),330,10,12,Glas,150,15,1000,12 x 1.0L - Glas (MEHRWEG),19160,Mehrweg
+081,12 x 1.0L - Glas Bügelverschluss (0.60 / 12.00),1200,10,12,Glas Bügelverschluss,480,60,1000,12 x 1.0L - Bügelflasche (MEHRWEG),23600,Mehrweg
+082,12 x 1.0L - Glas (pfandfrei),0,10,12,Glas,0,0,1000,12 x 1.0L - Glas (pfandfrei),17760,pfandfrei
+083,12 x 1.0L - PET (0.15 / 3.30),330,10,12,PET,150,15,1000,12 x 1.0L - PET (MEHRWEG),14600,Mehrweg
+084,12 x 1.0L - Tetra Pak (pfandfrei),0,10,12,Tetra Pak,0,0,1000,12 x 1.0L - Tetra Pak (pfandfrei),12420,pfandfrei
+085,14 x 0.02L - Glas (pfandfrei),0,10,14,Glas,0,0,20,14 x 0.02L - Glas (pfandfrei),840,pfandfrei
+086,15 x 0.25L - Glas (0.15 / 3.75),375,10,15,Glas,150,15,250,15 x 0.25L - Glas (MEHRWEG),8450,Mehrweg
+087,15 x 0.25L - Trinkpack (pfandfrei),0,10,15,Trinkpack,0,0,250,15 x 0.25L - Trinkpack (pfandfrei),3930,pfandfrei
+088,15 x 0.33L - Trinkpack (pfandfrei),0,10,15,Trinkpack,0,0,330,15 x 0.33L - Trinkpack (pfandfrei),5160,pfandfrei
+089,15 x 0.5L - Glas (0.15 / 3.75),375,10,15,Glas,150,15,500,15 x 0.5L - Glas (MEHRWEG),14300,Mehrweg
+090,16 x 0.02L - Glas (pfandfrei),0,10,16,Glas,0,0,20,16 x 0.02L - Glas (pfandfrei),960,pfandfrei
+091,16 x 0.33L - Glas (0.08 / 2.78),278,10,16,Glas,150,8,330,16 x 0.33L - Glas (MEHRWEG),11480,Mehrweg
+092,16 x 0.45L - Glas Bügelverschluss (0.15 / 3.90),390,10,16,Glas Bügelverschluss,150,15,450,16 x 0.45L - Bügelflasche (MEHRWEG),15000,Mehrweg
+093,16 x 0.5L - Glas (0.08 / 2.78),278,10,16,Glas,150,8,500,16 x 0.5L - Glas (MEHRWEG),15160,Mehrweg
+094,16 x 0.5L - Glas (0.15 / 3.90),390,10,16,Glas,150,15,500,16 x 0.5L - Glas (MEHRWEG),15160,Mehrweg
+095,16 x 0.5L - Glas Bügelverschluss (0.15 / 3.90),390,10,16,Glas Bügelverschluss,150,15,500,16 x 0.5L - Bügelflasche (MEHRWEG),15480,Mehrweg
+096,16 x 0.5L - Glas Bügelverschluss (0.25 / 5.50),550,10,16,Glas Bügelverschluss,150,25,500,16 x 0.5L - Bügelflasche (MEHRWEG),15480,Mehrweg
+097,16 x 0.5L - Glas Bügelverschluss (0.50 / 8.20),820,10,16,Glas Bügelverschluss,20,50,500,16 x 0.5L - Bügelflasche (MEHRWEG),15680,Mehrweg
+098,16 x 0.5L - Glas Bügelverschluss (0.60 / 10.50),1050,10,16,Glas Bügelverschluss,90,60,500,16 x 0.5L - Bügelflasche (MEHRWEG),15680,Mehrweg
+099,16 x 0.75L - Glas (0.15 / 3.90),390,10,16,Glas,150,15,750,16 x 0.75L - Glas (MEHRWEG),20600,Mehrweg
+100,18 x 0.33L - Glas (0.08 / 2.94),294,10,18,Glas,150,8,330,18 x 0.33L - Glas (MEHRWEG),12740,Mehrweg
+101,18 x 0.33L - Glas Bügelverschluss (0.15 / 6.20),620,10,18,Glas Bügelverschluss,350,15,330,18 x 0.33L - Bügelflasche (MEHRWEG),13500,Mehrweg
+102,18 x 0.5L - Glas (0.08 / 2.94),294,10,18,Glas,150,8,500,18 x 0.5L - Glas (MEHRWEG),16880,Mehrweg
+103,18 x 0.5L - Glas (0.15 / 4.20),420,10,18,Glas,150,15,500,18 x 0.5L - Glas (MEHRWEG),16880,Mehrweg
+104,18 x 0.5L - Glas Bügelverschluss (0.15 / 4.20),420,10,18,Glas Bügelverschluss,150,15,500,18 x 0.5L - Bügelflasche (MEHRWEG),17240,Mehrweg
+105,18 x 0.5L - PET (0.25 / 4.50),450,10,18,PET,0,25,500,18 x 0.5L - PET (EINWEG),10080,Einweg
+106,2 x 5.0L - Dose (pfandfrei),0,10,2,Dose,0,0,5000,2 x 5.0L - Dose (pfandfrei),10120,pfandfrei
+107,2 x 5.0L - PET (0.00 / 2.50),250,10,2,PET,250,0,5000,2 x 5.0L - PET (EINWEG),10600,Einweg
+108,20 x 0.02L - Glas (pfandfrei),0,10,20,Glas,0,0,20,20 x 0.02L - Glas (pfandfrei),1200,pfandfrei
+109,20 x 0.03L - PET (pfandfrei),0,10,20,PET,0,0,30,20 x 0.03L - PET (pfandfrei),700,pfandfrei
+110,20 x 0.04L - Glas (pfandfrei),0,10,20,Glas,0,0,40,20 x 0.04L - Glas (pfandfrei),2100,pfandfrei
+111,20 x 0.25L - Glas (0.15 / 4.50),450,10,20,Glas,150,15,250,20 x 0.25L - Glas (MEHRWEG),10822,Mehrweg
+112,20 x 0.275L - Glas (0.15 / 4.50),450,10,20,Glas,150,15,275,20 x 0.275L - Glas (MEHRWEG),11922,Mehrweg
+113,20 x 0.33L - Glas Spezialrahmen(0.08 / 4.60),460,10,20,Glas,300,8,330,20 x 0.33L - Glas (MEHRWEG),14400,Mehrweg
+114,20 x 0.33L - Glas (0.08 / 3.10),310,10,20,Glas,150,8,330,20 x 0.33L - Glas (MEHRWEG),13022,Mehrweg
+115,20 x 0.33L - Glas (0.15 / 4.50),450,10,20,Glas,150,15,330,20 x 0.33L - Glas (MEHRWEG),14022,Mehrweg
+116,20 x 0.33L - Glas (0.25 / 6.50),650,10,20,Glas,150,25,330,20 x 0.33L - Glas (MEHRWEG),14022,Mehrweg
+117,20 x 0.33L - Glas (pfandfrei),0,10,20,Glas,0,0,330,20 x 0.33L - Glas (pfandfrei),12600,pfandfrei
+118,20 x 0.33L - Glas Bügelverschluss (0.15 / 4.50),450,10,20,Glas Bügelverschluss,150,15,330,20 x 0.33L - Bügelflasche (MEHRWEG),14422,Mehrweg
+119,20 x 0.33L - PET (0.25 / 6.50),650,10,20,PET,150,25,330,20 x 0.33L - PET (EINWEG),9022,Einweg
+120,20 x 0.35L - Glas (0.15 / 4.50),450,10,20,Glas,150,15,350,20 x 0.35L - Glas (MEHRWEG),14422,Mehrweg
+121,20 x 0.375L - Glas (0.25 / 6.50),650,10,20,Glas,150,25,375,20 x 0.375L - Glas (MEHRWEG),15922,Mehrweg
+122,20 x 0.4L - Glas (0.08 / 3.10),310,10,20,Glas,150,8,400,20 x 0.4L - Glas (MEHRWEG),15200,Mehrweg
+123,20 x 0.5L - Glas (0.08 / 3.10),310,10,20,Glas,150,8,500,20 x 0.5L - Glas (MEHRWEG),19055,Mehrweg
+124,20 x 0.5L - Glas (0.15 / 4.50),450,10,20,Glas,150,15,500,20 x 0.5L - Glas (MEHRWEG),19055,Mehrweg
+125,20 x 0.5L - Glas (pfandfrei),0,10,20,Glas,0,0,500,20 x 0.5L - Glas (pfandfrei),17200,pfandfrei
+126,20 x 0.5L - Glas Bügelverschluss (0.15 / 4.50),450,10,20,Glas Bügelverschluss,150,15,500,20 x 0.5L - Bügelflasche (MEHRWEG),19455,Mehrweg
+127,20 x 0.5L - PET (0.25 / 6.50),650,10,20,PET,150,25,500,20 x 0.5L - PET (EINWEG),13055,Einweg
+128,24 x 0.02L - Glas (pfandfrei),0,10,24,Glas,0,0,20,24 x 0.02L - Glas (pfandfrei),1440,pfandfrei
+129,24 x 0.04L - Glas (pfandfrei),0,10,24,Glas,0,0,40,24 x 0.04L - Glas (pfandfrei),2520,pfandfrei
+130,24 x 0.125L - Glas (pfandfrei),0,10,24,Glas,0,0,125,24 x 0.125L - Glas (pfandfrei),6840,pfandfrei
+131,24 x 0.1L - Glas (pfandfrei),0,10,24,Glas,0,0,100,24 x 0.1L - Glas (pfandfrei),6840,pfandfrei
+132,24 x 0.23L - Glas (0.15 / 5.10),510,10,24,Glas,150,15,230,24 x 0.23L - Glas (MEHRWEG),12400,Mehrweg
+133,24 x 0.25L - Dose (0.25 / 6.00),600,10,24,Dose,0,25,250,24 x 0.25L - Dose (EINWEG),7440,Einweg
+134,24 x 0.25L - Dose (pfandfrei),0,10,24,Dose,0,0,250,24 x 0.25L - Dose (pfandfrei),7440,pfandfrei
+135,24 x 0.25L - Glas (0.08 / 3.42),342,10,24,Glas,150,8,250,24 x 0.25L - Glas (MEHRWEG),12880,Mehrweg
+136,24 x 0.25L - Glas (0.15 / 5.10),510,10,24,Glas,150,15,250,24 x 0.25L - Glas (MEHRWEG),12880,Mehrweg
+137,24 x 0.25L - Glas (pfandfrei),0,10,24,Glas,0,0,250,24 x 0.25L - Glas (pfandfrei),11280,pfandfrei
+138,24 x 0.275L - Glas (0.08 / 3.42),342,10,24,Glas,150,8,275,24 x 0.275L - Glas (MEHRWEG),14200,Mehrweg
+139,24 x 0.275L - Glas (pfandfrei),0,10,24,Glas,0,0,275,24 x 0.275L - Glas (pfandfrei),12600,pfandfrei
+140,24 x 0.2L - Aluflasche (pfandfrei),0,10,24,Aluflasche,0,0,200,24 x 0.2L - Aluflasche (pfandfrei),8400,pfandfrei
+141,24 x 0.2L - Dose (pfandfrei),0,10,24,Dose,0,0,200,24 x 0.2L - Dose (pfandfrei),6240,pfandfrei
+142,24 x 0.2L - Glas (0.15 / 5.10),510,10,24,Glas,150,15,200,24 x 0.2L - Glas (MEHRWEG),11680,Mehrweg
+143,24 x 0.2L - Glas (pfandfrei),0,10,24,Glas,0,0,200,24 x 0.2L - Glas (pfandfrei),10080,pfandfrei
+144,24 x 0.2L - PET (pfandfrei),0,10,24,PET,0,0,200,24 x 0.2L - PET (pfandfrei),5280,pfandfrei
+145,24 x 0.33L - Dose (0.25 / 6.00),600,10,24,Dose,0,25,330,24 x 0.33L - Dose (EINWEG),8400,Einweg
+146,24 x 0.33L - Glas (0.08 / 3.42),342,10,24,Glas,150,8,330,24 x 0.33L - Glas (MEHRWEG),16720,Mehrweg
+147,24 x 0.33L - Glas (0.15 /5.10),510,10,24,Glas,150,15,330,24 x 0.33L - Glas (MEHRWEG),16720,Mehrweg
+148,24 x 0.33L - Glas (pfandfrei),0,10,24,Glas,0,0,330,24 x 0.33L - Glas (pfandfrei),15120,pfandfrei
+149,24 x 0.33L - Glas Bügelverschluss (0.15 / 5.10),510,10,24,Glas Bügelverschluss,150,15,330,24 x 0.33L - Bügelflasche (MEHRWEG),17200,Mehrweg
+150,24 x 0.33L - PET (0.25 / 7.50),750,10,24,PET,150,25,330,24 x 0.33L - PET (EINWEG),10720,Einweg
+151,24 x 0.33L - PET (0.25 / 6.00),600,10,24,PET,0,25,330,24 x 0.33L - PET (EINWEG),9120,Einweg
+152,24 x 0.35L - Glas (0.15 / 5.10),510,10,24,Glas,150,15,350,24 x 0.35L - Glas (MEHRWEG),17200,Mehrweg
+153,24 x 0.355L - Dose (0.25 / 6.00),600,10,24,Dose,0,25,360,24 x 0.355L - Dose (EINWEG),10080,Einweg
+154,24 x 0.36L - Glas (0.08 / 3.42),342,10,24,Glas,150,8,360,24 x 0.36L - Glas (MEHRWEG),17920,Mehrweg
+155,24 x 0.375L - Glas (0.25 / 6.00),600,10,24,Glas,0,25,375,24 x 0.375L - Glas (MEHRWEG),17800,Mehrweg
+156,24 x 0.3L - Glas (0.15 / 5.10),510,10,24,Glas,150,15,300,24 x 0.3L - Glas (MEHRWEG),16000,Mehrweg
+157,24 x 0.44L - Dose (0.25 / 6.00),600,10,24,Dose,0,25,440,24 x 0.44L - Dose (EINWEG),12000,Einweg
+158,24 x 0.568L - Dose (0.25 / 6.00),600,10,24,Dose,0,25,568,24 x 0.568L - Dose (EINWEG),15072,Einweg
+159,24 x 0.5L - Dose (0.25 / 6.00),600,10,24,Dose,0,25,500,24 x 0.5L - Dose (EINWEG),12480,Einweg
+160,24 x 0.5L - Dose (pfandfrei),0,10,24,Dose,0,0,500,24 x 0.5L - Dose (pfandfrei),12480,pfandfrei
+161,24 x 0.5L - PET (0.15 /5.10),510,10,24,PET,150,15,500,24 x 0.5L - PET (MEHRWEG),15040,Mehrweg
+162,24 x 0.5L - PET (0.25 / 6.00),600,10,24,PET,0,25,500,24 x 0.5L - PET (EINWEG),13440,Einweg
+163,24 x 0.5L - Tetra Pak (pfandfrei),0,10,24,Tetra Pak,0,0,500,24 x 0.5L - Tetra Pak (pfandfrei),12432,pfandfrei
+164,24 x 0.75L - Glas (pfandfrei),0,10,24,Glas,0,0,750,24 x 0.75L - Glas (pfandfrei),28800,pfandfrei
+165,25 x 0.02L - Glas (pfandfrei),0,10,25,Glas,0,0,20,25 x 0.02L - Glas (pfandfrei),1500,pfandfrei
+166,25 x 0.03L - Glas (pfandfrei),0,10,25,Glas,0,0,30,25 x 0.03L - Glas (pfandfrei),2000,pfandfrei
+167,25 x 0.04L - Glas (pfandfrei),0,10,25,Glas,0,0,40,25 x 0.04L - Glas (pfandfrei),2625,pfandfrei
+168,25 x 0.25L - Glas (0.15 / 5.25),525,10,25,Glas,150,15,250,25 x 0.25L - Glas (MEHRWEG),13350,Mehrweg
+169,25 x 0.2L - Glas (pfandfrei),0,10,25,Glas,0,0,200,25 x 0.2L - Glas (pfandfrei),10500,pfandfrei
+170,25 x 0.33L - Glas (0.08 / 3.50),350,10,25,Glas,150,8,330,25 x 0.33L - Glas (MEHRWEG),17350,Mehrweg
+171,25 x 0.33L - Glas (0.15 / 5.25),525,10,25,Glas,150,15,330,25 x 0.33L - Glas (MEHRWEG),17350,Mehrweg
+172,27 x 0.33L - Glas (0.08 / 3.66),366,10,27,Glas,150,8,330,27 x 0.33L - Glas (MEHRWEG),17460,Mehrweg
+173,28 x 0.25L - Glas (0.08 / 3.74),374,10,28,Glas,150,8,250,28 x 0.25L - Glas (MEHRWEG),14960,Mehrweg
+174,3 x 0.5L - Glas (pfandfrei),0,10,3,Glas,0,0,500,3 x 0.5L - Glas (pfandfrei),2580,pfandfrei
+175,3 x 0.75L - Glas (pfandfrei),0,10,3,Glas,0,0,750,3 x 0.75L - Glas (pfandfrei),3750,pfandfrei
+176,3 x 0.7L - Glas (pfandfrei),0,10,3,Glas,0,0,700,3 x 0.7L - Glas (pfandfrei),3600,pfandfrei
+177,3 x 1.5L - Glas (pfandfrei),0,10,3,Glas,0,0,1500,3 x 1.5L - Glas (pfandfrei),6450,pfandfrei
+178,30 x 0.02L - Glas (pfandfrei),0,10,30,Glas,0,0,20,30 x 0.02L - Glas (pfandfrei),1800,pfandfrei
+179,30 x 0.02L - PET (pfandfrei),0,10,30,PET,0,0,20,30 x 0.02L - PET (pfandfrei),750,pfandfrei
+180,30 x 0.04L - Glas (pfandfrei),0,10,30,Glas,0,0,40,30 x 0.04L - Glas (pfandfrei),3150,pfandfrei
+181,30 x 0.25L - Glas (0.15 / 6.00),600,10,30,Glas,150,15,250,30 x 0.25L - Glas (MEHRWEG),16000,Mehrweg
+182,30 x 0.2L - Glas (0.08 / 3.90),390,10,30,Glas,150,8,200,30 x 0.2L - Glas (MEHRWEG),14500,Mehrweg
+183,30 x 0.2L - Glas (0.15 / 6.00),600,10,30,Glas,150,15,200,30 x 0.2L - Glas (MEHRWEG),14500,Mehrweg
+184,30 x 0.2L - Glas (0.15 / 4.50),450,10,30,Glas,0,15,200,30 x 0.2L - Glas (MEHRWEG),13000,Mehrweg
+185,30 x 0.2L - Tetra Pak (pfandfrei),0,10,30,Tetra Pak,0,0,200,30 x 0.2L - Tetra Pak (pfandfrei),6300,pfandfrei
+186,30 x 0.33L - Glas (0.08 / 3.90),390,10,30,Glas,150,8,330,30 x 0.33L - Glas (MEHRWEG),19300,Mehrweg
+187,4 x 0.66L - Glas (0.08 / 0.32),32,10,4,Glas,0,8,660,4 x 0.66L - Glas (MEHRWEG),4440,Mehrweg
+188,4 x 0.7L - Glas (pfandfrei),0,10,4,Glas,0,0,700,4 x 0.7L - Glas (pfandfrei),4800,pfandfrei
+189,4 x 1.0L - PET (0.25 / 1.00),100,10,4,PET,0,25,1000,4 x 1.0L - PET (EINWEG),4400,Einweg
+190,4 x 1.5L - PET (0.25 / 1.00),100,10,4,PET,0,25,1500,4 x 1.5L - PET (EINWEG),6480,Einweg
+191,4 x 3.0L - Glas (pfandfrei),0,10,4,Glas,0,0,3000,4 x 3.0L - Glas (pfandfrei),17600,pfandfrei
+192,4 x 5.0L - Dose (pfandfrei),0,10,4,Dose,0,0,5000,4 x 5.0L - Dose (pfandfrei),20240,pfandfrei
+193,6 x 0.25L - Dose (0.25 / 1.50),150,10,6,Dose,0,25,250,6 x 0.25L - Dose (EINWEG),1860,Einweg
+194,6 x 0.25L - PET (0.25 / 1.50),150,10,6,PET,0,25,250,6 x 0.25L - PET (EINWEG),1740,Einweg
+195,6 x 0.33L - Dose (0.25 / 1.50),150,10,6,Dose,0,25,330,6 x 0.33L - Dose (EINWEG),2100,Einweg
+196,6 x 0.33L - Glas (0.08 / 0.48),48,10,6,Glas,0,8,330,6 x 0.33L - Glas (MEHRWEG),3780,Mehrweg
+197,6 x 0.33L - Glas Bügelverschluss (0.15 / 0.90),90,10,6,Glas Bügelverschluss,0,15,330,6 x 0.33L - Bügelflasche (MEHRWEG),3900,Mehrweg
+198,6 x 0.33L - PET (pfandfrei),0,10,6,PET,0,0,330,6 x 0.33L - PET (pfandfrei),2280,pfandfrei
+199,6 x 0.33L - PET (0.25 / 1.50),150,10,6,PET,0,25,330,6 x 0.33L - PET (EINWEG),2280,Einweg
+200,6 x 0.35L - Glas (pfandfrei),0,10,6,Glas,0,0,350,6 x 0.35L - Glas (pfandfrei),3900,pfandfrei
+201,6 x 0.36L - Glas (0.08 / 0.48),48,10,6,Glas,0,8,360,6 x 0.36L - Glas (MEHRWEG),3960,Mehrweg
+202,6 x 0.5L - Glas (0.08 / 0.48),48,10,6,Glas,0,8,500,6 x 0.5L - Glas (MEHRWEG),5160,Mehrweg
+203,6 x 0.5L - Glas (pfandfrei),0,10,6,Glas,0,0,500,6 x 0.5L - Glas (pfandfrei),5160,pfandfrei
+204,6 x 0.5L - Glas Bügelverschluss (0.15 / 0.90),90,10,6,Glas Bügelverschluss,0,15,500,6 x 0.5L - Bügelflasche (MEHRWEG),5280,Mehrweg
+205,6 x 0.5L - PET (pfandfrei),0,10,6,PET,0,0,500,6 x 0.5L - PET (pfandfrei),3360,pfandfrei
+206,6 x 0.5L - PET (0.25 / 1.50),150,10,6,PET,0,25,500,6 x 0.5L - PET (EINWEG),3360,Einweg
+207,6 x 0.66L - Glas (0.08 / 0.48),48,10,6,Glas,0,8,660,6 x 0.66L - Glas (MEHRWEG),6660,Mehrweg
+208,6 x 0.73L - Glas (pfandfrei),0,10,6,Glas,0,0,730,6 x 0.73L - Glas (pfandfrei),7080,pfandfrei
+209,6 x 0.75L - Glas (0.15 / 2.40),240,10,6,Glas,150,15,750,6 x 0.75L - Glas (MEHRWEG),8400,Mehrweg
+210,6 x 0.75L - Glas (pfandfrei),0,10,6,Glas,0,0,750,6 x 0.75L - Glas (pfandfrei),7200,pfandfrei
+211,6 x 0.75L - Glas Bügelverschluss (pfandfrei),0,10,6,Glas Bügelverschluss,0,0,750,6 x 0.75L - Bügelflasche (pfandfrei),8700,pfandfrei
+212,6 x 0.75L - PET (0.25 / 1.50),150,10,6,PET,0,25,750,6 x 0.75L - PET (EINWEG),4980,Einweg
+213,6 x 0.7L - Glas (0.15 / 2.40),240,10,6,Glas,150,15,700,6 x 0.7L - Glas (MEHRWEG),9000,Mehrweg
+214,6 x 0.7L - Glas (pfandfrei),0,10,6,Glas,0,0,700,6 x 0.7L - Glas (pfandfrei),7800,pfandfrei
+215,6 x 0.7L - PET (pfandfrei),0,10,6,PET,0,0,700,6 x 0.7L - PET (pfandfrei),4680,pfandfrei
+216,6 x 0.98L - Glas (0.15 / 2.40),240,10,6,Glas,150,15,980,6 x 0.98L - Glas (MEHRWEG),9960,Mehrweg
+217,6 x 1.0L - Elopak (pfandfrei),0,10,6,Elopak,0,0,1000,6 x 1.0L - Elopak (pfandfrei),6180,pfandfrei
+218,6 x 1.0L - Glas (0.15 / 2.40),240,10,6,Glas,150,15,1000,6 x 1.0L - Glas (MEHRWEG),10080,Mehrweg
+219,6 x 1.0L - Glas Bügelverschluss (0.60 / 6.00),600,10,6,Glas Bügelverschluss,240,60,1000,6 x 1.0L - Bügelflasche (MEHRWEG),12500,Mehrweg
+220,6 x 1.0L - Glas (pfandfrei),0,10,6,Glas,0,0,1000,6 x 1.0L - Glas (pfandfrei),8880,pfandfrei
+221,6 x 1.0L - PET (0.25 / 1.50),150,10,6,PET,0,25,1000,6 x 1.0L - PET (EINWEG),6600,Einweg
+222,6 x 1.0L - PET (0.25 / 3.00),300,10,6,PET,150,25,1000,6 x 1.0L - PET (EINWEG),7800,Einweg
+223,6 x 1.0L - PET (0.15 / 2.40),240,10,6,PET,150,15,1000,6 x 1.0L - PET (MEHRWEG),7800,Mehrweg
+224,6 x 1.0L - PET (pfandfrei),0,10,6,PET,0,0,1000,6 x 1.0L - PET (pfandfrei),6600,pfandfrei
+225,6 x 1.0L - Tetra Pak (pfandfrei),0,10,6,Tetra Pak,0,0,1000,6 x 1.0L - Tetra Pak (pfandfrei),6210,pfandfrei
+226,6 x 1.25L - PET (0.25 / 1.50),150,10,6,PET,0,25,1250,6 x 1.25L - PET (EINWEG),8160,Einweg
+227,6 x 1.5L - Glas (pfandfrei),0,10,6,Glas,0,0,1500,6 x 1.5L - Glas (pfandfrei),12900,pfandfrei
+228,6 x 1.5L - PET (0.25 / 1.50),150,10,6,PET,0,25,1500,6 x 1.5L - PET (EINWEG),9720,Einweg
+229,6 x 1.5L - PET (0.25 / 3.00),300,10,6,PET,150,25,1500,6 x 1.5L - PET (EINWEG),10920,Einweg
+230,6 x 1.5L - PET (0.15 / 2.40),240,10,6,PET,150,15,1500,6 x 1.5L - PET (MEHRWEG),10920,Mehrweg
+231,6 x 1.75L - Glas (pfandfrei),0,10,6,Glas,0,0,1750,6 x 1.75L - Glas (pfandfrei),14700,pfandfrei
+232,6 x 2.0L - Glas Bügelverschluss (0.15 / 0.90),90,10,6,Glas Bügelverschluss,0,15,2000,6 x 2.0L - Bügelflasche (MEHRWEG),21600,Mehrweg
+233,6 x 2.0L - PET (0.25 / 1.50),150,10,6,PET,0,25,2000,6 x 2.0L - PET (EINWEG),12900,Einweg
+234,6 x 2.0L - Tetra Pak (pfandfrei),0,10,6,Tetra Pak,0,0,2000,6 x 2.0L - Tetra Pak (pfandfrei),12390,pfandfrei
+235,60 x 0.02L - Glas (pfandfrei),0,10,60,Glas,0,0,20,60 x 0.02L - Glas (pfandfrei),3600,pfandfrei
+236,8 x 0.33L - Glas (0.08 / 0.64),64,10,8,Glas,0,8,330,8 x 0.33L - Glas (MEHRWEG),5040,Mehrweg
+237,8 x 0.5L - Glas (0.08 / 0.64),64,10,8,Glas,0,8,500,8 x 0.5L - Glas (MEHRWEG),6880,Mehrweg
+238,8 x 0.5L - Glas (0.08 / 2.14),214,10,8,Glas,150,8,500,8 x 0.5L - Glas (MEHRWEG),8080,Mehrweg
+239,8 x 0.5L - Glas (0.15 / 2.70),270,10,8,Glas,150,15,500,8 x 0.5L - Glas (MEHRWEG),8080,Mehrweg
+240,8 x 0.5L - Glas Bügelverschluss (0.15 / 1.20),120,10,8,Glas Bügelverschluss,0,15,500,8 x 0.5L - Bügelflasche (MEHRWEG),7040,Mehrweg
+241,8 x 0.5L - Glas Bügelverschluss (0.15 / 2.70),270,10,8,Glas Bügelverschluss,150,15,500,8 x 0.5L - Bügelflasche (MEHRWEG),8240,Mehrweg
+242,8 x 0.75L - PET (0.15 / 2.70),270,10,8,PET,150,15,750,8 x 0.75L - PET (MEHRWEG),7920,Mehrweg
+243,8 x 0.7L - Glas (0.15 / 2.70),270,10,8,Glas,150,15,700,8 x 0.7L - Glas (MEHRWEG),11600,Mehrweg
+244,8 x 1.0L - Elopak (pfandfrei),0,10,8,Elopak,0,0,1000,8 x 1.0L - Elopak (pfandfrei),8240,pfandfrei
+245,8 x 1.0L - Tetra Pak (pfandfrei),0,10,8,Tetra Pak,0,0,1000,8 x 1.0L - Tetra Pak (pfandfrei),8280,pfandfrei
+246,8 x 1.5L - Tetra Pak (pfandfrei),0,10,8,Tetra Pak,0,0,1500,8 x 1.5L - Tetra Pak (pfandfrei),12400,pfandfrei
+247,9 x 0.33L - Glas Bügelverschluss (0.15 / 2.85),285,10,9,Glas Bügelverschluss,150,15,330,9 x 0.33L - Bügelflasche (MEHRWEG),7050,Mehrweg
+248,9 x 0.5L - Glas (0.08 / 2.22),222,10,9,Glas,150,8,500,9 x 0.5L - Glas (MEHRWEG),8940,Mehrweg
+249,9 x 0.5L - Glas Bügelverschluss (0.15 / 2.85),285,10,9,Glas Bügelverschluss,150,15,500,9 x 0.5L - Bügelflasche (MEHRWEG),9120,Mehrweg
+250,9 x 0.75L - Glas (0.15 / 2.85),285,10,9,Glas,150,15,750,9 x 0.75L - Glas (MEHRWEG),13350,Mehrweg
+251,9 x 0.7L - Glas (0.15 / 2.85),285,10,9,Glas,150,15,700,9 x 0.7L - Glas (MEHRWEG),12900,Mehrweg
+252,9 x 1.0L - PET (0.25 / 3.75),375,10,9,PET,150,25,1000,9 x 1.0L - PET (EINWEG),11100,Einweg
+253,6 x 0.75L - Glas Karton (0.15 / 0.90),90,10,6,Glas,0,15,750,6 x 0.75L - Glas (MEHRWEG),8100,Mehrweg
+254,20 x 0.33L - Glas Karton (0.08 / 1.60),160,10,20,Glas,0,8,330,20 x 0.33L - Glas (MEHRWEG),12600,Mehrweg
+255,12 x 0.4L - PET (0.25 / 3.00),300,10,12,PET,0,25,400,12 x 0.4L - PET (EINWEG),5280,Einweg
+256,4 x 0.5L - Glas Träger (0.08 / 0.32),32,10,4,Glas,0,8,500,4 x 0.5L - Träger Glas (MEHRWEG),3400,Mehrweg
+257,12 x 0.33L - Glas Karton (0.08 / 0.96),96,10,12,Glas,0,8,330,12 x 0.33L - Glas (MEHRWEG),7560,Mehrweg
+258,18 x 0.5L - PET Träger (pfandfrei),0,10,18,PET,0,0,500,18 x 0.5L - Träger (pfandfrei),10080,pfandfrei
+259,4 x 0.33L -Glas Träger (0.08 / 0.32),32,10,4,Glas,0,8,330,4 x 0.33L - Träger Glas (MEHRWEG),2520,Mehrweg
+260,12 x 1L - PET (0.25 / 4.50),450,10,12,PET,150,25,1000,12 x 1L - PET (EINWEG),14400,Einweg
+261,8 x 0.5L - Glas Bügelverschluss (0.50 / 5.50),550,10,8,Glas,150,50,500,8 x 0.5L - Bügelflasche (MEHRWEG),8240,Mehrweg
+262,15 x 0.5L - Glas Bügelverschluss (0.50 / 10.00),1000,10,15,Glas,250,50,500,15 x 0.5L - Bügelflasche (MEHRWEG),15000,Mehrweg
+263,16 x 0.5L - Glas Bügelverschluss (0.60 / 16.10),1610,10,16,Glas,650,60,500,16 x 0.5L - Bügelflasche (MEHRWEG),15880,Mehrweg
+264,20 x 0.33L - Glas (0.25 / 12.00),1200,10,20,Glas,700,25,330,20 x 0.33L - Glas (MEHRWEG),14400,Mehrweg
+265,6 x 1L - Glas + 0.7L - Glas (0.15 / 2.40),240,10,7,Glas,150,15,957,Durst-Bundle,0,
+266,12 x 1L - PET + 0.7L - Glas (0.15 / 3.30),330,10,13,PET,150,15,977,Durst-Bundle,0,
+267,20 x 0.33L - Glas + 0.7L - Glas (0.08 / 3.10),310,10,21,Glas,150,8,348,Durst-Bundle,0,
+268,48 x 0.10L - Glas (pfandfrei),0,10,48,Glas,0,0,100,48 x 0.10L - Glas (pfandfrei),9600,pfandfrei
+269,1 x 1.00L - Glas (0.05),5,10,1,Glas,0,5,1000,1 x 1L - Glas (MEHRWEG),1480,Mehrweg
+270,6 x 1.25L - PET (0.25 / 3.00),300,10,6,PET,150,25,1250,6 x 1.25L - PET (EINWEG),9360,Einweg
+271,12 x 0.125L -  Glas (0.25 / 4.50),450,10,12,Glas,150,25,125,12 x 0.125L - Glas (MEHRWEG),4200,Mehrweg
+272,12 x 0.2L - Glas (0.25 / 4.50),450,10,12,Glas,150,25,200,12 x 0.2L - Glas (MEHRWEG),5550,Mehrweg
+273,24 x 0.125L - Glas (0.25 / 7.50),750,10,24,Glas,150,25,125,24 x 0.125L - Glas (MEHRWEG),8400,Mehrweg
+274,24 x 0.2L - Glas (0.25 / 7.50),750,10,24,Glas,150,25,200,24 x 0.2L - Glas (MEHRWEG),11100,Mehrweg
+275,4 x 0.25L - Dose (0.25 / 1.00),100,10,4,Dose,0,25,250,4 x 0.25L - Dose (EINWEG),1117,Einweg
+276,4 x 0.355L - Dose (0.25 / 1.00),100,10,4,Dose,0,25,355,4 x 0.355L - Dose (EINWEG),1567,Einweg
+277,6 x 0.355L - Dose (0.25 / 1.50),150,10,6,Dose,0,25,355,6 x 0.355L - Dose (EINWEG),2350,Einweg
+278,12 x 0.473L - Dose (0.25 / 3.00),300,10,12,Dose,0,25,473,12 x 0.473L - Dose (EINWEG),6550,Einweg
+279,24 x 0.473L - Dose (0.25 / 6.00),600,10,24,Dose,0,25,473,24 x 0.473L - Dose (EINWEG),13100,Einweg
+280,24 x 0.2L - Glas (0.10 / 3.90),390,10,24,Glas,150,10,200,24 x 0.2L - Glas (MEHRWEG),11680,Mehrweg
+281,20 x 0.33L - Glas Bügelverschluss (0.25 / 6.50),650,10,20,Glas,150,25,330,20 x 0.33L - Bügelflasche (MEHRWEG),14422,Mehrweg
+282,4 x 0.5L - Glas Bügelverschluss (0.15 / 0.60),60,10,4,Glas,0,15,500,4 x 0.5L - Bügelflasche (MEHRWEG),3680,Mehrweg
+283,3 x 0.75L - Glas (pfandfrei),0,10,3,Glas,0,0,750,3 x 0.75L - Weinpaket (pfandfrei),3870,pfandfrei
+284,4 x 6 x 0.33L - Glas (0.08 / 3.42),342,10,24,Glas,150,8,330,4 x 6 x 0.33L - 6-Packs im Kasten (MEHRWEG),16720,Mehrweg
+285,1 x 13.0L - Fass (30.00),3000,10,1,Fass,3000,0,13000,1 x 13.0L - Coolkeg (MEHRWEG),16500,Mehrweg
+286,12 x 0.5L - Glas Bügelverschluss (0.50 / 11.50),1150,10,12,Glas,550,50,500,12 x 0.5L - Bügelflasche (MEHRWEG),11760,Mehrweg
+287,9 x 0.33L - Glas Bügelverschluss (0.50 / 10.00),1000,10,9,Glas,550,50,330,9 x 0.33L - Bügelflasche (MEHRWEG),7050,Mehrweg
+288,12 x 0.75L - Glas (0.35 / 5.70),570,10,12,Glas,150,35,750,12 x 0.75L - Glas (MEHRWEG),16880,Mehrweg
+289,1 x 0.25L - Glas (pfandfrei),0,10,1,Glas,0,0,250,1 x 0.25L - Glas (pfandfrei),435,pfandfrei
+290,1 x 0.2L - Glas (pfandfrei),0,10,1,Glas,0,0,200,1 x 0.2L - Glas (pfandfrei),430,pfandfrei
+291,16 x 0.33L - Glas (0.08 / 5.78),578,10,16,Glas,450,8,330,16 x 0.33L - Glas (MEHRWEG),15000,Mehrweg
+292,1 x 1.0L - Glas Bügelverschluss (1.50),150,10,1,Glas,0,150,1000,1 x 1.0L - Glas (MEHRWEG),1800,Mehrweg
+293,4 x 0.5L - PET (0.25 / 1.00),100,10,4,PET,0,25,2000,4 x 0.5L - PET (EINWEG),2240,Einweg
+294,24 x 0.33L - Glas (0.25 / 6.00),600,10,24,Glas,0,25,330,24 x 0.33L - Glas (MEHRWEG),15360,Mehrweg
+295,6 x 0.97L - Glas (pfandfrei),0,10,6,Glas,0,0,970,6 x 0.97L - Glas (pfandfrei),10080,pfandfrei
+296,36 x 0.02L - Glas (pfandfrei),0,10,32,Glas,0,0,20,36 x 0.02L - Glas (pfandfrei),2160,pfandfrei
+297,12 x 0.7L - Glas (0.25 / 4.50),450,10,12,Glas,150,25,700,12 x 0.7L - Glas (MEHRWEG),17000,Mehrweg
+298,4 x 6 x 0.33L - Glas (pfandfrei),0,10,24,Glas,0,0,330,4 x 6 x 0.33L - Glas (pfandfrei),15120,pfandfrei
+299,12 x 0.25L - Dose (pfandfrei),0,10,12,Dose,0,0,250,12 x 0.25L - Dose (pfandfrei),3000,pfandfrei
+300,24 x 0.5L - PET (0.25 / 7.50),750,10,24,PET,150,25,500,24 x 0.5L - PET (EINWEG),14800,Einweg
+301,4 x 6 x 0.2L - Glas (0.10 / 3.90),390,10,24,Glas,150,10,200,4 x 6 x 0.2L - Glas (MEHRWEG),11680,Mehrweg
+302,14 x 0.5L - Glas Bügelverschluss (0.15 / 3.60),360,10,14,Glas,150,15,500,14 x 0.5L - Bügelflasche (MEHRWEG),14300,Mehrweg
+303,4 x 0.4L - Glas (0.08 / 0.32),32,10,4,Glas,0,8,500,4 x 0.4L - Glas (MEHRWEG),3440,Mehrweg
+304,4 x 0.44L - Dose (0.25 / 1.00),100,10,4,Dose,0,25,440,4 x 0.44L - Dose (EINWEG),1900,Einweg
+305,4 x 6 x 0.33L - Glas Bügelverschluss (0.15 / 5.10),510,10,24,Glas Bügelverschluss,150,15,330,4 x 6 x 0.33L - Bügelflasche (MEHRWEG),17200,Mehrweg
+306,24 x 0.33L - Glas Karton (0.08 / 1.92),192,10,24,Glas,0,8,330,24 x 0.33L - Glas im Karton (MEHRWEG),15120,Mehrweg
+307,5 x 4 x 0.33L - Glas (0.08 / 3.10),310,10,20,Glas,150,8,330,5 x 4 x 0.33L - Glas (MEHRWEG),13022,Mehrweg
+308,5 x 0.5L - Glas (0.08 / 0.40),40,10,5,Glas,0,8,500,5 x 0.5L - Glas (MEHRWEG),4300,Mehrweg
+309,1 x 1.0L - PET (0.25),25,10,1,PET,0,25,1000,1 x 1.0L - PET (EINWEG),1200,Einweg
+310,18 x 0.5L - PET (0.25 / 6.00),600,10,18,PET,150,25,500,18 x 0.5L - PET (EINWEG),12000,Einweg
+311,4 x 6 x 0.36L - Glas (0.08 / 3.42),342,10,24,Glas,150,8,360,4 x 6 x 0.36L - Glas (MEHRWEG),16720,Mehrweg
+312,4 x 6 x 0.2L - Glas (0.15 / 5.10),510,10,24,Glas,150,15,200,4 x 6 x 0.2L - Glas (MEHRWEG),11680,Mehrweg
+313,6 x 0.98L - Glas (pfandfrei),0,10,6,Glas,0,0,98,6 x 0.98L - Glas (pfandfrei),1200,pfandfrei
+314,12 x 0.355L - Dose (0.25 / 3.00),300,10,12,Dose,0,25,355,12 x 0.355L - Dose (EINWEG),4500,Einweg
+315,4 x 4 x 0.5L - Glas Bügelverschluss (0.15 / 3.90),390,10,16,Glas Bügelverschluss,150,15,500,4 x 4 x 0.5L - Bügelflasche (MEHRWEG),15880,Mehrweg
+316,20 x 0.25L - Glas (0.08 / 3.10),310,10,20,Glas,150,8,250,20 x 0.25L - Glas (MEHRWEG),10822,Mehrweg
+317,12 x 1.0L - Glas (0.25 / 4.50),450,10,12,Glas,150,25,1000,12 x 1.0L - Glas (MEHRWEG),19160,Mehrweg
+318,12 x 0.33L - Glas (pfandfrei),0,10,12,Glas,0,0,330,12 x 0.33L - Glas (pfandfrei),8760,pfandfrei
+319,2 x 0.75L - Glas (pfandfrei),0,10,2,Glas,0,0,750,2 x 0.75L - Glas (pfandfrei),2580,pfandfrei
+320,30 x 0.2L - Glas (0.10 / 4.50),450,10,30,Glas,150,10,200,30 x 0.2L - Glas (MEHRWEG),14500,Mehrweg
+321,12 x 0.25L - Glas (pfandfrei),0,10,12,Glas,0,0,250,12 x 0.25L - Glas (pfandfrei),5840,pfandfrei
+322,6 x 0.375L - Glas (pfandfrei),0,10,6,Glas,0,0,375,6 x 0.375L - Glas (pfandfrei),4100,pfandfrei
+323,16 x 0.33 L - Glas Bügelverschluss (0.15 / 3.90),390,10,16,Glas Bügelverschluss,150,15,330,16 x 0.33L - Bügelflasche (MEHRWEG),12500,Mehrweg
+324,24 x 0.25L - Dose (0.25 / 7.50),750,10,24,Dose,150,25,250,24 x 0.25L - Dosen im Kasten (EINWEG),8500,Einweg
+325,4 x 0.33L - Glas (0.15 / 0.60),60,10,4,Glas,0,15,330,4 x 0.33L - Glas (EINWEG),2320,Einweg
+326,6 x 0.75L - Glas (0.25 / 4.00),400,10,6,Glas,250,25,750,6 x 0.75L - Glas (MEHRWEG),8400,Mehrweg
+327,12 x 0.75L - Glas (0.25 / 5.50),550,10,12,Glas,250,25,750,12 x 0.75L - Glas (MEHRWEG),16880,Mehrweg
+328,24 x 0.25L - Glas (0.15 / 6.10),610,10,24,Glas,250,15,250,24 x 0.25L - Glas (MEHRWEG),12880,Mehrweg
+329,12 x 1.0L - Glas (0.50 / 7.50),750,10,12,Glas,150,50,1000,12 x 1.0L - Glas (MEHRWEG),19160,Mehrweg
+330,1 x 1.0L - Glas (0.50),50,10,1,Glas,0,50,1000,1 x 1.0L - Glas (MEHRWEG),1480,Mehrweg
+331,1 x 0.97 - Glas (pfandfrei),0,10,1,Glas,0,0,970,1 x 0.97L - Glas (pfandfrei),1470,pfandfrei
+332,9 x 0.02 - Glas (pfandfrei),0,10,9,Glas,0,0,20,9 x 0.02L - Glas (pfandfrei),540,pfandfrei
+333,6 x 0.1L - Glas (pfandfrei),0,10,6,Glas,0,0,100,6 x 0.1L - Glas (pfandfrei),1200,pfandfrei
+334,4 x 6 x 0.1L - Glas (pfandfrei),0,10,24,Glas,0,0,100,4 x 6 x 0.1L - Glas (pfandfrei),4800,pfandfrei
+335,20 x 0.5L - PET (0.15 / 4.50),450,10,20,PET,150,15,500,20 x 0.5L - PET (MEHRWEG),14000,Mehrweg
+336,20 x 0.4L - Glas (0.15 / 4.50),450,10,20,Glas,150,15,400,20 x 0.4L - Glas (MEHRWEG),16999,Mehrweg
+337,3 x 6 x 0.33L - Glas (0.08 / 2.94),294,10,18,Glas,150,8,330,3 x 6 x 0.33L - Glas (MEHRWEG),12740,Mehrweg
+338,5 x 6 x 0.33L - Glas (0.08 / 3.90),390,10,30,Glas,150,8,330,5 x 6 x 0.33L - Glas (MEHRWEG),19300,Mehrweg
+339,6 x 4 x 0.33L - Glas (0.08 / 3.42),342,10,24,Glas,150,8,330,6 x 4 x 0.33L - Glas (MEHRWEG),16720,Mehrweg
+340,1 x 0.35L - Glas (pfandfrei),0,10,1,Glas,0,0,350,1 x 0.35L - Glas (pfandfrei),500,pfandfrei
+341,16 x 0.5L - Glas mit Bügelverschluss (0.50 / 12.60),1260,10,16,Glas,460,50,500,16 x 0.5L - Glas mit Bügelverschluss (MEHRWEG),15480,Mehrweg
+342,20 x 0.33L - Glas (0.20 / 10.00),1000,10,20,Glas,600,20,330,20 x 0.33L - Glas (MEHRWEG),14022,Mehrweg
+343,12 x 1.0 L - Glas (0.15 / 4.80),480,10,12,Glas,300,15,1000,12 x 1.0 L - Glas im Trennkasten (MEHRWEG),19160,Mehrweg
+344,11 x 0.33 L - Glas (0.15 / 3.15),315,19,11,Glas,150,15,330,11 x 0.33 L - Glas (MEHRWEG),8130,Mehrweg
+345,20 x 0.33 L - Glas mit Bügelverschluss (0.40 / 6.30),630,10,20,Glas,150,40,330,20 x 0.33 L - Glas mit Bügelverschluss (MEHRWEG),14422,Mehrweg
+346,1 x 20.0 L - Fass (50.00),5000,10,1,Fass,5000,0,20000,1 x 20.0L - Fass (MEHRWEG),28800,Mehrweg
+347,6 x 1.0L - Glas (0.15 / 3.40),340,10,6,Glas,250,15,1000,6 x 1.0L - Glas (MEHRWEG),10080,Mehrweg
+348,1 x 30.0L - Fass (50.00),5000,10,1,Fass,5000,0,30000,1 x 30.0L - Fass (MEHRWEG),16500,Mehrweg
+349,12 x 1.0L - PET (0.15 / 4.80),480,10,12,PET,300,15,1000,12 x 1.0L - PET Trennkasten (MEHRWEG),14600,Mehrweg
+350,20 x 0.33L - Glas mit Bügelverschluss (0.15 / 6.00),600,10,20,Glas,300,15,330,20 x 0.33L - Glas mit Bügelverschluss (MEHRWEG),14422,Mehrweg
+351,8 x 0.5L - Glas mit Bügelverschuss (0.50 / 11.00),1100,10,8,Glas,700,50,500,8 x 0.5L - Glas mit Bügelverschluss (MEHRWEG),8240,Mehrweg
+352,24 x 0.25L - Glas (0.25 / 6.00),600,10,24,Glas,0,25,250,24 x 0.25L - Glas (MEHRWEG),5184,Mehrweg
+353,3 x 6 x 0.5L - Glas (0.08 / 2.94),294,10,18,Glas,150,8,500,3 x 6 x 0.5L - Glas (MEHRWEG),16880,Mehrweg
+354,11 x 0.5L - PET (0.15 / 3.15),315,10,11,PET,150,15,500,11 x 0.5L - PET (MEHRWEG),9360,Mehrweg
+355,1 x 0.375L - Glas (pfandfrei),0,10,1,Glas,0,0,375,1 x 0.375L - Glas (pfandfrei),805,pfandfrei
+356,1 x 0.1L - Glas (pfandfrei),0,10,1,Glas,0,0,100,1 x 0.1L - Glas (pfandfrei),330,pfandfrei
+357,12 x 0.75L - Designglas (0.15 / 3.30),330,10,12,Glas,150,15,750,12 x 0.75L - Designglas (MEHRWEG),16880,Mehrweg
+358,12 x 0.5L - Glas mit Bügelverschluss (0.15 / 6.40),640,10,12,Glas Bügelverschluss,460,15,500,12 x 0.5L - Glas mit Bügelverschluss (MEHRWEG),11760,Mehrweg
+359,24 x 0.25L - Glas (0.10 / 3.90),390,10,24,Glas,150,10,250,24 x 0.25L - Glas (MEHRWEG),12880,Mehrweg
+360,12 x 0.75L - Glas (0.25 / 4.50),450,10,12,Glas,150,25,750,12 x 0.75L - Glas (MEHRWEG),16880,Mehrweg
+361,1 x 0.7L - Glas (0.15),15,10,1,Glas,0,15,700,1 x 0.7L - Glas (MEHRWEG),1240,Mehrweg
+362,1 x 1.0L - Glas (0.15),15,10,1,Glas,0,15,1000,1 x 1.0L - Glas (MEHRWEG),1475,Mehrweg
+363,8 x 0.75L - Glas (0.15 / 2.70),270,10,8,Glas,150,15,750,8 x 0.75L - Glas (MEHRWEG),12200,Mehrweg
+364,20 x 0.5L - Glas (0.25 / 6.50),650,10,20,Glas,150,25,500,20 x 0.5L - Glas (MEHRWEG),19055,Mehrweg
+365,5 x 0.05L - Glas (pfandfrei),0,10,5,Glas,0,0,50,5 x 0.05L - Glas (pfandfrei),550,pfandfrei
+366,3 x 0.05L - Glas (pfandfrei),0,10,3,Glas,0,0,50,3 x 0.05L - Glas (pfandfrei),350,pfandfrei
+367,4 x 0.1L - Glas (pfandfrei),0,10,4,Glas,0,0,100,4 x 0.1L - Glas (pfandfrei),640,pfandfrei
+368,9 x 0.5L - Glas (0.08 /0.72),72,10,9,Glas,0,8,500,9 x 0.5L - Glas (MEHRWEG),9520,Mehrweg
+369,8 x 3 x 0.175L - Glas (pfandfrei),0,10,24,Glas,0,0,175,8 x 3 x 0.175L - Glas (pfandfrei),6000,pfandfrei
+370,6 x 4 x 0.2L - Glas (0.15/5.10),510,10,24,Glas,150,15,200,6 x 4 x 0.2L - Glas (MEHRWEG),11680,Mehrweg

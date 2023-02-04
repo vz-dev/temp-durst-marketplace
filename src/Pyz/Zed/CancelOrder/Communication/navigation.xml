@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <sales>
+        <pages>
+            <edifact>
+                <label>Cancellations</label>
+                <title>Cancellations</title>
+                <bundle>cancel-order</bundle>
+                <controller>index</controller>
+                <action>index</action>
+                <icon>fa-angle-double-right</icon>
+            </edifact>
+        </pages>
+    </sales>
+</config>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <software-package>
+        <label>Software-Paket</label>
+        <title>Software-Paket</title>
+        <bundle>software-package</bundle>
+        <controller>index</controller>
+        <action>index</action>
+        <uri>/software-package</uri>
+        <icon>fa-cubes</icon>
+        <pages>
+            <software-package>
+                <label>Software-Paket</label>
+                <title>Software-Paket</title>
+                <bundle>software-package</bundle>
+                <controller>index</controller>
+                <action>index</action>
+                <uri>/software-package</uri>
+                <icon>fa-cubes</icon>
+            </software-package>
+            <software-features>
+                <label>Software-Features</label>
+                <title>Software-Features</title>
+                <bundle>software-package</bundle>
+                <controller>software-feature</controller>
+                <action>index</action>
+                <icon>fa-check-square</icon>
+            </software-features>
+        </pages>
+    </software-package>
+</config>

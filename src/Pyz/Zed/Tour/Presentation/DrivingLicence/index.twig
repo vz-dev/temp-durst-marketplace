@@ -1,0 +1,21 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Liste der Führerscheinklassen' %}
+
+{% block action %}
+    {{ createActionButton('/tour/driving-licence/create', 'Neue Führerscheinklasse hinzufügen' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ drivingLicences | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

@@ -1,0 +1,98 @@
+# IDEs
+/.idea
+/.project
+/nbproject
+/.buildpath
+/.settings
+*.sublime-*
+*.AppleDouble
+*.AppleDB
+*.AppleDesktop
+Temporary Items
+.apdisk
+GPATH
+GRTAGS
+GTAGS
+
+# OS
+.DS_Store
+
+# Y&Z
+/config/Shared/config_local*
+/config/Shared/console_env_local.php
+/config/Shared/cubes.*
+/config/Zed/behat.local.yml
+/config/Zed/phpunit.core.xml
+/config/Zed/phpunit.xml
+/config/cubes.*
+config/accumulated-config.json
+
+/deploy/setup/params_local.sh
+/deploy/setup/frontend/params_local.sh
+
+/src/Generated/
+/src/Orm/Propel/*/Migration_pgsql/
+/src/Orm/Propel/*/Migration_mysql/
+/vendor/
+FOSS.md
+
+/data/*
+!/data/import
+/data/import/maps/*
+!/data/import/maps/super_attribute_map.json
+
+# grunt stuff
+.grunt
+.sass-cache
+/config/Yves/config_assets.php
+config/Yves/cache_bust.php
+/node_modules/
+
+# public stuff
+public/Yves/assets/
+public/Zed/assets/*
+!public/Zed/assets/upload
+!public/Zed/assets/campaign
+!public/Zed/assets/campaign/*
+!public/Zed/assets/jquery
+!public/Zed/assets/jquery/*
+public/Zed/assets/upload/*
+!public/Zed/assets/upload/driver-app
+
+# vagrant stuff
+.vagrant
+Vagrantfile
+
+# profiling
+/profiler
+
+# logs
+npm-debug.log
+/tests/_log/*
+!/tests/_log/.gitkeep
+/tests/_output/*
+!/tests/_output/.gitkeep
+/tests/_support/_generated/*
+!/tests/_support/_generated/.gitkeep
+
+/tests/PyzTest/*/*/_output/*
+/tests/PyzTest/*/*/_support/_generated/*
+
+# propel classes
+/src/Propel/Base/*
+/src/Propel/Map/*
+
+/src/Orm/Zed/*/Persistence/Base
+/src/Orm/Zed/*/Persistence/Map
+
+# propel config
+/src/Orm/Propel/*/Config/*
+/src/Orm/Propel/*/Schema
+/src/Orm/Propel/*/Sql
+
+# tools
+composer.phar
+c3.php
+
+# auth
+auth.json

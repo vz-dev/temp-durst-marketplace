@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\DepositPickup\Persistence"
+          package="src.Orm.Zed.DepositPickup.Persistence">
+    <table name="dst_deposit_pickup_inquiry">
+        <column name="id_deposit_pickup_inquiry" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" type="INTEGER" required="true"/>
+        <column name="name" type="VARCHAR" size="255" required="true"/>
+        <column name="address" type="VARCHAR" size="255" required="true"/>
+        <column name="email" type="VARCHAR" size="255" required="true"/>
+        <column name="phone_number" type="VARCHAR" size="255" required="true"/>
+        <column name="preferred_date" type="TIMESTAMP" required="true"/>
+        <column name="message" type="VARCHAR" size="1000" required="true"/>
+
+        <foreign-key name="dst_deposit_pickup_inquiry-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <behavior name="timestampable" />
+
+        <id-method-parameter value="dst_deposit_pickup_inquiry_pk_seq"/>
+    </table>
+</database>

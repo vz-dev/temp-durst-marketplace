@@ -1,0 +1,119 @@
+
++++ Deine Bestellung bei Durst +++
+
+==================================================
+
+
+Vielen Dank für Deine Bestellung.
+Diese haben wir erhalten und bestätigen hiermit den Auftrag. Deine Bestellung ist ab jetzt nicht mehr veränderbar.
+
+{% block deposit_refund_info %}
+Du wirst in deinem Wunschzeitfenster beliefert. Bei der Lieferung nehmen wir gerne Dein Leergut zurück.
+{% if mail.order.paymentMethodName == constant('Pyz\\Shared\\HeidelpayRest\\HeidelpayRestConstants::TWIG_HEIDELPAYRESTPAYPALAUTHORIZE') or mail.order.paymentMethodName == constant('Pyz\\Shared\\HeidelpayRest\\HeidelpayRestConstants::TWIG_HEIDELPAYRESTCREDITCARDAUTHORIZE') %}
+Die Verrechnung erfolgt sofort.
+
+Im Anschluss an die Lieferung erhältst Du dann unsere Rechnung mit dem Endbetrag per E-Mail.
+{% elseif mail.order.paymentMethodName == constant('Pyz\\Shared\\HeidelpayRest\\HeidelpayRestConstants::TWIG_HEIDELPAYRESTSEPADIRECTDEBIT') or mail.order.paymentMethodName == constant('Pyz\\Shared\\HeidelpayRest\\HeidelpayRestConstants::TWIG_HEIDELPAYRESTSEPADIRECTDEBITB2B') or mail.order.paymentMethodName == constant('Pyz\\Shared\\HeidelpayRest\\HeidelpayRestConstants::TWIG_HEIDELPAYRESTSEPADIRECTDEBITGUARANTEED') %}
+Die Gutschrift erfolgt per separater Überweisung auf Dein Konto.
+
+Im Anschluss an die Lieferung erhältst Du dann unsere Rechnung mit dem Endbetrag per E-Mail.
+{% elseif mail.order.paymentMethodName == constant('Pyz\\Shared\\HeidelpayRest\\HeidelpayRestConstants::TWIG_HEIDELPAYRESTINVOICE') or mail.order.paymentMethodName == constant('Pyz\\Shared\\HeidelpayRest\\HeidelpayRestConstants::TWIG_HEIDELPAYRESTINVOICEGUARANTEED') %}
+Den Wert verrechnen wir mit Deinem Bestellwert.
+
+Im Anschluss an die Lieferung erhältst Du Deine Rechnung mit dem Endbetrag per E-Mail. Dort findest Du alle Informationen, die Du für die Bezahlung per Überweisung benötigst.
+{% elseif mail.order.paymentMethodName == constant('Pyz\\Shared\\HeidelpayRest\\HeidelpayRestConstants::TWIG_EC_ON_DELIVERY') or mail.order.paymentMethodName == constant('Pyz\\Shared\\HeidelpayRest\\HeidelpayRestConstants::TWIG_CREDIT_CARD_ON_DELIVERY') %}
+Die Verrechnung erfolgt sofort. Die Bezahlung erfolgt dann mit einem mobilen Kartenterminal bei Lieferung.
+
+Im Anschluss an die Lieferung erhältst Du dann unsere Rechnung mit dem Endbetrag per E-Mail.
+{% elseif mail.order.paymentMethodName == constant('Pyz\\Shared\\HeidelpayRest\\HeidelpayRestConstants::TWIG_CASH_ON_DELIVERY') %}
+Die Verrechnung erfolgt sofort. Die Bezahlung erfolgt dann Bar bei Lieferung.
+
+Im Anschluss an die Lieferung erhältst Du dann unsere Rechnung mit dem Endbetrag per E-Mail.
+{% else %}
+{% endif %}
+{% endblock %}
+==================================================
+
+{% for item in mail.order.items %}
+    {{ item.quantity }}x
+    {{ item.productName }}
+    {{ item.unitName }}
+    {{ item.unitPriceToPayAggregation | money }}{% if item.calculatedDiscounts | length > 0 %} statt {{ item.unitGrossPrice | money }}{% endif %}
+
+
+{% endfor %}
+==================================================
+{% for expense in mail.order.expenses %}
+    {% if expense.type == constant('Pyz\\Shared\\Discount\\DiscountConstants::VOUCHER_CODE_EXPENSE_TYPE') and expense.calculatedDiscounts is iterable %}
+        {% for expenseDiscount in expense.calculatedDiscounts %}
+            {{ expenseDiscount.quantity }}x
+            {{ expenseDiscount.discountName }}
+            -{{ expenseDiscount.sumAmount | money }}
+        {% endfor %}
+==================================================
+    {% endif %}
+{% endfor %}
+
+Warenwert: {{ mail.order.totals.grossSubtotal | money }}
+
+zzgl. Pfand: {{ mail.order.totals.depositTotal | money }}
+{% if mail.order.totals.deliveryCostTotal > 0 %}
+zzgl. Liefergebühren: {{ mail.order.totals.deliveryCostTotal | money }}
+{% endif %}
+
+Gesamt: {{ mail.order.totals.grandTotal | money }}
+
+Alle Beträge inkl. Mehrwertsteuer
+
+==================================================
+
+Zeitfenster für deine Lieferung
+
+{% if mail.order.gmStartTime is not null %}{{ mail.order.gmStartTime|date("d.m.Y", "Europe/Berlin") }}{% else %}
+    {{ mail.order.concreteTimeSlot.startTime|date("d.m.Y", "Europe/Berlin") }}
+{% endif %}
+{% if mail.order.gmStartTime is not null %}{{ mail.order.gmStartTime|date("d.m.Y", "Europe/Berlin") }}
+    {{ mail.order.gmStartTime|date("H:i", "Europe/Berlin") }} - {{ mail.order.gmEndTime|date("H:i", "Europe/Berlin") }}
+{% else %}
+    {{ mail.order.concreteTimeSlot.startTime|date("H:i", "Europe/Berlin") }} - {{ mail.order.concreteTimeSlot.endTime|date("H:i", "Europe/Berlin") }}
+{% endif %}
+
+Zahlungsmethode
+
+{{ mail.order.paymentMethodName }}
+
+==================================================
+
+Deine Lieferung erfolgt an folgende Adresse:
+
+{% set address = mail.order.shippingAddress %}
+{{ address.firstName }} {{ address.lastName }}
+{% if address.company is not empty %}{{ address.company }}
+{% endif %}
+{% if address.address1 is not empty %}{{ address.address1 }}
+{% endif %}
+{% if address.address2 is not empty %}{{ address.address2 }}
+{% endif %}
+{% if address.address3 is not empty %}{{ address.address3 }}
+{% endif %}
+{{ address.zipCode }} {{ address.city }}
+{% if address.phone is not empty %}Telefon: {{ address.phone }}
+{% endif %}
+
+
+Solltest du einen Fehler in deiner Bestellung entdeckt haben,
+setze dich bitte direkt mit uns in Verbindung.
+
+E-Mail: service@durst.shop
+
+{% if mail.cancelOrderToken %}
+    Solltest du deine Lieferung doch nicht wollen, kannst du {%  if mail.cancelOrderExpiration %}bis {{ mail.cancelOrderExpiration|date("d.m.Y H:i", "Europe/Berlin") }} Uhr {% endif %}unter folgendem Link die Bestellung stornieren:: {{ mail.cancelOrderLink }}
+{% endif %}
+
+{% if mail.footerBannerLink | trans %}
+{{ mail.footerBannerCta | trans }}
+{{ mail.footerBannerLink | trans }}
+{% endif %}
+
+-----------------
+{% include '@Oms/Mail/partials/footer.text.twig' with {'mail': mail} %}

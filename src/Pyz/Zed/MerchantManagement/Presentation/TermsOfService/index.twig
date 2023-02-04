@@ -1,0 +1,22 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Terms of Service List' %}
+
+{% block action %}
+    {{ createActionButton('/merchant-management/terms-of-service/create', 'Add New Terms of Service' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ termsOfService | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}
+

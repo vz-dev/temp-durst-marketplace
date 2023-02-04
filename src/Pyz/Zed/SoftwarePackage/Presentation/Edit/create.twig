@@ -1,0 +1,23 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Software-Paket erstellen' %}
+
+{% block action %}
+    {{ backActionButton('/software-package', 'Software-Pakete auflisten' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(softwarePackageForm) }}
+
+            {{ form_end(softwarePackageForm) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

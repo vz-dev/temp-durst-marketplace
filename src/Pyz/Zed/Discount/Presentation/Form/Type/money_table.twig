@@ -1,0 +1,12 @@
+{% for moneyValueFormView in moneyValueFormViewCollection %}
+        <h4 class="hide-for-large">{{ "Rabatt (brutto)" | trans }}</h4>
+        <div class="form-element-wrapper product-grossPrice">
+            <div class="icon-wrapper euro">
+                {{ form_widget(moneyValueFormView.gross_amount) }}
+                {{ form_errors(moneyValueFormView.gross_amount) }}
+            </div>
+        </div>
+    {{ form_widget(moneyValueFormView.net_amount) }}
+    {{ form_row(moneyValueFormView.fk_currency) }}
+    {{ form_row(moneyValueFormView.fk_store) }}
+{% endfor %}

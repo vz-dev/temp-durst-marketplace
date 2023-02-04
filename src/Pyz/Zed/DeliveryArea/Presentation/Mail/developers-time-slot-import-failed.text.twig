@@ -1,0 +1,13 @@
+Der Import der Zeitfenster für die Filiale "{{ mail.branch.name }}" ist fehlgeschlagen.
+
+Fehlerhafte Zeile:
+
+{{ mail.exception.failedItem|join(constant('Pyz\\Zed\\DeliveryArea\\Business\\Import\\TimeSlotCsvImporter::IMPORT_CSV_DELIMITER')) }} ({{ mail.exception.failedRow }})
+
+Fehlermeldung:
+
+{{ mail.exception.previous.className }} - {{ mail.exception.previous.message }} in "{{ mail.exception.previous.file }}::{{ mail.exception.previous.line }}"
+
+Stack-Trace:
+
+{{ mail.exception.previous.traceString }}

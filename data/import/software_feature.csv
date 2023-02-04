@@ -1,0 +1,2 @@
+id,name,code,description
+1,Anmerkungen in Bestellungen zulassen?,allow_order_comments,Sollen User die Möglichkeit haben Anmerkungen zur Bestellung via App zu hinterlassen?

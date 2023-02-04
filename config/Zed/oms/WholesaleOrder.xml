@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="WholesaleOrder" main="true">
+
+        <states>
+
+            <state name="new"/>
+            <state name="authorized"/>
+            <state name="paymentReadyToAuthorize"/>
+            <state name="confirmed"/>
+            <state name="accepted"/>
+            <state name="declined"/>
+            <state name="closed"/>
+            <state name="wholesaleOrdered"/>
+            <state name="tourPlanned"/>
+            <state name="shipmentReady"/>
+            <state name="invalid"/>
+            <state name="shipping"/>
+            <state name="paymentReady"/>
+            <state name="paymentCompleted"/>
+            <state name="rated"/>
+            <state name="invoiceCreated"/>
+            <state name="invoiceSent"/>
+
+
+        </states>
+
+        <transitions>
+
+            <transition happy="true" condition="WholesaleOrder/IsPaymentPreAuthorized">
+                <source>new</source>
+                <target>authorized</target>
+                <event>preAuthorizePayment</event>
+            </transition>
+
+            <transition>
+                <source>new</source>
+                <target>paymentReadyToAuthorize</target>
+                <event>preAuthorizePayment</event>
+            </transition>
+
+            <transition>
+                <source>paymentReadyToAuthorize</source>
+                <target>authorized</target>
+                <event>authorizePayment</event>
+            </transition>
+
+            <transition happy="true">
+                <source>authorized</source>
+                <target>confirmed</target>
+                <event>confirm</event>
+            </transition>
+
+            <transition happy="true">
+                <source>wholesaleOrdered</source>
+                <target>accepted</target>
+                <event>accept</event>
+            </transition>
+
+            <transition happy="true" condition="WholesaleOrder/IsWholesaleOrdered">
+                <source>tourPlanned</source>
+                <target>wholesaleOrdered</target>
+                <event>orderWholesale</event>
+            </transition>
+
+            <transition>
+                <source>tourPlanned</source>
+                <target>declined</target>
+                <event>orderWholesale</event>
+            </transition>
+
+            <transition happy="true" condition="WholesaleOrder/IsTourPlanned">
+                <source>confirmed</source>
+                <target>tourPlanned</target>
+                <event>planTour</event>
+            </transition>
+
+            <transition>
+                <source>confirmed</source>
+                <target>confirmed</target>
+                <event>planTour</event>
+            </transition>
+
+            <transition>
+                <source>confirmed</source>
+                <target>declined</target>
+                <event>decline</event>
+            </transition>
+
+            <transition>
+                <source>declined</source>
+                <target>closed</target>
+                <event>close</event>
+            </transition>
+
+            <transition happy="true">
+                <source>accepted</source>
+                <target>shipmentReady</target>
+                <event>board</event>
+            </transition>
+
+            <transition happy="true">
+                <source>shipmentReady</source>
+                <target>shipping</target>
+                <event>ship</event>
+            </transition>
+
+            <transition condition="WholesaleOrder/IsBoardingInvalid">
+                <source>accepted</source>
+                <target>invalid</target>
+                <event>board</event>
+            </transition>
+
+            <transition happy="true">
+                <source>shipping</source>
+                <target>paymentReady</target>
+                <event>recalculate</event>
+            </transition>
+
+            <transition condition="WholesaleOrder/IsRecalculationInvalid">
+                <source>shipping</source>
+                <target>invalid</target>
+                <event>recalculate</event>
+            </transition>
+
+            <transition happy="true">
+                <source>invoiceSent</source>
+                <target>paymentCompleted</target>
+                <event>handlePayment</event>
+            </transition>
+
+            <transition happy="true">
+                <source>paymentCompleted</source>
+                <target>rated</target>
+                <event>rate</event>
+            </transition>
+
+            <transition>
+                <source>paymentCompleted</source>
+                <target>closed</target>
+                <event>closeWithoutRating</event>
+            </transition>
+
+            <transition happy="true">
+                <source>rated</source>
+                <target>closed</target>
+                <event>close</event>
+            </transition>
+
+            <transition happy="true">
+                <source>invoiceCreated</source>
+                <target>invoiceSent</target>
+                <event>sendInvoice</event>
+            </transition>
+
+            <transition happy="true">
+                <source>paymentReady</source>
+                <target>invoiceCreated</target>
+                <event>createInvoice</event>
+            </transition>
+
+        </transitions>
+
+        <events>
+
+            <event name="preAuthorizePayment" onEnter="true" command="WholesaleOrder/PreAuthorizePayment"/>
+            <event name="authorizePayment" onEnter="true" command="WholesaleOrder/AuthorizePayment"/>
+            <event name="confirm" onEnter="true" command="WholesaleOrder/ConfirmOrder"/>
+            <event name="accept" onEnter="true"  command="RetailOrder/AcceptOrder"/>
+            <event name="decline" manual="true"  command="RetailOrder/DeclineOrder"/>
+            <event name="close" onEnter="true"/>
+            <event name="orderWholesale" onEnter="true" command="WholesaleOrder/OrderWholesale"/>
+            <event name="planTour" onEnter="true" command="WholesaleOrder/PlanTour"/>
+            <event name="board" onEnter="true" command="WholesaleOrder/Board"/>
+            <event name="ship" onEnter="true" command="WholesaleOrder/Ship"/>
+            <event name="recalculate" manual="true" command="WholesaleOrder/Recalculate"/>
+            <event name="handlePayment" onEnter="true" command="WholesaleOrder/HandlePayment"/>
+            <event name="rate" manual="true" command="WholesaleOrder/Rate"/>
+            <event name="closeWithoutRating" timeout="30 days"/>
+            <event name="sendInvoice" onEnter="true" command="WholesaleOrder/SendInvoice"/>
+            <event name="createInvoice" timeout="1 minutes" command="WholesaleOrder/CreateInvoice"/>
+
+        </events>
+
+    </process>
+
+</statemachine>

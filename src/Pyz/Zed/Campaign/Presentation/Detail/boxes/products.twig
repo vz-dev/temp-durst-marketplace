@@ -1,0 +1,49 @@
+{% embed '@Gui/Partials/widget.twig' with { widget_title: 'Campaign Order Items' } %}
+
+    {% block widget_content %}
+
+        <table class="footable table toggle-arrow-tiny" data-qa="order-item-list">
+            <thead>
+            <tr class="text-left">
+                <th colspan="2">{{ 'Picture' | trans }}</th>
+                <th>{{ 'Product' | trans }}</th>
+                <th>{{ 'Unit' | trans }}</th>
+                <th>{{ 'SKU Unit' | trans }}</th>
+                <th>{{ 'Price' | trans }}</th>
+                <th>{{ 'Discount' | trans }}</th>
+                <th>{{ 'End price' | trans }}</th>
+                <th>{{ 'Price / Liter' | trans }}</th>
+                <th>{{ 'Refund' | trans }}</th>
+                <th>{{ 'AK' | trans }}</th>
+                <th>{{ 'MHD' | trans }}</th>
+                <th>{{ 'Status' | trans }}</th>
+                <th>{{ 'Actions' | trans }}</th>
+            </tr>
+            </thead>
+            {% for product in campaignPeriodBranchOrder.products %}
+                <tr class="subtotal-row">
+                    {% embed '@Campaign/Detail/boxes/product.twig' with {product: product} %}{% endembed %}
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        {{ product.deeplinkUrl }}
+                    </td>
+                    <td colspan="7">
+                        {% for title, image in product.images %}
+                            {% if title == constant('Pyz\\Zed\\Campaign\\Business\\Hydrator\\CampaignPeriodBranchOrderProduct\\CampaignPeriodBranchOrderProductImagesHydrator::PRODUCT_IMAGE_TYPE_BOTTLE_SHOT') %}
+                                {% set image = product.bigProductImage %}
+                            {% endif %}
+
+                            <a href="{{ image }}" title="{{ title }}" data-group="{{ product.sku }}" class="gallery btn btn-xs btn-outline btn-view"><i class="fa fa-eye"></i> {{ title }}</a>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    {% embed '@Campaign/Detail/boxes/materials.twig' with {materials: product.assignedCampaignAdvertisingMaterials} %}{% endembed %}
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% endblock %}
+
+{% endembed %}

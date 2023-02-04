@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<statemachine
+    xmlns="spryker:oms-01"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="CaptureWoCancel">
+        <states>
+            <state name="ready for capture"/>
+            <state name="capture charge amount"/>
+            <state name="capture charge amount pending"/>
+            <state name="capture charge amount invalid"/>
+            <state name="capture charge amount invalid fail mail"/>
+            <state name="capture charge amount failed"/>
+            <state name="capture charge amount fail limit succeeded"/>
+            <state name="capture charge amount fail limit mail"/>
+            <state name="capture succeeded"/>
+        </states>
+
+        <transitions>
+            <transition happy="true">
+                <source>ready for capture</source>
+                <target>capture charge amount</target>
+                <event>charge capture amount</event>
+            </transition>
+
+            <transition happy="true" condition="HeidelpayRest/IsCaptureChargeApproved">
+                <source>capture charge amount</source>
+                <target>capture succeeded</target>
+                <event>check capture success</event>
+            </transition>
+
+            <transition>
+                <source>capture charge amount</source>
+                <target>capture charge amount pending</target>
+                <event>check capture success</event>
+            </transition>
+
+            <transition condition="HeidelpayRest/IsCaptureChargePendingOrCoreTimeout">
+                <source>capture charge amount pending</source>
+                <target>capture charge amount failed</target>
+                <event>pending capture charge</event>
+            </transition>
+
+            <transition>
+                <source>capture charge amount pending</source>
+                <target>capture charge amount invalid</target>
+                <event>pending capture charge</event>
+            </transition>
+
+            <transition>
+                <source>capture charge amount invalid</source>
+                <target>capture charge amount invalid fail mail</target>
+                <event>send capture charge invalid fail mail</event>
+            </transition>
+
+            <transition condition="HeidelpayRest/IsCaptureChargeFailLimitSucceeded">
+                <source>capture charge amount failed</source>
+                <target>capture charge amount fail limit succeeded</target>
+            </transition>
+
+            <transition>
+                <source>capture charge amount failed</source>
+                <target>capture charge amount</target>
+                <event>retry capture charge amount</event>
+            </transition>
+
+            <transition>
+                <source>capture charge amount fail limit succeeded</source>
+                <target>capture charge amount fail limit mail</target>
+                <event>send capture charge fail limit mail</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="charge capture amount" onEnter="true" manual="true" command="HeidelpayRest/CaptureCharge"/>
+            <event name="pending capture charge" onEnter="true"/>
+            <event name="check capture success" onEnter="true" manual="true"/>
+            <event name="send capture charge invalid fail mail" onEnter="true" command="HeidelpayRest/SendFailMail"/>
+            <event name="send capture charge fail limit mail" onEnter="true" command="HeidelpayRest/SendFailMail"/>
+            <event name="retry capture charge amount" timeout="10 minutes" command="HeidelpayRest/CaptureCharge"/>
+            <event name="pending capture cancel" onEnter="true"/>
+            <event name="send capture cancel invalid fail mail" onEnter="true" command="HeidelpayRest/SendFailMail"/>
+            <event name="retry capture cancel amount" timeout="10 minutes"/>
+            <event name="send capture cancel fail limit mail" onEnter="true" command="HeidelpayRest/SendFailMail"/>
+        </events>
+    </process>
+</statemachine>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Merchant\Persistence"
+          package="src.Orm.Zed.Merchant.Persistence">
+
+    <table name="spy_merchant" idMethod="native" phpName="SpyMerchant">
+        <column name="billing_period_per_branch" type="BOOLEAN"/>
+    </table>
+
+    <table name="spy_branch" idMethod="native" phpName="SpyBranch">
+        <column name="billing_start_date" type="DATE" required="false"/>
+        <column name="billing_cycle" required="false" type="VARCHAR" size="255" />
+        <column name="billing_end_of_month" type="BOOLEAN" />
+        <column name="export_account" required="false" type="VARCHAR" size="255" />
+        <column name="export_contra_account" required="false" type="VARCHAR" size="255" />
+        <column name="export_csv_enabled" type="BOOLEAN" />
+    </table>
+
+</database>

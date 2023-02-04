@@ -1,0 +1,71 @@
+
++++ Deine Bestellung {{ mail.order.orderReference }} wurde abgelehnt +++
+
+==================================================
+
+Hallo {{ mail.order.firstName }},
+
+leider wurden die von dir angegebenen Zahlungsdaten von unserer Versicherung zurückgewiesen, daher mussten wir deine Bestellung leider stornieren.
+
+Vielleicht sind deine eingegebenen Daten fehlerhaft oder es gibt einen anderen Grund warum unser Dienstleister dich für das versicherte Lastschriftverfahren bzw. den versicherten Rechnungskauf ablehnt. Details über die Ablehnungsgründe unterliegen dem Datenschutz und werden uns daher nicht übermittelt.
+
+Du kannst deine Eingabe gerne überprüfen und versuchen die Bestellung zu wiederholen. Alternativ empfehlen wir dir die Bezahlung per Paypal oder Kreditkarte.
+==================================================
+
+{% for item in mail.order.items %}
+    {{ item.quantity }}x
+    {{ item.productName }}
+    {{ item.unitName }}
+    {{ item.unitPriceToPayAggregation | money }}{% if item.calculatedDiscounts | length > 0 %} statt {{ item.unitGrossPrice | money }}{% endif %}
+
+
+{% endfor %}
+==================================================
+{% for expense in mail.order.expenses %}
+    {% if expense.type == constant('Pyz\\Shared\\Discount\\DiscountConstants::VOUCHER_CODE_EXPENSE_TYPE') and expense.calculatedDiscounts is iterable %}
+        {% for expenseDiscount in expense.calculatedDiscounts %}
+            {{ expenseDiscount.quantity }}x
+            {{ expenseDiscount.discountName }}
+            -{{ expenseDiscount.sumAmount | money }}
+        {% endfor %}
+==================================================
+    {% endif %}
+{% endfor %}
+
+Warenwert: {{ mail.order.totals.grossSubtotal | money }}
+
+zzgl. Pfand: {{ mail.order.totals.depositTotal | money }}
+{% if mail.order.totals.deliveryCostTotal > 0 %}
+zzgl. Liefergebühren: {{ mail.order.totals.deliveryCostTotal | money }}
+{% endif %}
+
+Gesamt: {{ mail.order.totals.grandTotal | money }}
+
+Alle Beträge inkl. Mehrwertsteuer
+
+==================================================
+
+Zeitfenster für deine Lieferung
+
+{% if mail.order.gmStartTime is not null %}{{ mail.order.gmStartTime|date("d.m.Y", "Europe/Berlin") }}{% else %}
+    {{ mail.order.concreteTimeSlot.startTime|date("d.m.Y", "Europe/Berlin") }}
+{% endif %}
+{% if mail.order.gmStartTime is not null %}{{ mail.order.gmStartTime|date("d.m.Y", "Europe/Berlin") }}
+    {{ mail.order.gmStartTime|date("H:i", "Europe/Berlin") }} - {{ mail.order.gmEndTime|date("H:i", "Europe/Berlin") }}
+{% else %}
+    {{ mail.order.concreteTimeSlot.startTime|date("H:i", "Europe/Berlin") }} - {{ mail.order.concreteTimeSlot.endTime|date("H:i", "Europe/Berlin") }}
+{% endif %}
+
+Zahlungsmethode
+
+{{ mail.order.paymentMethodName }}
+
+==================================================
+
+{% if mail.footerBannerLink | trans %}
+{{ mail.footerBannerCta | trans }}
+{{ mail.footerBannerLink | trans }}
+{% endif %}
+
+-----------------
+{% include '@Oms/Mail/partials/footer.text.twig' with {'mail': mail} %}

@@ -1,0 +1,21 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Software-Pakete / Software-Feature' %}
+
+{% block action %}
+    {{ createActionButton('/software-package/software-feature/create', 'Neues Software-Feature erstellen' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ softwareFeatureTable | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

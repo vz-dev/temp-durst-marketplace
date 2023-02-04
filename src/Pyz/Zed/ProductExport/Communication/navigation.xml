@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <product-export>
+        <label>Product Export Log</label>
+        <title>Product Export Log</title>
+        <bundle>product-export</bundle>
+        <controller>log</controller>
+        <action>index</action>
+        <uri>/product-export/log</uri>
+        <icon>fa-shopping-cart</icon>
+    </product-export>
+</config>

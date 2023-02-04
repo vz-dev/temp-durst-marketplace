@@ -1,0 +1,26 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Update Terms of Service #' ~ idTermsOfService   %}
+
+{% block action %}
+    {{ backActionButton('/merchant-management/terms-of-service', 'List Terms of Service' | trans) }}
+    {{ createActionButton('/merchant-management/terms-of-service/create', 'Add Terms of Service' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <input type="submit" class="btn btn-primary" value="{{ 'Update' | trans }}" />
+            {{ form_end(form) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

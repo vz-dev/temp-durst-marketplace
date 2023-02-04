@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\HeidelpayRest\Persistence"
+          package="src.Orm.Zed.HeidelpayRest.Persistence">
+
+    <table name="dst_payment_heidelpay_rest" idMethod="native" phpName="DstPaymentHeidelpayRest">
+
+        <column name="id_payment_heidelpay_rest" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_sales_order" required="true" type="INTEGER"/>
+        <column name="payment_id" required="false" size="255" type="VARCHAR"/>
+        <column name="payment_type_id" required="true" size="255" type="VARCHAR"/>
+        <column name="return_url" required="false" size="255" type="VARCHAR"/>
+        <column name="customer_id" required="false" size="255" type="VARCHAR"/>
+
+        <foreign-key name="dst_payment_heidelpay_rest-fk_sales_order" foreignTable="spy_sales_order">
+            <reference foreign="id_sales_order" local="fk_sales_order"/>
+        </foreign-key>
+
+        <behavior name="timestampable">
+        </behavior>
+
+        <id-method-parameter value="dst_payment_heidelpay_rest_pk_sequence"/>
+    </table>
+
+    <table name="dst_payment_heidelpay_rest_log" idMethod="native" phpName="DstPaymentHeidelpayRestLog">
+
+        <column name="id_payment_heidelpay_rest_log" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_sales_order" required="true" type="INTEGER"/>
+        <column name="transaction_type" required="true" size="255" type="VARCHAR"/>
+        <column name="payment_type_id" required="false" size="255" type="VARCHAR"/>
+        <column name="payment_id" required="false" size="255" type="VARCHAR"/>
+        <column name="charge_id" required="false" size="255" type="VARCHAR"/>
+        <column name="unique_id" required="false" size="255" type="VARCHAR"/>
+        <column name="short_id" required="false" size="255" type="VARCHAR"/>
+        <column name="resource_id" required="false" size="255" type="VARCHAR"/>
+        <column name="status" required="false" size="255" type="VARCHAR"/>
+        <column name="amount" required="false" type="DOUBLE"/>
+        <column name="error_code" required="false" size="255" type="VARCHAR"/>
+        <column name="error_message" required="false" size="255" type="VARCHAR"/>
+        <column name="error_message_client" required="false" size="255" type="VARCHAR"/>
+        <column name="return_url" required="false" size="255" type="VARCHAR"/>
+        <column name="redirect_url" required="false" size="255" type="VARCHAR"/>
+
+        <foreign-key name="dst_payment_heidelpay_rest_log-fk_sales_order" foreignTable="spy_sales_order">
+            <reference foreign="id_sales_order" local="fk_sales_order"/>
+        </foreign-key>
+
+        <behavior name="timestampable">
+            <parameter name="disable_updated_at" value="true"/>
+        </behavior>
+
+        <id-method-parameter value="dst_payment_heidelpay_rest_log_pk_sequence"/>
+    </table>
+
+</database>

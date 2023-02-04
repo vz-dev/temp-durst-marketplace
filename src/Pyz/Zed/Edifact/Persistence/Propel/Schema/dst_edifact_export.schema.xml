@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Edifact\Persistence"
+          package="src.Orm.Zed.Edifact.Persistence">
+
+    <table name="dst_edifact_export_log" idMethod="native" phpName="DstEdifactExportLog">
+
+        <column name="id_edifact_export_log" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_concrete_tour" required="false" type="INTEGER"/>
+        <column name="export_type" required="true" size="255" type="VARCHAR"/>
+        <column name="endpoint_url" required="true" size="255" type="VARCHAR"/>
+        <column name="status_code" required="true" type="INTEGER"/>
+        <column name="reason_phrase" required="false" type="LONGVARCHAR"/>
+        <column name="edifact_message" required="false" type="LONGVARCHAR"/>
+        <column name="edifact_error_message" required="false" type="LONGVARCHAR"/>
+        <column name="log_level" required="true" type="ENUM" valueSet="debug,info,notice,warning,error,critical,alert,emergency" defaultValue="debug"/>
+        <column name="fk_graphmasters_tour" required="false" type="INTEGER"/>
+
+        <foreign-key name="dst_edifact_export_log-fk_concrete_tour" foreignTable="dst_concrete_tour">
+            <reference foreign="id_concrete_tour" local="fk_concrete_tour"/>
+        </foreign-key>
+
+        <foreign-key name="dst_edifact_export_log-fk_graphmasters_tour" foreignTable="dst_graphmasters_tour">
+            <reference foreign="id_graphmasters_tour" local="fk_graphmasters_tour"/>
+        </foreign-key>
+
+        <behavior name="timestampable">
+            <parameter name="disable_updated_at" value="true"/>
+        </behavior>
+
+        <id-method-parameter value="dst_edifact_export_log_pk_sequence"/>
+
+    </table>
+
+</database>

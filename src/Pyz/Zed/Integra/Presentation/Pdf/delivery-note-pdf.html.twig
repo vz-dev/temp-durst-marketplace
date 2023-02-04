@@ -1,0 +1,502 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" style="background:#2DAFE6!important">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>GBZ Lieferschein</title>
+    <style>
+        /* arabic */
+        @font-face {
+            font-family: 'Mada';
+            font-style: normal;
+            font-weight: 400;
+            src: url({{ settings.pdfAssetsPath }}/fonts/mada_arabic_400.woff2) format('woff2');
+            unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+        }
+        /* latin */
+        @font-face {
+            font-family: 'Mada';
+            font-style: normal;
+            font-weight: 400;
+            src: url({{ settings.pdfAssetsPath }}/fonts/mada_latin_400.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        /* arabic */
+        @font-face {
+            font-family: 'Mada';
+            font-style: normal;
+            font-weight: 700;
+            src: url({{ settings.pdfAssetsPath }}/fonts/mada_arabic_700.woff2) format('woff2');
+            unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+        }
+        /* latin */
+        @font-face {
+            font-family: 'Mada';
+            font-style: normal;
+            font-weight: 700;
+            src: url({{ settings.pdfAssetsPath }}/fonts/mada_latin_700.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        table {
+            page-break-inside: avoid;
+        }
+
+        @page {
+            header: none;
+        }
+
+        @page :first {
+            header: invoiceHeader;
+        }
+
+        table.header {
+            width: 100%;
+            font-family: Mada, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            /*background: #2DAFE6;*/
+            /*color: #ffffff;*/
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+        table.footer {
+            width: 100%;
+            font-family: Mada, Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            background: none;
+            color: #000000;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+
+        table.footer {
+            height: 60px;
+        }
+
+        /*table.orderTable {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }*/
+
+        table.center {
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        table.orderTable td {
+            font-family: Mada, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight:400;
+            hyphens:auto;
+            color: #000000;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        table.orderTable td {
+            font-family: Mada, Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            color: #000000;
+            font-weight:700;
+            hyphens:auto;
+        }
+
+        table.legalTable {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        table.legalTable td {
+            font-family: Mada, Helvetica, Arial, sans-serif;
+            /*text-align: justify;*/
+            color: #000000;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        td.orderpos {
+            font-size: 11px;
+        }
+
+        table.legalTable td div {
+            width: 1200px;
+        }
+
+
+
+        hr { margin: 8px 0 8px 0; }
+    </style>
+</head>
+<body>
+{% set durst = mail.durst %}
+
+<htmlpageheader name="invoiceHeader">
+    <table class="header">
+        <tr>
+            <td align="right" style="font-size: 8px;">&nbsp;</td>
+            <td colspan="3" align="right"><img src="{{ settings.pdfAssetsPath }}/img/logos/gbz_logo_color.png" alt="GBZ Logo" height="100px"/></td>
+        </tr>
+    </table>
+</htmlpageheader>
+
+<htmlpageheader name="legalHeader">
+    <table class="header">
+        <tr>
+            <td width="40%">
+                <strong style="font-size: 14px;">
+                    Allgemeine Geschäftsbedingungen<br/>
+                    und<br/>
+                    Rechtliche Angaben
+                </strong>
+            </td>
+            <td width="20%" align="center">
+                <img src="{{ settings.pdfAssetsPath }}/img/icons/message.png" alt="Logo" width="100px"/>
+            </td>
+            <td width="40%" style="text-align: right">
+                {% if order.branch.billingCompany is not empty %}
+                    Im Namen und Auftrag von:<br/>
+                    <strong>{{ order.branch.billingCompany }}</strong>
+                    <br/>
+                    {{ order.branch.billingStreet }} {{ order.branch.billingNumber }} - {{ order.branch.billingZip }} {{ mail.branch.billingCity }}
+                    <br/>
+                    Ust-ID: {{ order.branch.salesTaxId }}<br/>
+                    Öko-Kontrollnummer: {{ order.branch.ecoControlNumber }}<br/>
+                    {{ order.branch.placeJurisdiction }}
+                {% else %}
+                    {{ durst.name | trans }} - {{ durst.street | trans }} - {{ durst.city | trans }}<br>
+                    {{ durst.vatid | trans }} - {{ durst.bio | trans }}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</htmlpageheader>
+
+<htmlpagefooter name="footer">
+    <table class="footer">
+        <tr>
+            <td width="15%" align="left">
+                &nbsp;
+            </td>
+            <td width="70%" align="center" style="font-size: 8px">
+                GBZ Getränke-Blitzzusteller GmbH <span>&#183;</span> München HR B 83 458 Geschäftsführer: Marcus Mocsnik, Michael Mocsnik, Mirko Mocsnik<br/>
+                VB Raiffbk Dachau <span>&#183;</span> Kto 156 000 BLZ 700 915 00 <span>&#183;</span> IBAN DE11 7009 1500 0000 1560 00 <span>&#183;</span> BIC GENODEF1DCA<br/>
+                Telefon 08142 - 448 400 <span>&#183;</span> www.gbz-net.de <span>&#183;</span> Fax 08142 - 448 404 <span>&#183;</span> Ust-IdNr. DE 129 35 42 62 <span>&#183;</span> Sitz: Bergkirchen <span>&#183;</span> DE-ÖKO-037
+            </td>
+            <td width="15%" align="right" valign="bottom" style="font-size: 8px">
+                Seite {PAGENO} von {nbpg}
+            </td>
+        </tr>
+    </table>
+</htmlpagefooter>
+
+<sethtmlpageheader name="invoiceHeader" value="on" show-this-page="1"/>
+
+
+<table class="orderTable" autosize="1">
+
+    <tr>
+        <td colspan="2" width="50%" style="font-size: 14px; padding-top: 40px;">
+            <strong>GBZ Getränke-Blitzzusteller GmbH</strong>, Bäckerstr. 3 85232 Bergkirchen<br/>
+            ---------------<br/>
+            {% set address = order.billingAddress %}
+            {% if address.company is not empty %}
+                {{ address.company }}<br/>
+            {% endif %}
+            <strong>
+                {{ address.firstName }} {{ address.lastName }}
+            </strong>
+            <br/>
+            {% if address.address1 is not empty %}
+                {{ address.address1 }}
+                <br/>
+            {% endif %}
+            {% if address.address2 is not empty %}
+                {{ address.address2 }}
+                <br/>
+            {% endif %}
+            {% if address.address3 is not empty %}
+                {{ address.address3 }}
+                <br/>
+            {% endif %}
+            {{ address.zipCode }} {{ address.city }}
+            <br/>
+        </td>
+        <td colspan="2" width="50%" style="text-align: right; font-size: 12px; padding-top: 40px;">
+            &nbsp;
+        </td>
+    </tr>
+
+
+    <tr style="">
+        <td colspan="2" valign="bottom">
+            <h3>Lieferschein</h3>
+        </td>
+        <td colspan="2" align="right" style="font-size: 14px; padding-top: 30px; padding-bottom: 20px;">
+            Kunden-Nr: {{ order.integraCustomerNo }}<br/>
+            Lieferdatum: {% if order.signedAt is not null %}{{ order.signedAt | date("d.m.Y H:i", "Europe/Berlin") }}{% else %}{{  mail.deliveryTime | date("d.m.Y H:i", "Europe/Berlin") }}{% endif %}<br/>
+            Lieferscheindatum: {{ "now" | date("d.m.Y", "Europe/Berlin") }}<br/>
+            <br/>
+            Vorgang: {{ order.orderReference|replace({'INT-': ''}) }}<br/>
+            {% if order.integraReceiptNo is not null %}Beleg-Nr: {{ order.integraReceiptNo }}{% endif %}
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4" style="font-size: 14px; padding-top: 10px; padding-bottom: 40px;">
+            Wir bedanken uns für Ihren Auftrag und liefern Ihnen wie vereinbart folgende Waren:
+        </td>
+    </tr>
+
+
+    <tr style="padding:0; padding-top: 20px; text-align:left; vertical-align:top">
+        <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <strong>Vollgut</strong>
+        </td>
+    </tr>
+
+
+    <tr style="padding:0; padding-top: 20px; text-align:left; vertical-align:top">
+        <td width="10%" align="left" class="left small" style="font-family:Mada,Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">Menge</td>
+        <td width="60%" align="left" class="left small" style="font-family:Mada,Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">Artikel</td>
+        <td width="15%" align="left" class="left small" style="font-family:Mada,Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
+        <td width="15%" align="right" class="right small" style="font-family:Mada,Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">ArtNo</td>
+    </tr>
+    <tr>
+        <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px; padding-bottom: 0px;">
+        </td>
+    </tr>
+
+    {% for item in order.items %}
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td width="10%" valign="middle" class="middle" style="font-size: 14px;display:table-cell;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                {{ item.quantity }} x
+            </td>
+            <td width="60%" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                {{ item.productName }}<br>{{ item.unitName }}
+            </td>
+            <td width="15%" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+            </td>
+            <td width="15%" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                {{ item.merchantSku }}
+            </td>
+        </tr>
+
+        {% if not loop.last %}
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                    <hr class="ruler" style="background-color:#8a8a8a;border:none;height:1px">
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+
+    <tr style="padding-bottom: 20px;">
+        <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+        </td>
+    </tr>
+
+
+    {% if splitExpensesRefundsReturnDeposits.refunds|length > 0 %}
+        <tr style="padding:0; padding-top: 20px; text-align:left; vertical-align:top">
+            <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                <strong>Retouren</strong>
+            </td>
+        </tr>
+    {% endif %}
+
+    <tr style="padding:0;text-align:left;vertical-align:top">
+        <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <hr class="ruler" style="background-color:#8a8a8a;border:none;height:1px">
+        </td>
+    </tr>
+
+    {% for refund in splitExpensesRefundsReturnDeposits.refunds %}
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td valign="middle" style="font-size: 14px;display:table-cell;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                {{ refund.quantity|default('1') }} x
+            </td>
+            <td style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                Retoure - {{ refund.comment }}
+            </td>
+            <td class="orderpos" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+
+            </td>
+            <td class="orderpos" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                {{ refund.merchantSku }}
+            </td>
+        </tr>
+        {% if not loop.last %}
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                    <hr class="ruler" style="background-color:#8a8a8a;border:none;height:1px">
+                </td>
+            </tr>
+        {% endif %}
+
+        <tr style="padding-bottom: 20px;">>
+            <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+            </td>
+        </tr>
+    {% endfor %}
+
+
+    {% if splitExpensesRefundsReturnDeposits.returnDeposits|length > 0 %}
+    <tr style="padding:0; padding-top: 20px; text-align:left; vertical-align:top">
+        <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <strong>Leergut Rückgaben</strong>
+        </td>
+    </tr>
+
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                <hr class="ruler" style="background-color:#8a8a8a;border:none;height:1px">
+            </td>
+        </tr>
+    {% endif %}
+
+    {% set totalReturnDeposits = 0 %}
+    {% for returnDeposits in splitExpensesRefundsReturnDeposits.returnDeposits %}
+
+        {%  if returnDeposits.deposit is defined %}
+            {% set depositId = returnDeposits.deposit.type | replace({'RETURNED_DEPOSIT_TYPE_' : '', '_DEPOSIT' : ''}) %}
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td class="orderpos" valign="middle" style="font-size: 14px;display:table-cell;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                    {{ returnDeposits.deposit.quantity|default('1') }} x
+                </td>
+                <td class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                    Leergut {{ deposits[depositId].Deposit | money | replace({'€':''}) }}
+                </td>
+                <td class="orderpos" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+
+                </td>
+                <td class="orderpos" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                    {{ returnDeposits.deposit.merchantSku }}
+                </td>
+            </tr>
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                    <hr class="ruler" style="background-color:#8a8a8a;border:none;height:1px">
+                </td>
+            </tr>
+        {% endif %}
+        {%  if returnDeposits.cases is defined %}
+            {% set depositId = returnDeposits.cases.type | replace({'RETURNED_DEPOSIT_TYPE_' : '', '_CASES' : ''}) %}
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td valign="middle" class="orderpos" style="font-size: 14px;display:table-cell;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                    {{ returnDeposits.cases.quantity|default('1') }} x
+                </td>
+                <td class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                    Leergut {{ deposits[depositId].DepositCase | money | replace({'€':''}) }}
+                </td>
+                <td align="right" class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+
+                </td>
+                <td align="right" class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                    {{ returnDeposits.cases.merchantSku }}
+                </td>
+            </tr>
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                    <hr class="ruler" style="background-color:#8a8a8a;border:none;height:1px">
+                </td>
+            </tr>
+        {% endif %}
+        {% if returnDeposits.bottles is defined %}
+            {% set depositId = returnDeposits.bottles.type | replace({'RETURNED_DEPOSIT_TYPE_' : '', '_BOTTLES' : ''}) %}
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td valign="middle" class="orderpos" style="font-size: 14px;display:table-cell;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                    {{ returnDeposits.bottles.quantity|default('1') }} x
+                </td>
+                <td class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                    Leergut {{ deposits[depositId].DepositPerBottle | money | replace({'€':''}) }}
+                </td>
+                <td align="right" class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                </td>
+                <td align="right" class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                    {{ returnDeposits.bottles.merchantSku }}
+                </td>
+            </tr>
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                    <hr class="ruler" style="background-color:#8a8a8a;border:none;height:1px">
+                </td>
+            </tr>
+        {% endif %}
+
+        <tr style="padding-bottom: 20px;">
+            <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+            </td>
+        </tr>
+    {% endfor %}
+
+    {% if order.externalAmountPaid is not null %}
+        <tr style="text-align:left;vertical-align:top">
+            <td width="10%" valign="middle" class="middle" style="font-size: 14px;display:table-cell;line-height:20px;margin:0;padding:20px 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                &nbsp;
+            </td>
+            <td width="60%" style="font-size: 14px;margin:0;padding:20px 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                Bar erhalten:
+            </td>
+            <td width="15%" align="right" style="font-size: 14px;margin:0;padding:20px 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+            </td>
+            <td width="15%" align="right" style="font-size: 14px;margin:0;padding:20px 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                {{ order.externalAmountPaid | money }}
+            </td>
+        </tr>
+    {% endif %}
+
+
+    <tr style="padding-bottom: 10px; padding-top: 20px;">
+        <td colspan="2" align="right" valign="top" style="font-size:12px;">Unterschrift Kunde</td>
+
+        <td colspan="2"><img src="{{ order.signatureFilePath }}" alt="Img Unterschrift Kunde" height="100px"/></td>
+    </tr>
+
+    <tr>
+        <td colspan="2" valign="top" style="font-size: 14px;">
+            Die Lieferung erfolgte an folgende Adresse:
+        </td>
+        <td colspan="2" style="font-size: 14px;">
+            {% set address = order.shippingAddress %}
+            {% if address.company is not empty %}
+                {{ address.company }}<br/>
+            {% endif %}
+            <strong>
+                {% if address.salutation is not empty %}
+                    {% if address.salutation == 'Mr' %}
+                        Herr
+                    {% elseif address.salutation == 'Ms' or address.salutation == 'Mrs' %}
+                        Frau
+                    {% endif %}
+                {% endif %}{{ address.firstName }} {{ address.lastName }}
+            </strong>
+            <br/>
+            {% if address.address1 is not empty %}
+                {{ address.address1 }}
+                <br/>
+            {% endif %}
+            {% if address.address2 is not empty %}
+                {{ address.address2 }}
+                <br/>
+            {% endif %}
+            {% if address.address3 is not empty %}
+                {{ address.address3 }}
+                <br/>
+            {% endif %}
+            {{ address.zipCode }} {{ address.city }}
+        </td>
+    </tr>
+</table>
+<sethtmlpagefooter name="footer" value="on"/>
+
+</body>
+</html>

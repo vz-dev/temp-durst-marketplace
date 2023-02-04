@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Billing\Persistence"
+          package="src.Orm.Zed.Billing.Persistence">
+
+        <table name="dst_billing_period">
+            <column name="heidelpay_rest_meta_data_id" required="false" type="VARCHAR" size="255"/>
+        </table>
+
+</database>

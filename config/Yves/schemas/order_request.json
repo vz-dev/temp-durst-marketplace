@@ -1,0 +1,260 @@
+{
+  "title": "OrderRequest",
+  "type": "object",
+  "properties":
+  {
+    "cart":
+    {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items":
+      {
+        "type": "object",
+        "properties":
+        {
+          "sku":
+          {
+            "type": "string"
+          },
+          "quantity":
+          {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "merchant_id":
+    {
+      "type": "number"
+    },
+    "customer":
+    {
+      "type": "object",
+      "properties":
+      {
+        "salutation":
+        {
+          "type": "string"
+        },
+        "first_name":
+        {
+          "type": "string"
+        },
+        "last_name":
+        {
+          "type": "string"
+        },
+        "email":
+        {
+          "type": "string"
+        },
+        "company":
+        {
+          "type": "string"
+        },
+        "phone":
+        {
+          "type": "string"
+        },
+        "id":
+        {
+          "type": "string"
+        }
+      }
+    },
+    "billing_address":
+    {
+      "type": "object",
+      "properties":
+      {
+        "salutation":
+        {
+          "type": "string"
+        },
+        "first_name":
+        {
+          "type": "string"
+        },
+        "last_name":
+        {
+          "type": "string"
+        },
+        "address_1":
+        {
+          "type": "string"
+        },
+        "address_2":
+        {
+          "type": "string"
+        },
+        "address_3":
+        {
+          "type": "string"
+        },
+        "zip_code":
+        {
+          "type": "string"
+        },
+        "city":
+        {
+          "type": "string"
+        },
+        "company":
+        {
+          "type": "string"
+        },
+        "phone":
+        {
+          "type": "string"
+        },
+        "comment":
+        {
+          "type": "string"
+        }
+      }
+    },
+    "shipping_address":
+    {
+      "type": "object",
+      "properties":
+      {
+        "salutation":
+        {
+          "type": "string"
+        },
+        "first_name":
+        {
+          "type": "string"
+        },
+        "last_name":
+        {
+          "type": "string"
+        },
+        "address_1":
+        {
+          "type": "string"
+        },
+        "address_2":
+        {
+          "type": "string"
+        },
+        "address_3":
+        {
+          "type": "string"
+        },
+        "zip_code":
+        {
+          "type": "string"
+        },
+        "city":
+        {
+          "type": "string"
+        },
+        "company":
+        {
+          "type": "string"
+        },
+        "phone":
+        {
+          "type": "string"
+        },
+        "lat":
+        {
+          "type":
+          [
+            "string",
+            "null"
+          ]
+        },
+        "lng":
+        {
+          "type":
+          [
+            "string",
+            "null"
+          ]
+        },
+        "floor":
+        {
+          "type":
+          [
+            "integer",
+            "null"
+          ]
+        },
+        "elevator":
+        {
+          "type":
+          [
+            "boolean",
+            "null"
+          ]
+        },
+        "comment":
+        {
+          "type": "string"
+        }
+      }
+    },
+    "payment":
+    {
+      "type": "object",
+      "properties":
+      {
+        "date_of_birth":
+        {
+          "type": "string"
+        },
+        "selection":
+        {
+          "type": "string"
+        },
+        "method":
+        {
+          "type": "string"
+        }
+      }
+    },
+    "message":
+    {
+      "type": "string"
+    },
+    "time_slot_id":
+    {
+      "type": "number"
+    },
+    "voucher_code":
+    {
+      "type":
+        [
+          "string",
+          "null"
+        ]
+    },
+    "clientPlatform":
+    {
+      "type":
+      [
+        "string",
+        "null"
+      ]
+    },
+    "clientVersion":
+    {
+      "type":
+      [
+        "string",
+        "null"
+      ]
+    },
+    "deviceType":
+    {
+      "type":
+      [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

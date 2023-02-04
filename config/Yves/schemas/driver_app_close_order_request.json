@@ -1,0 +1,125 @@
+{
+  "title": "DriverCloseOrderRequest",
+  "type": "object",
+  "required":
+  [
+    "token",
+    "returned_deposits",
+    "order_items",
+    "signature_image",
+    "order_id"
+  ],
+  "properties":
+  {
+    "token":
+    {
+      "type":
+      [
+        "string",
+        "null"
+      ]
+    },
+    "order_id":
+    {
+      "type": "number"
+    },
+    "returned_deposits":
+    {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items":
+      {
+        "type": "object",
+        "required":
+        [
+          "deposit_id",
+          "deposit",
+          "cases",
+          "bottles"
+        ],
+        "properties":
+        {
+          "deposit_id":
+          {
+            "type": "number"
+          },
+          "deposit":
+          {
+            "type": "number"
+          },
+          "cases":
+          {
+            "type": "number"
+          },
+          "bottles":
+          {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "order_items":
+    {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items":
+      {
+        "type": "object",
+        "required":
+        [
+          "order_item_id",
+          "quantity",
+          "status"
+        ],
+        "properties":
+        {
+          "order_item_id":
+          {
+            "type": "number"
+          },
+          "quantity":
+          {
+            "type": "number"
+          },
+          "status":
+          {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "signature_image":
+    {
+      "type": "string"
+    },
+    "voucher": {
+      "type": "object",
+      "required":
+        [
+          "sales_discount_id",
+          "amount"
+        ],
+      "properties":
+      {
+        "sales_discount_id":
+        {
+          "type": "number"
+        },
+        "amount":
+        {
+          "type": "number"
+        }
+      }
+    },
+    "external_amount_paid":
+    {
+      "type":
+      [
+        "number",
+        "null"
+      ]
+    }
+  }
+}

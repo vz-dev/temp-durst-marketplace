@@ -1,0 +1,42 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Details for billing period #' | trans ~ billingPeriod.idBillingPeriod   %}
+
+{% block action %}
+    {{ backActionButton('/billing/billing-period/index', 'List Billing Periods' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            <table>
+                <tr>
+                    <td>{{ 'Total Returned Deposit' | trans }}</td>
+                    <td>{{ billingPeriod.totalReturnDepositAmount }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'Tax Discount' | trans }}</td>
+                    <td>{{ billingPeriod.totalTaxAmount }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'Total Discount' | trans }}</td>
+                    <td>{{ billingPeriod.totalDiscountAmount }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'Total Voucher Discount' | trans }}</td>
+                    <td>{{ billingPeriod.totalVoucherDiscountAmount }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'Total Amount' | trans }}</td>
+                    <td>{{ billingPeriod.totalAmount }}</td>
+                </tr>
+            </table>
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

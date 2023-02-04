@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="OrderRefundReturnDepositFormData">
+        <property name="returnDeposits" type="ReturnDeposit[]"/>
+        <property name="refund" type="int"/>
+        <property name="refundComment" type="string"/>
+        <property name="items" type="Item[]"/>
+        <property name="itemsDelivered" type="Item[]"/>
+        <property name="itemsDeclined" type="Item[]"/>
+        <property name="itemsLost" type="Item[]"/>
+        <property name="itemsDamaged" type="Item[]"/>
+        <property name="branch" type="int"/>
+        <property name="origOrderItems" type="Item[]"/>
+        <property name="signature" type="string"/>
+        <property name="isReseller" type="bool"/>
+        <property name="hasError" type="bool"/>
+        <property name="errorMessage" type="string"/>
+        <property name="driver" type="int"/>
+        <property name="signedAt" type="int"/>
+        <property name="externalAmountPaid" type="int"/>
+    </transfer>
+
+    <transfer name="ReturnDeposit">
+        <property name="depositId" type="int"/>
+        <property name="deposit" type="int"/>
+        <property name="cases" type="int"/>
+        <property name="bottles" type="int"/>
+    </transfer>
+
+    <transfer name="Mail">
+        <property name="splitExpensesRefundsReturnDeposits" type="array" />
+        <property name="termsOfService" type="string"/>
+        <property name="pdfAssetsPath" type="string"/>
+        <property name="deliveryTime" type="string"/>
+        <property name="billingPeriod" type="BillingPeriod"/>
+        <property name="driver" type="Driver"/>
+        <property name="newStuckOrders" type="Order[]"/>
+    </transfer>
+
+    <transfer name="Item">
+        <property name="isStuck" type="bool"/>
+    </transfer>
+
+    <transfer name="ItemState">
+        <property name="idSalesOrderItem" type="int"/>
+    </transfer>
+
+</transfers>

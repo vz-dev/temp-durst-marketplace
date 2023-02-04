@@ -1,0 +1,21 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Software-Pakete' %}
+
+{% block action %}
+    {{ createActionButton('/software-package/edit/create', 'Neues Software-Paket erstellen' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ softwarePackageTable | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

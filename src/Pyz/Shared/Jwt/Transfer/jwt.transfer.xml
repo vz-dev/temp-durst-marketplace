@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="Jwt">
+        <property name="id" type="string" />
+        <property name="issuer" type="string" />
+        <property name="audience" type="string" />
+        <property name="issuedAt" type="string" />
+        <property name="notBefore" type="string" />
+        <property name="expiration" type="string" />
+        <property name="subject" type="string" />
+        <property name="sign" type="string" />
+        <property name="token" type="string" />
+        <property name="additionalParameters" singular="additionalParameter" type="JwtParameter[]" />
+        <property name="errors" singular="error" type="JwtError[]" />
+        <property name="validators" singular="validator" type="array" />
+    </transfer>
+
+    <transfer name="JwtParameter">
+        <property name="key" type="string" />
+        <property name="value" type="string" />
+    </transfer>
+
+    <transfer name="JwtError">
+        <property name="message" type="string" />
+        <property name="code" type="string" />
+    </transfer>
+
+</transfers>

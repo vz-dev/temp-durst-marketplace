@@ -1,0 +1,15 @@
+{
+  "title": "CityRequest",
+  "type": "object",
+  "required":
+  [
+    "zip_code"
+  ],
+  "properties":
+  {
+    "zip_code":
+    {
+      "type": "string"
+    }
+  }
+}

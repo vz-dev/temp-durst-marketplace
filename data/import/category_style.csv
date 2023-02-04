@@ -1,0 +1,7 @@
+category_key,image_url,color_code,locale,priority
+water,/categories/water.png,#000000,de_DE,10
+beer,/categories/beer.png,#000000,de_DE,20
+juice,/categories/juice.png,#000000,de_DE,30
+wine,/categories/wine.png,#000000,de_DE,40
+softdrinks,/categories/softdrinks.png,#000000,de_DE,50
+spirits,/categories/spirits.png,#000000,de_DE,60

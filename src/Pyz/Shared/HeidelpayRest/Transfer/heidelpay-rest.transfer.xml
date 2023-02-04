@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="HeidelpayRestLog">
+        <property name="fkSalesOrder" type="int"/>
+        <property name="transactionType" type="string"/>
+        <property name="paymentId" type="string"/>
+        <property name="resourceId" type="string"/>
+        <property name="chargeId" type="string"/>
+        <property name="shortId" type="string"/>
+        <property name="uniqueId" type="string"/>
+        <property name="status" type="string"/>
+        <property name="amount" type="int"/>
+        <property name="errorCode" type="string"/>
+        <property name="errorMessage" type="string"/>
+        <property name="errorMessageClient" type="string"/>
+        <property name="redirectUrl" type="string"/>
+        <property name="returnUrl" type="string"/>
+    </transfer>
+
+    <transfer name="HeidelpayRestAuthorization">
+        <property name="isSuccess" type="bool"/>
+        <property name="isPending" type="bool"/>
+        <property name="isError" type="bool"/>
+        <property name="errorMessage" type="string"/>
+        <property name="paymentId" type="string"/>
+        <property name="redirectUrl" type="string"/>
+        <property name="returnUrl" type="string"/>
+        <property name="orderRef" type="string"/>
+    </transfer>
+
+    <transfer name="HeidelpayRestPayment">
+        <property name="idPaymentRest" type="int"/>
+        <property name="paymentId" type="string"/>
+        <property name="paymentTypeId" type="string"/>
+        <property name="fkSalesOrder" type="int"/>
+        <property name="returnUrl" type="string"/>
+        <property name="customerId" type="string"/>
+    </transfer>
+
+    <transfer name="Payment">
+        <property name="heidelpayRestPayment" type="HeidelpayRestPayment" />
+    </transfer>
+
+    <transfer name="CheckoutResponse">
+        <property name="redirectUrl" type="string"/>
+        <property name="returnUrl" type="string"/>
+        <property name="isPending" type="bool"/>
+        <property name="paymentId" type="string"/>
+    </transfer>
+
+    <transfer name="Customer">
+        <property name="heidelpayRestId" type="string"/>
+    </transfer>
+
+    <transfer name="Order">
+        <property name="isPrivate" type="bool"/>
+        <property name="heidelpayRestCustomerId" type="string"/>
+        <property name="omsRetryCounter" type="int"/>
+        <property name="confirmedAt" type="string"/>
+        <property name="isHeidelpayCustomerValid" type="bool"/>
+        <property name="isHeidelpayCustomerRequested" type="bool"/>
+    </transfer>
+
+    <transfer name="BillingPeriod">
+        <property name="heidelpayRestMetaDataId" type="string"/>
+    </transfer>
+
+</transfers>

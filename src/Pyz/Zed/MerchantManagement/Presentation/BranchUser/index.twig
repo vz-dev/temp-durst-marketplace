@@ -1,0 +1,21 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Branche Users List' %}
+
+{% block action %}
+    {{ createActionButton('/merchant-management/branch-user/create', 'Add New Branch User' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ branchUsers | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

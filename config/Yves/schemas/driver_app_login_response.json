@@ -1,0 +1,24 @@
+{
+  "title": "DriverLoginResponse",
+  "type": "object",
+  "required":
+  [
+    "auth_valid",
+    "token"
+  ],
+  "properties":
+  {
+    "auth_valid":
+    {
+      "type": "boolean"
+    },
+    "token":
+    {
+      "type":
+      [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

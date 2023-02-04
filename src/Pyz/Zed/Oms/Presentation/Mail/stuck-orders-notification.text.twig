@@ -1,0 +1,5 @@
+Die folgenden Bestellungen sind hängengeblieben:
+
+{% for newStuckOrder in mail.newStuckOrders %}
+    {{ newStuckOrder.orderReference }} vom {{ newStuckOrder.createdAt | date('d.m.Y') }}
+{% endfor %}

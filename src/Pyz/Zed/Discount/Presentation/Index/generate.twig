@@ -1,0 +1,55 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% block section_title 'Overview' | trans %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Discount List' | trans } %}
+
+        {% block widget_content %}
+            {% if discounts|length is same as (0) %}
+                {{ 'Keine alten Aktionen zur Übernahme gefunden' | trans }}
+            {% else %}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>{{ 'Group name' | trans }}</th>
+                            <th>{{ 'Branch' | trans }}</th>
+                            <th>{{ 'Discount name' | trans }}</th>
+                            <th>{{ 'Money' | trans }}</th>
+                            <th>{{ 'SKU' | trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for discount in discounts %}
+                            {% set discountName = 'n/a' %}
+                            {% set skus = [] %}
+                            {% set gross = 0 %}
+                            {% set net = 0 %}
+                            {% for dis in discount.discounts %}
+                                {% set discountName = dis.discount.discountGeneral.discountName %}
+                                {% set skus = skus | merge([dis.discount.discountGeneral.discountSku]) %}
+                                {% for moneyValue in dis.discount.discountCalculator.moneyValueCollection %}
+                                    {% set gross = moneyValue.grossAmount %}
+                                    {% set net = moneyValue.netAmount %}
+                                {% endfor %}
+                            {% endfor %}
+                            <tr>
+                                <td>{{ discount.groupName }}</td>
+                                <td>{{ discount.branch.name }}</td>
+                                <td>{{ discountName }}</td>
+                                <td>
+                                    {{ 'Net:' | trans }} {{ net | money }}<br>
+                                    {{ 'Gross:' | trans }} {{ gross | money }}
+                                </td>
+                                <td>{{ skus | join('<br />') }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

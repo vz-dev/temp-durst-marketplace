@@ -1,0 +1,118 @@
+version: "0.1"
+
+namespace: durst_ci
+tag: '1.0'
+
+environment: docker.ci
+pipeline: docker.ci
+image:
+    tag: spryker/php:7.3-debian-buster
+    php:
+        ini:
+            date.timezone: Europe/Berlin
+            serialize_precision: -1
+            max_input_vars: 16384
+
+composer:
+    mode: ''
+    autoload: ''
+
+regions:
+    EU:
+        services:
+            mail:
+                sender:
+                    name: Durst No-Reply
+                    email: no-reply@durst.local
+            database:
+                database: eu-docker-ci
+                username: spryker
+                password: secret
+
+        stores:
+            DE:
+                services:
+                    broker:
+                        namespace: de-docker
+                    key_value_store:
+                        namespace: 1
+                    search:
+                        namespace: de_search
+                    session:
+                        namespace: 1
+
+groups:
+    EU:
+        region: EU
+        applications:
+            fridge_yves_eu:
+                application: yves
+                endpoints:
+                    www.de.durst.local:
+                        store: DE
+                        services:
+                            session:
+                                namespace: 1
+            fridge_glue_eu:
+                application: glue
+                endpoints:
+                    glue.de.durst.local:
+                        store: DE
+            fridge_zed_eu:
+                application: zed
+                endpoints:
+                    zed.de.durst.local:
+                        store: DE
+                        services:
+                            session:
+                                namespace: 3
+            merchant_center_zed_eu:
+                application: zed
+                endpoints:
+                    merchant.de.durst.local:
+                        store: DE
+                        services:
+                            session:
+                                namespace: 4
+
+services:
+    database:
+        engine: postgres
+        version: 9.6
+        root:
+            username: "root"
+            password: "secret"
+    broker:
+        engine: rabbitmq
+        api:
+            username: "spryker"
+            password: "secret"
+    session:
+        engine: redis
+    key_value_store:
+        engine: redis
+    search:
+        engine: elastic
+        version: 5.6
+    scheduler:
+        engine: jenkins
+    mail_catcher:
+        engine: mailhog
+    # webdriver:
+    #     engine: phantomjs
+
+docker:
+
+    ssl:
+        enabled: false
+
+    debug:
+        enabled: false
+        xdebug:
+            enabled: false
+
+    testing:
+        store: DE
+
+    mount:
+        native:

@@ -1,0 +1,18 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Deposits List' %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ hello | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}
+

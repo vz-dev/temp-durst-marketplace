@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="SoapRequest">
+        <property name="service" type="string"/>
+        <property name="function" type="string"/>
+        <property name="options" type="SoapRequestOptions"/>
+        <property name="xml" type="string"/>
+        <property name="headers" type="string"/>
+        <property name="args" type="array"/>
+        <property name="wsdlUrl" type="string"/>
+    </transfer>
+
+    <transfer name="SoapResponse">
+        <property name="code" type="int"/>
+        <property name="headers" type="string"/>
+        <property name="xml" type="string"/>
+        <property name="data" type="array"/>
+        <property name="error" type="SoapRequestError"/>
+    </transfer>
+
+    <transfer name="SoapRequestOptions">
+        <property name="authUsername" type="string"/>
+        <property name="authPassword" type="string"/>
+        <property name="authType" type="string"/>
+    </transfer>
+
+    <transfer name="SoapRequestError">
+        <property name="code" type="int"/>
+        <property name="message" type="string"/>
+        <property name="file" type="string"/>
+        <property name="line" type="int"/>
+    </transfer>
+
+    <transfer name="SoapRequestEntity">
+        <property name="idSoapRequest" type="int"/>
+        <property name="requestService" type="string"/>
+        <property name="requestFunction" type="string"/>
+        <property name="requestArgs" type="string"/>
+        <property name="requestHeaders" type="string"/>
+        <property name="requestXml" type="string"/>
+        <property name="responseCode" type="int"/>
+        <property name="responseHeaders" type="string"/>
+        <property name="responseData" type="string"/>
+        <property name="responseXml" type="string"/>
+        <property name="responseError" type="string"/>
+    </transfer>
+
+</transfers>

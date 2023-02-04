@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\DriverApp\Persistence"
+          package="src.Orm.Zed.DriverApp.Persistence">
+
+    <table name="dst_driver_app_release" idMethod="native">
+        <column name="id_driver_app_release" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="patch_notes" required="false" size="512" type="VARCHAR"/>
+        <column name="version" required="true" size="255" type="VARCHAR"/>
+        <column name="apk_file_path" size="255" type="VARCHAR" required="true"  />
+
+        <behavior name="timestampable"/>
+
+        <unique name="driver_app_release-version">
+            <unique-column name="version"/>
+        </unique>
+
+        <id-method-parameter value="dst_driver_app_release_pk_seq"/>
+    </table>
+
+</database>

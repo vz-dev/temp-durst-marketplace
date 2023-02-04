@@ -1,0 +1,3 @@
+name,payload_kg,fk_branch,status
+Sprinter,800,8,active
+Caddy,300,8,active

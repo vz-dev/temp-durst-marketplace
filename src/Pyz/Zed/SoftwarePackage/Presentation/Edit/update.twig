@@ -1,0 +1,8 @@
+{% extends '@SoftwarePackage/Edit/create.twig' %}
+
+{% set widget_title = 'Software-Paket ' ~ code ~ ' bearbeiten'  %}
+
+{% block action %}
+    {{ backActionButton('/software-package', 'Software-Pakete auflisten' | trans) }}
+    {{ createActionButton('/software-package/edit/create', 'Software-Paket hinzufügen' | trans) }}
+{% endblock %}

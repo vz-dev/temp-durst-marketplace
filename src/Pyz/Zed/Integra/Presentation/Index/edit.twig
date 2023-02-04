@@ -1,0 +1,29 @@
+{% extends '@Application/Layout/layout.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+        <fieldset>
+            <h3>Allgemein</h3>
+            {{ form_row(form.useIntegra) }}
+            {{ form_row(form.fkBranch) }}
+        </fieldset>
+
+        <fieldset>
+            <h3>SOAP</h3>
+            {{ form_row(form.integraIpAddress) }}
+            {{ form_row(form.soapAuthUser) }}
+            {{ form_row(form.soapAuthPassword) }}
+            {{ form_row(form.soapAuthMandant) }}
+            {{ form_row(form.soapAuthBetrStr) }}
+        </fieldset>
+
+        <fieldset>
+            <h3>FTP</h3>
+            {{ form_row(form.ftpHost) }}
+            {{ form_row(form.ftpUser) }}
+            {{ form_row(form.ftpPassword) }}
+            {{ form_row(form.openOrderCsvPath) }}
+            {{ form_row(form.closedOrderCsvPath) }}
+        </fieldset>
+    {{ form_end(form) }}
+{% endblock %}

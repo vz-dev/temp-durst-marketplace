@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="DriverAppApiRequest">
+        <property name="merchantPin" type="string" />
+        <property name="email" type="string" />
+        <property name="password" type="string" />
+        <property name="branch" type="Branch"/>
+        <property name="token" type="string" />
+    </transfer>
+
+    <transfer name="DriverAppApiResponse">
+        <property name="authValid" type="bool" />
+        <property name="token" type="string" />
+        <property name="deposits" type="Deposit[]" singular="deposit" />
+        <property name="orders" type="Order[]" singular="order" />
+        <property name="gtins" type="Gtin[]" singular="gtin" />
+    </transfer>
+
+    <transfer name="Item">
+        <property name="gtins" type="Gtin[]" singular="gtin" />
+    </transfer>
+
+    <transfer name="Gtin">
+        <property name="gtin" type="string" />
+        <property name="productName" type="string" />
+        <property name="unit" type="string" />
+        <property name="sku" type="string" />
+    </transfer>
+
+</transfers>

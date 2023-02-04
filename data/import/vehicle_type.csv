@@ -1,0 +1,8 @@
+name,payload_kg,fk_branch,status,fk_vehicle_category
+Mercedes Sprinter,2000,8,active,1
+VW Caddy,400,8,active,1
+Opel Vivaro,800,8,active,1
+Mercedes Vito,1000,8,active,1
+VW Transporter,1200,8,active,1
+Mercedes Sprinter,2000,9,active,1
+Bike,23,8,active,2

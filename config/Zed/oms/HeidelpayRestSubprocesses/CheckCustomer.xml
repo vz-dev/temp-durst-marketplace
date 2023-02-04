@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="CheckCustomer">
+        <states>
+            <state name="ready for customer check"/>
+            <state name="customer valid"/>
+            <state name="customer invalid"/>
+            <state name="mark graphmasters order cancelled after customer check"/>
+        </states>
+
+        <transitions>
+            <transition happy="true" condition="HeidelpayRest/IsCustomerValid">
+                <source>ready for customer check</source>
+                <target>customer valid</target>
+                <event>check customer</event>
+            </transition>
+
+            <transition condition="HeidelpayRest/IsCustomerNotValidAndBranchUsesGraphmasters">
+                <source>ready for customer check</source>
+                <target>mark graphmasters order cancelled after customer check</target>
+                <event>check customer</event>
+            </transition>
+
+            <transition>
+                <source>ready for customer check</source>
+                <target>customer invalid</target>
+                <event>check customer</event>
+            </transition>
+
+            <transition>
+                <source>mark graphmasters order cancelled after customer check</source>
+                <target>customer invalid</target>
+                <event>mark graphmasters order cancelled after customer check</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="check customer" manual="true" onEnter="true"/>
+            <event name="mark graphmasters order cancelled after customer check" onEnter="true" command="HeidelpayRest/MarkGraphmastersOrderCancelled"/>
+        </events>
+    </process>
+</statemachine>

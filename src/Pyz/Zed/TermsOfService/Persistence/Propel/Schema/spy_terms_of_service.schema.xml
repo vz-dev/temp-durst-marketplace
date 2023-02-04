@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\TermsOfService\Persistence"
+          package="src.Orm.Zed.TermsOfService.Persistence">
+
+    <table name="spy_terms_of_service" phpName="SpyTermsOfService" idMethod="native" >
+        <column name="id_terms_of_service" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="name" type="VARCHAR" size="255" required="true"/>
+        <column name="text" type="LONGVARCHAR" />
+        <column name="hint_text" type="VARCHAR" size="255" />
+        <column name="button_text" type="VARCHAR" size="255" />
+        <column name="active_until" required="false" type="TIMESTAMP"/>
+
+        <behavior name="archivable"/>
+
+        <id-method-parameter value="terms_of_service_pk_seq"/>
+    </table>
+
+    <table name="spy_merchant_to_terms_of_service" phpName="SpyMerchantToTermsOfService" idMethod="native" >
+        <column name="id_merchant_to_terms_of_service" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_merchant" type="integer" required="true" />
+        <column name="fk_terms_of_service" type="integer" required="true" />
+        <column name="accepted_at" required="false" type="TIMESTAMP" />
+
+        <unique name="merchant_to_terms_of_service-fk">
+            <unique-column name="fk_merchant"/>
+            <unique-column name="fk_terms_of_service"/>
+        </unique>
+
+        <foreign-key name="merchant_to_terms_of_service-fk_merchant" foreignTable="spy_merchant">
+            <reference local="fk_merchant" foreign="id_merchant"/>
+        </foreign-key>
+
+        <foreign-key name="merchant_to_terms_of_service-fk_terms_of_service" foreignTable="spy_terms_of_service">
+            <reference local="fk_terms_of_service" foreign="id_terms_of_service"/>
+        </foreign-key>
+
+        <id-method-parameter value="merchant_to_terms_of_service_pk_seq"/>
+    </table>
+
+</database>

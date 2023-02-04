@@ -1,0 +1,6 @@
+software_package,merchantname,salutation,first_name,last_name,company,password,status
+digitaler_heimservice,merchant@durst.shop,Mr,Merchant,Mc Merchantface,Durststrecke GmbH,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active
+digitaler_heimservice,merchant@getraenke.de,Mr,Karl,Schneider,Getränke Schneider,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active
+digitaler_heimservice,m.bicker@kernpunkt.de,Mr,Mathias,Bicker,Mathiashatdurst AG,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active
+digitaler_heimservice,w.vendel@vendel.de,Mr,Werner,Vendel,Getränke-Service Vendel e.K.,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active
+digitale_sofort_lieferung,wholesale@durst.shop,Mr,Durst,Wholesale,Durststrecke Gmbh,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active

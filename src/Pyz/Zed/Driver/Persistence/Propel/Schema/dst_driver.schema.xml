@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Driver\Persistence"
+          package="src.Orm.Zed.Driver.Persistence">
+
+    <table name="dst_driver" idMethod="native" phpName="DstDriver">
+        <column name="id_driver" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="salutation" type="ENUM" valueSet="Mr, Mrs, Dr, Ms"/>
+        <column name="first_name" required="true" size="255" type="VARCHAR"/>
+        <column name="last_name" required="true" size="255" type="VARCHAR"/>
+        <column name="email" required="true" size="255" type="VARCHAR"/>
+        <column name="fk_driving_licence" required="true" type="INTEGER"/>
+        <column name="fk_branch" required="true" type="INTEGER"/>
+        <column name="status" required="true" size="10" type="ENUM" valueSet="active,inactive,deleted" defaultValue="active"/>
+        <column name="password" required="false" size="255" type="VARCHAR" />
+
+        <unique name="dst_driver-email">
+            <unique-column name="email"/>
+        </unique>
+
+        <foreign-key name="dst_driver-fk_driving_licence" foreignTable="dst_driving_licence" phpName="DstDrivingLicence">
+            <reference local="fk_driving_licence" foreign="id_driving_licence"/>
+        </foreign-key>
+
+        <foreign-key name="dst_driver-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_driver_pk_seq"/>
+    </table>
+
+</database>

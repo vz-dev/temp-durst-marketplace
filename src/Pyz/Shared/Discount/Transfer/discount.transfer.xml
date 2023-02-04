@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="Discount">
+        <property name="fkBranch" type="int" />
+        <property name="startDate" type="string" />
+        <property name="endDate" type="string" />
+        <property name="discountName" type="string" />
+        <property name="discountSku" type="string" />
+        <property name="branch" type="SpyBranchEntity" />
+        <property name="discountType" type="string" />
+    </transfer>
+
+    <transfer name="DiscountGeneral">
+        <property name="fkBranch" type="int" />
+        <property name="startDate" type="string" />
+        <property name="endDate" type="string" />
+        <property name="discountName" type="string" />
+        <property name="discountSku" type="string" />
+        <property name="branch" type="SpyBranchEntity" />
+    </transfer>
+
+    <transfer name="BranchDiscount">
+        <property name="fkBranch" type="int" />
+        <property name="discountSku" type="string" />
+        <property name="discountPrice" type="int" />
+        <property name="isExpiredDiscount" type="bool" />
+        <property name="isCarousel" type="bool" />
+        <property name="carouselPriority" type="int" />
+        <property name="branch" type="Branch" />
+    </transfer>
+
+    <transfer name="CalculatedDiscount">
+        <property name="discountName" type="string" />
+        <property name="discountType" type="string" />
+    </transfer>
+
+    <transfer name="DiscountApiRequest">
+        <property name="idBranch" type="int" />
+        <property name="idTimeSlot" type="int" />
+        <property name="voucherCode" type="string" />
+        <property name="items" type="Item[]" />
+        <property name="shippingAddress" type="Address" />
+    </transfer>
+
+    <transfer name="DiscountApiResponse">
+        <property name="valid" type="bool" />
+        <property name="errorMessage" type="string" />
+    </transfer>
+
+    <transfer name="Expense">
+        <property name="identifier" type="string" />
+    </transfer>
+
+    <transfer name="CartDiscountGroup">
+        <property name="idCartDiscountGroup" type="int" />
+        <property name="fkBranch" type="int" />
+        <property name="groupName" type="string" />
+        <property name="isMainDiscount" type="bool" />
+        <property name="isActive" type="bool" />
+        <property name="isDeleted" type="bool" />
+        <property name="validFrom" type="string" />
+        <property name="validTo" type="string" />
+        <property name="calculatorPlugin" type="string" />
+        <property name="discountType" type="string" />
+        <property name="decisionRuleQueryString" type="string" />
+        <property name="collectorQueryString" type="string" />
+        <property name="createdAt" type="string" />
+        <property name="updatedAt" type="string" />
+        <property name="discounts" type="CartDiscountGroupDiscount[]" />
+        <property name="branch" type="Branch" />
+    </transfer>
+
+    <transfer name="CartDiscountGroupDiscount">
+        <property name="fkCartDiscountGroup" type="int" />
+        <property name="idDiscount" type="int" />
+        <property name="isExpiredDiscount" type="bool" />
+        <property name="isCarousel" type="bool" />
+        <property name="carouselPriority" type="int" />
+        <property name="rank" type="int" />
+        <property name="scopeValue" type="string" />
+        <property name="discount" type="DiscountConfigurator" />
+    </transfer>
+
+    <transfer name="CartDiscountGroupValidation">
+        <property name="idDiscount" type="int" />
+        <property name="fkBranch" type="int" />
+        <property name="discountSku" type="string" />
+        <property name="discountPrice" type="int" />
+        <property name="validFrom" type="string" />
+        <property name="validTo" type="string" />
+    </transfer>
+
+</transfers>

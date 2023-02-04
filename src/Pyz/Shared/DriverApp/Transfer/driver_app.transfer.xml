@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="DriverAppRelease">
+        <property name="idDriverAppRelease" type="int"/>
+        <property name="patchNotes" type="string"/>
+        <property name="version" type="string"/>
+        <property name="apkFilePath" type="string"/>
+    </transfer>
+
+    <transfer name="VersionCheckTransfer">
+        <property name="currentVersion" type="string"/>
+        <property name="updatable" type="bool"/>
+    </transfer>
+
+    <transfer name="OrderRefundReturnDepositFormData">
+        <property name="voucher" type="CloseOrderVoucher"/>
+    </transfer>
+
+    <transfer name="CloseOrderVoucher">
+        <property name="idSalesDiscount" type="int"/>
+        <property name="amount" type="int"/>
+    </transfer>
+
+</transfers>

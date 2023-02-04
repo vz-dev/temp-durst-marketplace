@@ -1,0 +1,28 @@
+{% embed '@Gui/Partials/widget.twig' with { widget_title: 'Überblick' } %}
+
+    {% block widget_content %}
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <p><b>{{ 'Referenz' | trans }}:</b> {{ tour.reference }}</p>
+                <p><b>{{ 'Branch-ID' | trans }}:</b> {{ tour.fkBranch }}</p>
+                <p><b>{{ 'Branch-Name' | trans }}:</b> {{ tour.branchName }}</p>
+                <p><b>{{ 'Datum' | trans }}:</b> {{ tour.date | date('d.m.Y') }}</p>
+                <p><b>{{ 'Anzahl Bestellungen' | trans }}:</b> {{ tour.orderCount | default('0') }}</p>
+                <p><b>{{ 'Gesamtgewicht' | trans }}:</b> {% if tour.totalWeightGrams is not empty %}{{ (tour.totalWeightGrams / 1000) | number_format(2, ',') }}{% else %}0{% endif %} kg</p>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <p><b>{{ 'Original-ID' | trans }}:</b> {{ tour.originalId }}</p>
+                <p><b>{{ 'Startzeitpunkt' | trans }}:</b> {{ tour.tourStartEta | date('d.m.Y, H:i') }}</p>
+                <p><b>{{ 'Endzeitpunkt' | trans }}:</b> {{ tour.tourDestinationEta | date('d.m.Y, H:i') }}</p>
+                <hr>
+                <p><b>{{ 'Cut-Off' | trans }}:</b> {% if tour.tourCommissioningCutOff is not empty %}{{ tour.tourCommissioningCutOff | date('d.m.Y, H:i') }}{% else %}-{% endif %}</p>
+                <p><b>{{ 'Status' | trans }}:</b> {{ tour.tourStatus }}</p>
+                <hr>
+                <p><b>{{ 'Fahrzeug-Status' | trans }}:</b> {{ tour.vehicleStatus | default('-') }}</p>
+                <p><b>{{ 'Gesamtdistanz' | trans }}:</b> {% if tour.totalDistanceMeters is not empty %}{{ tour.totalDistanceMeters | round }} m{% else %}-{% endif %}</p>
+                <p><b>{{ 'Gesamtzeit' | trans }}:</b> {% if tour.totalTimeSeconds is not empty %}{{ tour.totalTimeSeconds | round }} s{% else %}-{% endif %}</p>
+            </div>
+        </div>
+    {% endblock %}
+
+{% endembed %}

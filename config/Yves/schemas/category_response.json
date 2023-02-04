@@ -1,0 +1,59 @@
+{
+  "title": "CategoryResponse",
+  "type": "object",
+  "required":
+  [
+    "categories"
+  ],
+  "properties":
+  {
+    "categories":
+    {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items":
+      {
+        "type": "object",
+        "properties":
+        {
+          "id":
+          {
+            "type": "number"
+          },
+          "image_url":
+          {
+            "type":
+            [
+              "string",
+              "null"
+            ]
+          },
+          "color_code":
+          {
+            "type":
+            [
+              "string",
+              "null"
+            ]
+          },
+          "name":
+          {
+            "type":
+            [
+              "string",
+              "null"
+            ]
+          },
+          "priority":
+          {
+            "type":
+            [
+              "number"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

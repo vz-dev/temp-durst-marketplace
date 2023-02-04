@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Deposit\Persistence"
+          package="src.Orm.Zed.Deposit.Persistence">
+
+    <table name="spy_deposit" idMethod="native" phpName="SpyDeposit">
+        <column name="id_deposit" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="name" required="true" size="255" type="VARCHAR"/>
+        <column name="deposit" type="INTEGER"/>
+        <column name="code" size="255" type="VARCHAR" required="true" />
+        <column name="bottles" type="INTEGER" />
+        <column name="material" size="255" type="VARCHAR" />
+        <column name="deposit_per_bottle" type="INTEGER" />
+        <column name="deposit_case" type="INTEGER" />
+        <column name="volume_per_bottle" type="INTEGER" />
+        <column name="presentation_name" type="VARCHAR" size="255" required="false" />
+        <column name="weight" type="INTEGER" />
+        <column name="deposit_type" required="false" type="VARCHAR" />
+
+        <unique name="deposit-code">
+            <unique-column name="code"/>
+        </unique>
+
+        <id-method-parameter value="spy_deposit_pk_seq"/>
+    </table>
+
+
+
+</database>

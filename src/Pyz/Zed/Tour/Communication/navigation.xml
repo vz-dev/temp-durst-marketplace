@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <vehicle>
+        <label>Driving Licence</label>
+        <title>Driving Licence</title>
+        <bundle>tour</bundle>
+        <controller>driving-licence</controller>
+        <action>index</action>
+        <uri>/tour/driving-licence</uri>
+        <icon>fa-car</icon>
+    </vehicle>
+</config>
+

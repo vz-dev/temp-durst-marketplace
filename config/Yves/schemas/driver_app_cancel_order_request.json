@@ -1,0 +1,29 @@
+{
+  "title": "DriverCancelOrderRequest",
+  "type": "object",
+  "required":
+  [
+    "token",
+    "order_id",
+    "cancel_message"
+  ],
+  "properties":
+  {
+    "token":
+    {
+      "type":
+      [
+        "string",
+        "null"
+      ]
+    },
+    "order_id":
+    {
+      "type": "number"
+    },
+    "cancel_message":
+    {
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="WholesaleOrderPaymentOnDeliveryItemStates" main="true">
+
+        <subprocesses>
+            <process>Shipment</process>
+            <process>Closing</process>
+            <process>Invoice</process>
+        </subprocesses>
+
+        <states>
+            <state name="new"/>
+        </states>
+
+        <transitions>
+            <transition happy="true">
+                <source>new</source>
+                <target>ready for shipment</target>
+                <event>start shipment process</event>
+            </transition>
+
+            <transition happy="true">
+                <source>delivered</source>
+                <target>ready for invoice creation</target>
+                <event>start invoice process</event>
+            </transition>
+
+            <transition happy="true">
+                <source>deposit and refund ordered at wholesaler</source>
+                <target>ready for closing</target>
+                <event>start closing process</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="start shipment process" onEnter="true"/>
+            <event name="start closing process" onEnter="true"/>
+            <event name="start invoice process" onEnter="true"/>
+        </events>
+    </process>
+
+    <process name="Shipment" file="WholesaleOrderSubProcessesItemStates/ShipmentCash.xml"/>
+    <process name="Closing" file="WholesaleOrderSubProcessesItemStates/Closing.xml"/>
+    <process name="Invoice" file="WholesaleOrderSubProcesses/Invoice.xml"/>
+
+</statemachine>

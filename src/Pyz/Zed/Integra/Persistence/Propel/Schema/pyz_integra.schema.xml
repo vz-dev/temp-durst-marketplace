@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Integra\Persistence"
+          package="src.Orm.Zed.Integra.Persistence">
+
+    <table name="pyz_integra_credentials" idMethod="native">
+        <column name="id_integra_credentials" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" type="INTEGER" required="true"/>
+        <column name="use_integra" type="BOOLEAN" required="true" defaultValue="false"/>
+        <column name="integra_ip_address" required="false" size="255" type="VARCHAR"/>
+        <column name="soap_auth_user" required="false" size="255" type="VARCHAR"/>
+        <column name="soap_auth_password" required="false" size="255" type="VARCHAR"/>
+        <column name="soap_auth_mandant" required="false" type="INTEGER"/>
+        <column name="soap_auth_betr_str" required="false" type="INTEGER"/>
+        <column name="ftp_host" required="false" size="255" type="VARCHAR"/>
+        <column name="ftp_user" required="false" size="255" type="VARCHAR"/>
+        <column name="ftp_password" required="false" size="512" type="VARCHAR"/>
+        <column name="open_order_csv_path" required="false" size="255" type="VARCHAR"/>
+        <column name="closed_order_csv_path" required="false" size="255" type="VARCHAR"/>
+
+        <unique name="pyz_integra_credentials-branch">
+            <unique-column name="fk_branch"/>
+        </unique>
+
+        <foreign-key name="pyz_integra_credentials-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <id-method-parameter value="integra_credentials_pk_seq"/>
+    </table>
+
+    <table name="pyz_integra_log" idMethod="native">
+        <column name="id_integra_log" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" type="INTEGER" required="true"/>
+        <column name="message" type="VARCHAR" size="512" />
+        <column name="level" type="ENUM" valueSet="info,warning,error" defaultValue="info"/>
+
+        <behavior name="timestampable">
+            <parameter name="disable_updated_at" value="true"/>
+        </behavior>
+
+        <foreign-key name="pyz_integra_log-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <id-method-parameter value="integra_log_pk_seq"/>
+    </table>
+
+</database>

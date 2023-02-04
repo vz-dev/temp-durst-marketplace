@@ -1,0 +1,95 @@
+
++++ Deine Bestellung bei Durst +++
+
+==================================================
+
+
+Vielen Dank für deine Bestellung, Diese haben wir
+erhalten und an folgenden Händler weitergeleitet:
+
+{{ mail.branch.name }}
+
+Deine Bestellung wird nun durch den Händler
+geprüft und anschließend per E-Mail bestätigt.
+
+==================================================
+
+{% for item in mail.order.items %}
+    {{ item.quantity }}x
+    {{ item.productName }}
+    {{ item.unitName }}
+    {{ item.unitPriceToPayAggregation | money }}{% if item.calculatedDiscounts | length > 0 %} statt {{ item.unitGrossPrice | money }}{% endif %}
+
+{% endfor %}
+==================================================
+{% for expense in mail.order.expenses %}
+    {% if expense.type == constant('Pyz\\Shared\\Discount\\DiscountConstants::VOUCHER_CODE_EXPENSE_TYPE') and expense.calculatedDiscounts is iterable %}
+        {% for expenseDiscount in expense.calculatedDiscounts %}
+            {{ expenseDiscount.quantity }}x
+            {{ expenseDiscount.discountName }}
+            -{{ expenseDiscount.sumAmount | money }}
+        {% endfor %}
+==================================================
+    {% endif %}
+{% endfor %}
+
+Warenwert: {{ mail.order.totals.grossSubtotal | money }}
+
+zzgl. Pfand: {{ mail.order.totals.depositTotal | money }}
+{% if mail.order.totals.deliveryCostTotal > 0 %}
+    zzgl. Liefergebühren: {{ mail.order.totals.deliveryCostTotal | money }}
+{% endif %}
+
+Gesamt: {{ mail.order.totals.grandTotal | money }}
+
+Alle Beträge inkl. Mehrwertsteuer
+
+==================================================
+
+Zeitfenster für deine Lieferung
+
+{% if mail.order.gmStartTime is not null %}{{ mail.order.gmStartTime|date("d.m.Y", "Europe/Berlin") }}{% else %}
+    {{ mail.order.concreteTimeSlot.startTime|date("d.m.Y", "Europe/Berlin") }}
+{% endif %}
+{% if mail.order.gmStartTime is not null %}{{ mail.order.gmStartTime|date("d.m.Y", "Europe/Berlin") }}
+    {{ mail.order.gmStartTime|date("H:i", "Europe/Berlin") }} - {{ mail.order.gmEndTime|date("H:i", "Europe/Berlin") }}
+{% else %}
+    {{ mail.order.concreteTimeSlot.startTime|date("H:i", "Europe/Berlin") }} - {{ mail.order.concreteTimeSlot.endTime|date("H:i", "Europe/Berlin") }}
+{% endif %}
+
+Zahlungsmethode
+
+{{ mail.order.paymentMethodName }}
+
+==================================================
+
+Deine Lieferung erfolgt an folgende Adresse:
+
+{% set address = mail.order.shippingAddress %}
+{{ address.firstName }} {{ address.lastName }}
+{% if address.company is not empty %}{{ address.company }}
+{% endif %}
+{% if address.address1 is not empty %}{{ address.address1 }}
+{% endif %}
+{% if address.address2 is not empty %}{{ address.address2 }}
+{% endif %}
+{% if address.address3 is not empty %}{{ address.address3 }}
+{% endif %}
+{{ address.zipCode }} {{ address.city }}
+{% if address.phone is not empty %}Telefon: {{ address.phone }}
+{% endif %}
+
+
+Solltest du einen Fehler in deiner Bestellung
+entdeckt haben, setze dich bitte direkt mit
+dem Händler in Verbindung:
+
+Telefon: {{ mail.branch.phone }}
+
+{% if mail.footerBannerLink | trans %}
+    {{ mail.footerBannerCta | trans }}
+    {{ mail.footerBannerLink | trans }}
+{% endif %}
+
+-----------------
+{% include '@Oms/Mail/partials/footer.text.twig' with {'mail': mail} %}

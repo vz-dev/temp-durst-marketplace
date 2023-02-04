@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Absence\Persistence"
+          package="src.Orm.Zed.Absence.Persistence">
+
+    <table name="spy_absence">
+        <column name="id_absence" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" required="true" type="INTEGER"/>
+        <column name="start_date" required="true" type="DATE"/>
+        <column name="end_date" required="true" type="DATE"/>
+        <column name="description" size="255" type="VARCHAR"/>
+
+        <foreign-key name="spy_absence-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+        <id-method-parameter value="spy_absence_pk_seq"/>
+    </table>
+
+</database>

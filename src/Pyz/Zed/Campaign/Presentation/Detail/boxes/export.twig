@@ -1,0 +1,100 @@
+{% embed '@Gui/Partials/widget.twig' with { widget_title: 'Campaign Export Items' } %}
+
+    {% block widget_content %}
+
+        <table class="footable table toggle-arrow-tiny" data-qa="order-item-list">
+            <thead>
+            <tr class="text-left">
+                <th>{{ 'Product' | trans }}</th>
+                <th>{{ 'SKU Product' | trans }}</th>
+                <th>{{ 'Unit' | trans }}</th>
+                <th>{{ 'SKU Unit' | trans }}</th>
+                <th>{{ 'Deeplink' | trans }}</th>
+                <th>{{ 'Bottleshot' | trans }}</th>
+                <th>{{ 'Caseshot' | trans }}</th>
+                <th>{{ 'Price' | trans }}</th>
+                <th>{{ 'End price' | trans }}</th>
+                <th>{{ 'Price / Liter' | trans }}</th>
+                <th>{{ 'Refund' | trans }}</th>
+                <th>{{ 'AK' | trans }}</th>
+                <th>{{ 'MHD' | trans }}</th>
+                {% for material in campaignPeriodBranchOrder.campaignPeriod.assignedCampaignAdvertisingMaterials %}
+                    <th>{{ material.campaignAdvertisingMaterialName }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            {% for product in campaignPeriodBranchOrder.products %}
+                {% set bottleshot = '' %}
+                {% set caseshot = '' %}
+                {% for title, image in product.images %}
+                    {% if title == constant('Pyz\\Zed\\Campaign\\Business\\Hydrator\\CampaignPeriodBranchOrderProduct\\CampaignPeriodBranchOrderProductImagesHydrator::PRODUCT_IMAGE_TYPE_BOTTLE_SHOT') %}
+                        {% set bottleshot = image %}
+                    {% elseif title == constant('Pyz\\Zed\\Campaign\\Business\\Hydrator\\CampaignPeriodBranchOrderProduct\\CampaignPeriodBranchOrderProductImagesHydrator::PRODUCT_IMAGE_TYPE_CASE_SHOT') %}
+                        {% set caseshot = image %}
+                    {% endif %}
+                {% endfor %}
+                <tr class="subtotal-row">
+                    <td>
+                        {{ product.productName }}
+                    </td>
+                    <td>
+                        {{ product.abstractSku }}
+                    </td>
+                    <td>
+                        {{ product.productUnit }}
+                    </td>
+                    <td>
+                        {{ product.sku }}
+                    </td>
+                    <td>
+                        {{ product.deeplinkUrl }}
+                    </td>
+                    <td>
+                        {{ product.bigProductImage }}
+                    </td>
+                    <td>
+                        {{ caseshot }}
+                    </td>
+                    <td>
+                        {{ product.productPrice }}
+                    </td>
+                    <td>
+                        {{ product.endPrice }}
+                    </td>
+                    <td>
+                        {{ product.priceLiter }}
+                    </td>
+                    <td>
+                        {{ product.refund }}
+                    </td>
+                    <td>
+                        {% if product.isCarousel %}
+                            {{ 'Ja' | trans }}
+                        {% else %}
+                            {{ 'Nein' | trans }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if product.isExpiredDiscount %}
+                            {{ 'Ja' | trans }}
+                        {% else %}
+                            {{ 'Nein' | trans }}
+                        {% endif %}
+                    </td>
+                    {% set usedMaterials = product.campaignAdvertisingMaterials %}
+                    {% for material in campaignPeriodBranchOrder.campaignPeriod.assignedCampaignAdvertisingMaterials %}
+                        <td>
+                            {% if material.idCampaignAdvertisingMaterial in usedMaterials %}
+                                {{ 'Ja' | trans }}
+                            {% else %}
+                                {{ 'Nein' | trans }}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% endblock %}
+
+{% endembed %}

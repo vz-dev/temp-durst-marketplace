@@ -1,0 +1,14 @@
+      - logs:${SPRYKER_LOG_DIRECTORY}:rw
+{% if _mountMode != 'baked' %}
+{% if _mountMode == 'native' %}
+      - ./:/data
+{% if _pipeline == 'docker.dev' %}
+      - ./../merchant_center/:/data/merchant_center
+{% elseif _pipeline == 'docker.ci' %}
+      - ./merchant_center/:/data/merchant_center
+{% endif %}
+{% else %}
+      - ${SPRYKER_DOCKER_PREFIX}_${SPRYKER_DOCKER_TAG}_data_sync:/data:nocopy
+      - ${SPRYKER_DOCKER_PREFIX}_merchant_center_${SPRYKER_DOCKER_TAG}_data_sync:/data/merchant_center:nocopy
+{% endif %}
+{% endif %}

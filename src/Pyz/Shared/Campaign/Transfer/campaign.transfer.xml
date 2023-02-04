@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="CampaignPeriod">
+        <property name="idCampaignPeriod" type="int"/>
+        <property name="campaignName" type="string"/>
+        <property name="campaignDescription" type="string"/>
+        <property name="campaignStartDate" type="string"/>
+        <property name="campaignEndDate" type="string"/>
+        <property name="campaignLeadTime" type="int"/>
+        <property name="campaignDuration" type="int"/>
+        <property name="isActive" type="bool"/>
+        <property name="createdAt" type="string"/>
+        <property name="updatedAt" type="string"/>
+        <property name="campaignAdvertisingMaterials" type="int[]"/>
+        <property name="days" type="int"/>
+        <property name="daysLeft" type="int"/>
+        <property name="campaignStart" type="string"/>
+        <property name="bookable" type="bool"/>
+        <property name="assignedCampaignAdvertisingMaterials" type="CampaignAdvertisingMaterial[]"/>
+    </transfer>
+
+    <transfer name="CampaignAdvertisingMaterial">
+        <property name="idCampaignAdvertisingMaterial" type="int"/>
+        <property name="fkCampaignPeriod" type="int"/>
+        <property name="campaignAdvertisingMaterialName" type="string"/>
+        <property name="campaignAdvertisingMaterialDescription" type="string"/>
+        <property name="campaignAdvertisingMaterialLeadTime" type="int"/>
+        <property name="isActive" type="bool"/>
+        <property name="createdAt" type="string"/>
+        <property name="updatedAt" type="string"/>
+        <property name="days" type="int"/>
+        <property name="daysLeft" type="int"/>
+        <property name="campaignAdvertisingMaterialEndDate" type="string"/>
+    </transfer>
+
+    <transfer name="CampaignPeriodBranchOrder">
+        <property name="idCampaignPeriodBranchOrder" type="int"/>
+        <property name="fkBranch" type="int"/>
+        <property name="fkCampaignPeriod" type="int"/>
+        <property name="orderedProducts" type="int[]" singular="orderedProduct"/>
+        <property name="createdAt" type="string"/>
+        <property name="updatedAt" type="string"/>
+        <property name="editable" type="bool"/>
+        <property name="branch" type="Branch"/>
+        <property name="campaignPeriod" type="CampaignPeriod"/>
+        <property name="products" type="CampaignPeriodBranchOrderProduct[]" singular="product"/>
+    </transfer>
+
+    <transfer name="CampaignPeriodBranchOrderProduct">
+        <property name="idCampaignPeriodBranchOrderProduct" type="int"/>
+        <property name="fkDiscount" type="int"/>
+        <property name="fkBranch" type="int"/>
+        <property name="fkCampaignPeriod" type="int"/>
+        <property name="sku" type="string"/>
+        <property name="abstractSku" type="string"/>
+        <property name="productName" type="string"/>
+        <property name="productUnit" type="string"/>
+        <property name="deeplinkUrl" type="string"/>
+        <property name="thumbProductImage" type="string"/>
+        <property name="bigProductImage" type="string"/>
+        <property name="images" type="array" singular="image"/>
+        <property name="productPrice" type="string"/>
+        <property name="discountPrice" type="string"/>
+        <property name="endPrice" type="string"/>
+        <property name="priceLiter" type="string"/>
+        <property name="refund" type="string"/>
+        <property name="productPriceValue" type="int"/>
+        <property name="discountPriceValue" type="int"/>
+        <property name="endPriceValue" type="int"/>
+        <property name="carouselPriority" type="int"/>
+        <property name="isCarousel" type="bool"/>
+        <property name="isExpiredDiscount" type="bool"/>
+        <property name="idDiscount" type="int" />
+        <property name="campaignAdvertisingMaterials" type="int[]"/>
+        <property name="createdAt" type="string"/>
+        <property name="updatedAt" type="string"/>
+        <property name="productConcrete" type="ProductConcrete"/>
+        <property name="discount" type="DiscountConfigurator"/>
+        <property name="assignedCampaignAdvertisingMaterials" type="CampaignAdvertisingMaterial[]" singular="assignedCampaignAdvertisingMaterial"/>
+        <property name="branch" type="Branch"/>
+        <property name="status" type="string"/>
+    </transfer>
+
+    <transfer name="MerchantCampaignOrder">
+        <property name="fkBranch" type="int"/>
+        <property name="fkCampaignPeriod" type="int"/>
+        <property name="fkCampaignPeriodBranchOrder" type="int"/>
+        <property name="editable" type="bool"/>
+        <property name="assignedProducts" type="int[]" singular="assignedProduct"/>
+        <property name="campaignPeriod" type="CampaignPeriod"/>
+        <property name="products" type="MerchantCampaignOrderProduct[]" singular="product"/>
+    </transfer>
+
+    <transfer name="MerchantCampaignOrderProduct">
+        <property name="fkCampaignPeriodBranchOrderProduct" type="int"/>
+        <property name="fkDiscount" type="int"/>
+        <property name="sku" type="string"/>
+        <property name="productName" type="string"/>
+        <property name="productUnit" type="string"/>
+        <property name="productPrice" type="string"/>
+        <property name="discountPrice" type="string"/>
+        <property name="isDiscounted" type="bool"/>
+        <property name="isEditable" type="bool"/>
+        <property name="carouselPriority" type="int"/>
+        <property name="isCarousel" type="bool"/>
+        <property name="isExpiredDiscount" type="bool"/>
+        <property name="thumbProductImage" type="string"/>
+        <property name="assignedMaterials" type="CampaignAdvertisingMaterial[]" singular="assignedMaterial"/>
+        <property name="materials" type="int[]" singular="material"/>
+        <property name="formAssignedMaterials" type="array" singular="formAssignedMaterial"/>
+        <property name="bookedMaterials" type="CampaignAdvertisingMaterial[]" singular="bookedMaterial"/>
+        <property name="fixed" type="int[]"/>
+        <property name="formBookedMaterials" type="array" singular="formBookedMaterial"/>
+    </transfer>
+
+    <transfer name="PossibleCampaignProduct">
+        <property name="id" type="string"/>
+        <property name="sku" type="string"/>
+        <property name="merchantSku" type="string"/>
+        <property name="productName" type="string"/>
+        <property name="productUnit" type="string"/>
+        <property name="productPrice" type="string"/>
+        <property name="productPriceValue" type="int"/>
+        <property name="thumbProductImage" type="string"/>
+        <property name="fallbackText" type="string"/>
+        <property name="status" type="string"/>
+    </transfer>
+
+</transfers>

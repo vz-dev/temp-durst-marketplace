@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\GraphMasters\Persistence"
+          package="src.Orm.Zed.GraphMasters.Persistence">
+
+    <table name="dst_graphmasters_settings" idMethod="native">
+        <column name="id_graphmasters_settings" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" type="INTEGER" required="true"/>
+        <column name="is_active" type="BOOLEAN" required="true" defaultValue="false"/>
+        <column name="depot_api_id" required="false" size="255" type="VARCHAR"/>
+        <column name="depot_path" required="false" size="255" type="VARCHAR"/>
+        <column name="lead_time" type="INTEGER"/>
+        <column name="buffer_time" type="INTEGER"/>
+
+        <unique name="dst_graphmasters_settings-branch">
+            <unique-column name="fk_branch"/>
+        </unique>
+
+        <foreign-key name="dst_graphmasters_settings-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <id-method-parameter value="graphmasters_settings_pk_seq"/>
+    </table>
+
+    <table name="dst_graphmasters_delivery_area_category" idMethod="native">
+        <column name="id_delivery_area_category" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" type="INTEGER" required="true"/>
+        <column name="category_name" required="false" size="255" type="VARCHAR"/>
+        <column name="slot_size" type="INTEGER" required="false"/>
+        <column name="edtm_cutoff_small" type="INTEGER" required="false"/>
+        <column name="edtm_cutoff_medium" type="INTEGER" required="false"/>
+        <column name="edtm_cutoff_large" type="INTEGER" required="false"/>
+        <column name="edtm_cutoff_xlarge" type="INTEGER" required="false"/>
+        <column name="min_value" type="INTEGER" required="true"/>
+        <column name="is_active" type="BOOLEAN" required="true" defaultValue="false"/>
+
+        <behavior name="timestampable"/>
+
+        <foreign-key name="dst_graphmasters_delivery_area_category-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_graphmasters_delivery_area_category_pk_seq"/>
+    </table>
+
+    <table name="dst_graphmasters_delivery_area_category_to_delivery_area" idMethod="native" isCrossRef="true">
+        <column name="fk_delivery_area_category" required="true" type="INTEGER" primaryKey="true"/>
+        <column name="fk_delivery_area" required="true" type="INTEGER" primaryKey="true"/>
+
+        <foreign-key name="dst_graphmasters_delivery_area_category-fk_delivery_area_category" foreignTable="dst_graphmasters_delivery_area_category" phpName="DstGraphmastersDeliveryAreaCategory" onDelete="CASCADE">
+            <reference local="fk_delivery_area_category" foreign="id_delivery_area_category"/>
+        </foreign-key>
+
+        <foreign-key name="dst_graphmasters_delivery_area_category-fk_delivery_area" foreignTable="spy_delivery_area" phpName="SpyDeliveryArea">
+            <reference local="fk_delivery_area" foreign="id_delivery_area"/>
+        </foreign-key>
+    </table>
+
+    <table name="dst_graphmasters_time_slot" idMethod="native">
+        <column name="id_graphmasters_time_slot" required="true" type="integer" autoIncrement="true" primaryKey="true"/>
+        <column name="start_time" type="TIMESTAMP"/>
+        <column name="end_time" type="TIMESTAMP"/>
+        <column name="is_active" required="true" defaultValue="true" type="BOOLEAN"/>
+
+        <id-method-parameter value="dst_graphmasters_time_slot_pk_seq"/>
+
+        <behavior name="timestampable"/>
+        <behavior name="archivable"/>
+    </table>
+
+    <table name="dst_graphmasters_opening_time" idMethod="native">
+        <column name="id_graphmasters_opening_time" required="true" type="integer" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_graphmasters_settings" type="INTEGER" required="true"/>
+        <column name="weekday" required="true" size="9" type="ENUM" valueSet="monday,tuesday,wednesday,thursday,friday,saturday" defaultValue="monday"/>
+        <column name="start_time" type="TIME" required="true"/>
+        <column name="end_time" type="TIME" required="true"/>
+        <column name="pause_start_time" type="TIME"/>
+        <column name="pause_end_time" type="TIME"/>
+
+        <foreign-key name="dst_graphmasters_opening-time-fk_graphmasters_settings" foreignTable="dst_graphmasters_settings" onDelete="cascade">
+            <reference local="fk_graphmasters_settings" foreign="id_graphmasters_settings"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_graphmasters_opening_time_pk_seq"/>
+
+        <behavior name="timestampable"/>
+    </table>
+
+    <table name="dst_graphmasters_commissioning_time" idMethod="native">
+        <column name="id_graphmasters_commissioning_time" required="true" type="integer" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_graphmasters_settings" type="INTEGER" required="true"/>
+        <column name="weekday" required="true" size="9" type="ENUM" valueSet="monday,tuesday,wednesday,thursday,friday,saturday" defaultValue="monday"/>
+        <column name="start_time" type="TIME" required="true"/>
+        <column name="end_time" type="TIME" required="true"/>
+
+        <foreign-key name="dst_graphmasters_commissioning-time-fk_graphmasters_settings" foreignTable="dst_graphmasters_settings" onDelete="cascade">
+            <reference local="fk_graphmasters_settings" foreign="id_graphmasters_settings"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_graphmasters_commissioning_time_pk_seq"/>
+
+        <behavior name="timestampable"/>
+    </table>
+
+    <table name="dst_graphmasters_tour" idMethod="native">
+        <column name="id_graphmasters_tour" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" type="INTEGER" required="true"/>
+        <column name="reference" type="VARCHAR" required="true" size="255"/>
+        <column name="original_id" type="VARCHAR" required="true" size="255"/>
+        <column name="date" type="DATE" required="true"/>
+        <column name="tour_start_eta" type="TIMESTAMP" required="true"/>
+        <column name="tour_destination_eta" type="TIMESTAMP" required="true"/>
+        <column name="tour_commissioning_cut_off" type="TIMESTAMP" required="false"/>
+        <column name="tour_status" type="VARCHAR" required="true" size="255"/>
+        <column name="vehicle_status" type="VARCHAR" required="false" size="255"/>
+        <column name="total_distance_meters" type="FLOAT" required="false"/>
+        <column name="total_time_seconds" type="FLOAT" required="false"/>
+        <column name="order_count" type="INTEGER" required="false"/>
+        <column name="total_weight_grams" type="INTEGER" required="false"/>
+        <column name="comment" type="VARCHAR" required="false" size="255"/>
+        <column name="edi_goods_exported" type="BOOLEAN" required="true" defaultValue="false"/>
+        <column name="edi_deposit_exported" type="BOOLEAN" required="true" defaultValue="false"/>
+
+        <unique name="dst_graphmasters_tour-reference">
+            <unique-column name="reference"/>
+        </unique>
+
+        <unique name="dst_graphmasters_tour-original_id">
+            <unique-column name="original_id"/>
+        </unique>
+
+        <foreign-key name="dst_graphmasters_tour-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_graphmasters_tour_pk_seq"/>
+
+        <behavior name="timestampable"/>
+    </table>
+
+    <table name="dst_graphmasters_order" idMethod="native">
+        <column name="fk_order_reference" type="VARCHAR" size="255" required="true" primaryKey="true"/>
+        <column name="fk_graphmasters_tour" type="INTEGER" required="false"/>
+        <column name="status" type="VARCHAR" size="255" required="true"/>
+        <column name="delivery_order" type="INTEGER" required="false"/>
+        <column name="stop_eta" type="TIMESTAMP" required="false"/>
+        <column name="delivered_at" type="TIMESTAMP" required="false"/>
+
+        <foreign-key foreignTable="spy_sales_order">
+            <reference local="fk_order_reference" foreign="order_reference"/>
+        </foreign-key>
+
+        <foreign-key name="dst_graphmasters_order-fk_graphmasters_tour" foreignTable="dst_graphmasters_tour" phpName="DstGraphmastersTour" onDelete="SETNULL">
+            <reference local="fk_graphmasters_tour" foreign="id_graphmasters_tour"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_graphmasters_order_pk_seq"/>
+
+        <behavior name="timestampable"/>
+    </table>
+</database>

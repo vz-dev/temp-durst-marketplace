@@ -1,0 +1,15 @@
+{
+  "title": "DeliveryAreaResponse",
+  "type": "object",
+  "required":
+  [
+    "valid"
+  ],
+  "properties":
+  {
+    "valid":
+    {
+      "type": "boolean"
+    }
+  }
+}

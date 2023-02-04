@@ -1,0 +1,49 @@
+{
+  "title": "TimeSlotRequest",
+  "type": "object",
+  "properties":
+  {
+    "merchant_ids":
+    {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items":
+      {
+        "type": "integer"
+      }
+    },
+    "cart":
+    {
+      "type": "array",
+      "items":
+      {
+        "type": "object",
+        "properties":
+        {
+          "sku":
+          {
+            "type": "string"
+          },
+          "quantity":
+          {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "zip_code":
+    {
+      "type": "string"
+    },
+    "max_slots":
+    {
+      "type": "integer"
+    },
+    "items_per_slot":
+    {
+      "type": "integer"
+    }
+  }
+}

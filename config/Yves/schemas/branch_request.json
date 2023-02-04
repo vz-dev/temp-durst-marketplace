@@ -1,0 +1,20 @@
+{
+  "title": "BranchRequest",
+  "type": "object",
+  "required":
+  [
+    "zip_code",
+    "merchant_id"
+  ],
+  "properties":
+  {
+    "zip_code":
+    {
+      "type": "string"
+    },
+    "merchant_id":
+    {
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <heidelpay-rest>
+        <label>Payment Log</label>
+        <title>Payment Log</title>
+        <bundle>heidelpay-rest</bundle>
+        <controller>log</controller>
+        <action>index</action>
+        <uri>/heidelpay-rest/log</uri>
+        <icon>fa-money</icon>
+    </heidelpay-rest>
+</config>

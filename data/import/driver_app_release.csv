@@ -1,0 +1,4 @@
+patch_notes,version,apk_file_path
+fix: signed_at as seconds,4.0.10,durst_driver_app_dummy_4_0_10.apk
+"fix address naming, fix order sorting",4.0.11,durst_driver_app_dummy_4_0_11.apk
+"Leergut- und Retourenkontrolle, Zahlungsarten vor Ort",4.1.0,durst_driver_app_dummy_4_1_0.apk

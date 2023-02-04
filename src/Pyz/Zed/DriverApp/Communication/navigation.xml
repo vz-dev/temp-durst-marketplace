@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <driver-app>
+        <label>Driver App Release</label>
+        <title>Driver App Release</title>
+        <bundle>driver-app</bundle>
+        <controller>index</controller>
+        <action>index</action>
+    </driver-app>
+</config>

@@ -1,0 +1,103 @@
+{
+  "settings": {
+    "index.mapper.dynamic": false
+  },
+  "mappings": {
+    "delivery_area": {
+      "_all": {
+        "enabled": false
+      },
+      "dynamic": "strict",
+      "properties": {
+        "id_delivery_area": {
+          "type": "integer"
+        },
+        "zip_code": {
+          "type": "keyword"
+        },
+        "branch_ids": {
+          "type": "integer"
+        },
+        "product_ids": {
+          "type": "integer"
+        },
+        "time_slot_ids": {
+          "type": "integer"
+        }
+      }
+    },
+    "time_slot": {
+      "_all": {
+        "enabled": false
+      },
+      "dynamic": "strict",
+      "properties": {
+        "id_time_slot": {
+          "type": "integer",
+          "index_options": "offsets"
+        },
+        "id_branch": {
+          "type": "integer",
+          "index_options": "offsets"
+        },
+        "fk_time_slot": {
+          "type": "integer",
+          "index_options": "offsets"
+        },
+        "min_value_first": {
+          "type": "integer"
+        },
+        "min_value_following": {
+          "type": "integer"
+        },
+        "prep_time": {
+          "type": "integer",
+          "index_options": "offsets"
+        },
+        "delivery_costs": {
+          "type": "integer"
+        },
+        "max_customers": {
+          "type": "integer"
+        },
+        "max_products": {
+          "type": "integer"
+        },
+        "min_units": {
+          "type": "integer"
+        },
+        "time_slot_start_date": {
+          "type": "date",
+          "index_options": "offsets"
+        },
+        "time_slot_end_date": {
+          "type": "date",
+          "index_options": "offsets"
+        },
+        "time_slot_string": {
+          "type": "keyword"
+        },
+        "time_slot_start_date_raw": {
+          "type": "date",
+          "index_options": "offsets"
+        },
+        "time_slot_end_date_raw": {
+          "type": "date",
+          "index_options": "offsets"
+        },
+        "zip_code": {
+          "type": "keyword"
+        },
+        "remaining_products": {
+          "type": "integer"
+        },
+        "remaining_payload": {
+          "type": "integer"
+        },
+        "remaining_customers": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

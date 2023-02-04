@@ -1,0 +1,22 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Merchants List' %}
+
+{% block action %}
+    {{ createActionButton('/merchant-management/merchant/create', 'Add New Merchant' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ merchants | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}
+

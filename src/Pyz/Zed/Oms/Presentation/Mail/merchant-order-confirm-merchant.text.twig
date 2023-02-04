@@ -1,0 +1,125 @@
+
++++ Bestellungseingang bei Durst +++
+
+==================================================
+
+Folgende Bestellung ist bei Durst eingegangen.
+Diese haben wir an Sie weitergeleitet:
+
+{{ mail.branch.name }}
+
+==================================================
+
+Bitte prüfen Sie die folgende Bestellung:
+
+{% for item in mail.order.items %}
+    {{ item.quantity }}x
+    {{ item.productName }}
+    {{ item.unitName }}
+    {{ item.unitPriceToPayAggregation | money }}
+    {% set currentDisplayName = '' %}
+    {% for discounts in item.calculatedDiscounts %}
+        {% if (currentDisplayName) != (discounts.displayName) %}
+            Angebot: {{ discounts.discountName }}: {{ discounts.unitAmount | money }} Rabatt
+            {% set currentDisplayName = discounts.displayName %}
+        {% endif %}
+    {% endfor %}
+
+{% endfor %}
+==================================================
+{% for expense in mail.order.expenses %}
+    {% if expense.type == constant('Pyz\\Shared\\Discount\\DiscountConstants::VOUCHER_CODE_EXPENSE_TYPE') and expense.calculatedDiscounts is iterable %}
+        {% for expenseDiscount in expense.calculatedDiscounts %}
+            {{ expenseDiscount.quantity }}x
+            {{ expenseDiscount.discountName }}
+            -{{ expenseDiscount.sumAmount | money }}
+        {% endfor %}
+==================================================
+    {% endif %}
+{% endfor %}
+
+Warenwert: {{ mail.order.totals.grossSubtotal | money }}
+
+zzgl. Pfand: {{ mail.order.totals.depositTotal | money }}
+{% if mail.order.totals.deliveryCostTotal > 0 %}
+    zzgl. Liefergebühren: {{ mail.order.totals.deliveryCostTotal | money }}
+{% endif %}
+
+Gesamt: {{ mail.order.totals.grandTotal | money }}
+
+Alle Beträge inkl. Mehrwertsteuer
+
+==================================================
+
+Zeitfenster für die Lieferung
+
+{% if mail.order.gmStartTime is not null %}{{ mail.order.gmStartTime|date("d.m.Y", "Europe/Berlin") }}{% else %}
+{{ mail.order.concreteTimeSlot.startTime|date("d.m.Y", "Europe/Berlin") }}
+{% endif %}
+{% if mail.order.gmStartTime is not null %}{{ mail.order.gmStartTime|date("d.m.Y", "Europe/Berlin") }}
+    {{ mail.order.gmStartTime|date("H:i", "Europe/Berlin") }} - {{ mail.order.gmEndTime|date("H:i", "Europe/Berlin") }}
+{% else %}
+{{ mail.order.concreteTimeSlot.startTime|date("H:i", "Europe/Berlin") }} - {{ mail.order.concreteTimeSlot.endTime|date("H:i", "Europe/Berlin") }}
+{% endif %}
+
+Zahlungsmethode
+
+{{ mail.order.paymentMethodName }}
+
+==================================================
+
+Anmerkung:
+
+{% if mail.comments|length > 0 %}
+    {% for comment in mail.comments %}
+        {{  comment.message }}
+    {% endfor %}
+{% else %}
+    Keine Anmerkung
+{% endif %}
+
+==================================================
+
+
+Die Lieferung erfolgt an folgende Adresse:
+
+{% set address = mail.order.shippingAddress %}
+{{ address.firstName }} {{ address.lastName }}
+{% if address.company is not empty %}{{ address.company }}
+{% endif %}
+{% if address.address1 is not empty %}{{ address.address1 }}
+{% endif %}
+{% if address.address2 is not empty %}{{ address.address2 }}
+{% endif %}
+{% if address.address3 is not empty %}{{ address.address3 }}
+{% endif %}
+{{ address.zipCode }} {{ address.city }}
+{% if address.phone is not empty %}Telefon: {{ address.phone }}{% endif %}
+
+
+==================================================
+
+Die Rechnungsadresse ist:
+
+{% set address = mail.order.billingAddress %}
+{{ address.firstName }} {{ address.lastName }}
+{% if address.company is not empty %}{{ address.company }}
+{% endif %}
+{% if address.address1 is not empty %}{{ address.address1 }}
+{% endif %}
+{% if address.address2 is not empty %}{{ address.address2 }}
+{% endif %}
+{% if address.address3 is not empty %}{{ address.address3 }}
+{% endif %}
+{{ address.zipCode }} {{ address.city }}
+{% if address.phone is not empty %}Telefon: {{ address.phone }}
+
+==================================================
+
+Sollten Sie den Kunden kontaktieren wollen,
+können Sie den Kunden unter folgender
+Telefonnummer erreichen: {{ address.phone }}
+{% endif %}
+
+-----------------
+{% include '@Oms/Mail/partials/footer.text.twig' with {'mail': mail} %}

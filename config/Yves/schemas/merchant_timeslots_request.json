@@ -1,0 +1,39 @@
+{
+  "title": "MerchantTimeSlotRequest",
+  "type": "object",
+  "properties":
+  {
+    "merchant_id":
+    {
+      "type": "integer"
+    },
+    "cart":
+    {
+      "type": "array",
+      "items":
+      {
+        "type": "object",
+        "properties":
+        {
+          "sku":
+          {
+            "type": "string"
+          },
+          "quantity":
+          {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "zip_code":
+    {
+      "type": "string"
+    },
+    "use_day_limit":
+    {
+      "type": "boolean"
+    }
+  }
+}

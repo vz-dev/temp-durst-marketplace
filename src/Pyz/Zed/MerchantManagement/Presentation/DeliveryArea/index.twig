@@ -1,0 +1,21 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Delivery Area List' %}
+
+{% block action %}
+    {{ createActionButton('/merchant-management/delivery-area/create', 'Add New Delivery Area' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ deliveryAreas | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

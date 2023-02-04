@@ -1,0 +1,26 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Add Price' %}
+
+{% block action %}
+    {{ backActionButton('/merchant/price', 'List Prices' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(priceForm) }}
+
+            {{ form_widget(priceForm) }}
+
+            <input type="submit" class="btn btn-primary" value="{{ 'Add' | trans }}" />
+            {{ form_end(priceForm) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

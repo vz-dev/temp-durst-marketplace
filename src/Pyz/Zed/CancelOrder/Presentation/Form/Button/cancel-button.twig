@@ -1,0 +1,13 @@
+{% if link is not null %}
+    <a class="btn btn-sm btn-outline safe-submit btn-back" href="{{ link }}">
+        <i class="fa fa-angle-double-left"></i> {{ 'Bestellung stornieren' | trans }}
+    </a>
+{% else %}
+    <span class="btn btn-sm btn-outline safe-submit btn-back disabled">
+        {{ 'Stornierung nicht möglich' | trans }}
+        {% if error is not empty %}
+            <br/>
+            {{ error }}
+        {% endif %}
+    </span>
+{% endif %}

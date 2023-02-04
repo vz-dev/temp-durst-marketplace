@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <maintenance>
+        <pages>
+            <edifact>
+                <label>EDIFact log</label>
+                <title>EDIFact log</title>
+                <bundle>edifact</bundle>
+                <controller>log</controller>
+                <action>index</action>
+                <icon>fa-file</icon>
+            </edifact>
+        </pages>
+    </maintenance>
+</config>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\ProductExport\Persistence"
+          package="src.Orm.Zed.ProductExport.Persistence">
+
+    <table name="dst_product_export" phpName="DstProductExport" idMethod="native" >
+        <column name="id_product_export" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="recipient" required="true" type="VARCHAR" size="255"/>
+        <column name="recipient_cc" required="false" type="VARCHAR" size="255"/>
+        <column name="fk_branch" required="true" type="INTEGER"/>
+        <column name="status" required="true" size="10" type="ENUM" valueSet="waiting,running,sending,done,failed" defaultValue="waiting"/>
+        <column name="cnt_total_products" required="false" type="INTEGER"/>
+        <column name="cnt_merchant_products" required="false" type="INTEGER"/>
+        <column name="file_name" required="false" type="VARCHAR"/>
+
+        <behavior name="timestampable"/>
+
+        <foreign-key name="dst-product-export-fk_branch" foreignTable="spy_branch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_product_export_pk_seq"/>
+
+    </table>
+
+</database>

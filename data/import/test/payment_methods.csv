@@ -1,0 +1,8 @@
+id,name,code
+1,Barzahlung bei Lieferung,cash_on_delivery
+2,EC-Zahlung bei Lieferung,ec_on_delivery
+3,Kreditkarte bei Lieferung,credit_card_on_delivery
+4,Paypal,HeidelpayRestPayPalAuthorize
+5,Kreditkarte,HeidelpayRestCreditCardAuthorize
+7,SEPA-Lastschrift,HeidelpayRestSepaDirectDebit
+8,Rechnung Firmenkunden,invoice_b2b

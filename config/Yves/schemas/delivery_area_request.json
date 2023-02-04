@@ -1,0 +1,20 @@
+{
+  "title": "DeliveryAreaRequest",
+  "type": "object",
+  "required":
+  [
+    "zip_code",
+    "branch_code"
+  ],
+  "properties":
+  {
+    "zip_code":
+    {
+      "type": "string"
+    },
+    "branch_code":
+    {
+      "type": "string"
+    }
+  }
+}

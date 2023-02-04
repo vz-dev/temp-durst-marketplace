@@ -1,0 +1,2 @@
+fk_branch,fk_vehicle_type,name,status,weekday,time_loading,time_unloading,time_approach,time_return,time_slots
+8,1,Monday Sprinter,active,monday,20,5,10,25,"5,6"

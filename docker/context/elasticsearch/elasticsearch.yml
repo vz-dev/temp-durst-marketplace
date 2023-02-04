@@ -1,0 +1,9 @@
+# Cluster ################################
+cluster.name: "docker-cluster"
+cluster.routing.allocation.disk.threshold_enabled: false
+
+# Paths ##################################
+path.repo: ["/usr/share/elasticsearch/data/snapshots"]
+
+# Network ################################
+http.host: 0.0.0.0

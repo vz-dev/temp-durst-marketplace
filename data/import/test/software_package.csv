@@ -1,0 +1,3 @@
+name,code,quota_delivery_area,quota_branch,quota_product_concrete,quota_order,payment_methods
+Digitaler Heimservice,digitaler_heimservice,5,5,5,5,"ec_on_delivery,cash_on_delivery"
+Digitale Sofort-Lieferung,digitale_sofort_lieferung,,,,,"HeidelpayRestPayPalAuthorize,HeidelpayRestCreditCardAuthorize,HeidelpayRestSepaDirectDebit"

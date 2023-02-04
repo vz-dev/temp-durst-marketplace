@@ -1,0 +1,47 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% block head_css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/assets/campaign/css/magnific-popup.css">
+{% endblock %}
+
+{% set widget_title = 'Campaign Period Branch Order' %}
+
+{% block action %}
+    {{ backActionButton('/campaign/campaign-period-branch-order', 'Back to Campaign Period Branch Orders' | trans) }}
+{% endblock %}
+
+{% block section_title %}
+    {{ 'View Campaign Period Branch Order:' | trans }} {{ campaignPeriodBranchOrder.idcampaignPeriodBranchOrder }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            <div id="order-overview">
+                {% include '@Campaign/Detail/boxes/order-overview.twig' %}
+            </div>
+
+            <div id="items">
+                {% include '@Campaign/Detail/boxes/products.twig' %}
+            </div>
+
+            <div class="row">
+                {% include '@Campaign/Detail/boxes/export.twig' %}
+            </div>
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}
+
+{% block footer_js %}
+    {{ parent() }}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/assets/campaign/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/campaign/js/campaign-booking.js"></script>
+{% endblock %}

@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="Integra" main="true">
+
+        <subprocesses>
+            <process>Closing</process>
+        </subprocesses>
+
+        <states>
+
+            <state name="new"/>
+            <state name="ready for delivery"/>
+            <state name="mark damaged"/>
+            <state name="mark missing"/>
+            <state name="mark delivered"/>
+            <state name="mark declined"/>
+            <state name="delivered"/>
+            <state name="deposit and refund ordered at wholesaler"/>
+
+        </states>
+
+        <transitions>
+
+            <transition happy="true">
+                <source>new</source>
+                <target>ready for delivery</target>
+                <event>order items at wholesaler</event>
+            </transition>
+
+            <transition>
+                <source>ready for delivery</source>
+                <target>mark damaged</target>
+                <event>markDamage</event>
+            </transition>
+
+            <transition>
+                <source>ready for delivery</source>
+                <target>mark missing</target>
+                <event>markLose</event>
+            </transition>
+
+            <transition happy="true">
+                <source>ready for delivery</source>
+                <target>mark delivered</target>
+                <event>markDeliver</event>
+            </transition>
+
+            <transition>
+                <source>ready for delivery</source>
+                <target>mark declined</target>
+                <event>markDecline</event>
+            </transition>
+
+            <transition>
+                <source>mark damaged</source>
+                <target>delivered</target>
+                <event>recalculate</event>
+            </transition>
+
+            <transition>
+                <source>mark missing</source>
+                <target>delivered</target>
+                <event>recalculate</event>
+            </transition>
+
+            <transition happy="true">
+                <source>mark delivered</source>
+                <target>delivered</target>
+                <event>recalculate</event>
+            </transition>
+
+            <transition>
+                <source>mark declined</source>
+                <target>delivered</target>
+                <event>recalculate</event>
+            </transition>
+
+            <transition happy="true">
+                <source>delivered</source>
+                <target>deposit and refund ordered at wholesaler</target>
+                <event>order deposit and refund at wholesaler</event>
+            </transition>
+
+            <transition happy="true">
+                <source>deposit and refund ordered at wholesaler</source>
+                <target>ready for closing</target>
+                <event>start closing process</event>
+            </transition>
+
+        </transitions>
+
+        <events>
+
+            <event name="order items at wholesaler" onEnter="true" command="WholesaleOrder/OrderWholesale"/>
+            <event name="recalculate" manual="true" command="WholesaleOrder/Recalculate"/>
+            <event name="markDecline" manual="true" command="WholesaleOrder/MarkDecline"/>
+            <event name="markDeliver" manual="true" command="WholesaleOrder/MarkDeliver"/>
+            <event name="markLose" manual="true" command="WholesaleOrder/MarkLose"/>
+            <event name="markDamage" manual="true" command="WholesaleOrder/MarkDamage"/>
+            <event name="order deposit and refund at wholesaler" onEnter="true" command="WholesaleOrder/OrderDepositWholesaler"/>
+            <event name="start closing process" onEnter="true"/>
+
+        </events>
+
+    </process>
+
+    <process name="Closing" file="WholesaleOrderSubProcessesItemStates/Closing.xml"/>
+
+</statemachine>

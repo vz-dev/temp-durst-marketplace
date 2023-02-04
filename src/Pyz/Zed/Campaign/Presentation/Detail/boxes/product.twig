@@ -1,0 +1,54 @@
+<td colspan="2" rowspan="3">
+    <a class="gallery" title="product image" data-group="{{ product.sku }}" href="{{ product.bigProductImage }}">
+        <img class="product-image" src="{{ product.thumbProductImage }}"/>
+    </a>
+</td>
+<td>
+    {{ product.productName }}
+</td>
+<td>
+    {{ product.productUnit }}
+</td>
+<td>
+    {{ product.sku }} <br>
+    {{ product.abstractSku }}
+</td>
+<td>
+    {{ product.productPrice }}
+</td>
+<td>
+    {{ product.discountPrice }}
+</td>
+<td>
+    {{ product.endPrice }}
+</td>
+<td>
+    {{ product.priceLiter }}
+</td>
+<td>
+    {{ product.refund }}
+</td>
+<td>
+    {% if product.isCarousel %}
+        <i class="fa fa-check" style="color: #3adb76"></i>
+    {% else %}
+        <i class="fa fa-times" style="color: #851010"></i>
+    {% endif %}
+</td>
+<td>
+    {% if product.isExpiredDiscount %}
+        <i class="fa fa-check" style="color: #3adb76"></i>
+    {% else %}
+        <i class="fa fa-times" style="color: #851010"></i>
+    {% endif %}
+</td>
+<td>
+    {{ product.status }}
+</td>
+<td>
+    {% if product.idDiscount is not null %}
+        <a href="/discount/index/edit?id-discount={{ product.idDiscount }}" class="btn btn-xs btn-outline btn-edit">Edit</a>
+    {% else %}
+        -
+    {% endif %}
+</td>

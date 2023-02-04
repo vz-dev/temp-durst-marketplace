@@ -1,0 +1,160 @@
+version: "0.1"
+
+namespace: durst_dev
+pipeline: docker.dev
+tag: 'dev'
+
+environment: docker.dev
+image:
+    tag: spryker/php:7.3-debian-buster
+    php:
+        enabled-extensions:
+            - blackfire
+        ini:
+            date.timezone: Europe/Berlin
+            serialize_precision: -1
+            max_input_vars: 16384
+composer:
+    mode: ''
+    autoload: ''
+assets:
+    mode: development
+
+regions:
+    EU:
+        services:
+            database:
+                database: eu-docker-dev
+                username: spryker
+                password: secret
+
+        stores:
+            DE:
+                services:
+                    broker:
+                        namespace: de-docker
+                    key_value_store:
+                        namespace: 1
+                    search:
+                        namespace: de_search
+
+groups:
+    EU:
+        region: EU
+        applications:
+            fridge_yves_eu:
+                application: yves
+                endpoints:
+                    www.de.durst.local:
+                        store: DE
+                        services:
+                            session:
+                                namespace: 1
+            fridge_glue_eu:
+                application: glue
+                endpoints:
+                    glue.de.durst.local:
+                        store: DE
+            fridge_zed_eu:
+                application: zed
+                endpoints:
+                    zed.de.durst.local:
+                        store: DE
+                        services:
+                            session:
+                                namespace: 3
+            merchant_center_zed_eu:
+                application: zed
+                endpoints:
+                    merchant.de.durst.local:
+                        store: DE
+                        services:
+                            session:
+                                namespace: 4
+
+services:
+    database:
+        engine: postgres
+        version: 9.6
+        root:
+            username: "root"
+            password: "secret"
+        endpoints:
+            localhost:5432:
+                protocol: tcp
+    broker:
+        engine: rabbitmq
+        api:
+            username: "spryker"
+            password: "secret"
+        endpoints:
+            queue.durst.local:
+            localhost:5672:
+                protocol: tcp
+    session:
+        engine: redis
+    key_value_store:
+        engine: redis
+        endpoints:
+            localhost:16379:
+                protocol: tcp
+    search:
+        engine: elastic
+        version: 5.6
+        endpoints:
+            localhost:9200:
+                protocol: tcp
+    kibana:
+        engine: kibana
+        version: 5.6
+        endpoints:
+            kibana.durst.local:
+    scheduler:
+        engine: jenkins
+        endpoints:
+            scheduler.durst.local:
+    mail_catcher:
+        engine: mailhog
+        endpoints:
+            mail.durst.local:
+    swagger:
+        engine: swagger-ui
+        endpoints:
+            swagger.durst.local:
+    redis-gui:
+        engine: redis-commander
+        endpoints:
+            redis-commander.durst.local:
+    # dashboard:
+    #     engine: dashboard
+    #     endpoints:
+    #         durst.local:
+    # webdriver:
+    #     engine: phantomjs
+
+docker:
+
+    ssl:
+        enabled: false
+        redirect: true
+
+    testing:
+        store: DE
+
+    debug:
+        enabled: true
+        xdebug:
+            enabled: true
+
+    mount:
+        native:
+            platforms:
+                - linux
+
+        docker-sync:
+            platforms:
+                - windows
+
+        mutagen:
+            platform:
+                - macos

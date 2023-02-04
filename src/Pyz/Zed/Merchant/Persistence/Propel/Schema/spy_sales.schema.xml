@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Sales\Persistence"
+          package="src.Orm.Zed.Sales.Persistence">
+
+    <table name="spy_sales_order">
+        <column name="fk_branch" type="INTEGER"/>
+
+        <foreign-key name="spy_sales_order-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+    </table>
+
+</database>

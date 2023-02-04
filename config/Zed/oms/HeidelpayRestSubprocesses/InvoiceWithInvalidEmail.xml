@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="Invoice">
+        <states>
+            <state name="ready for heidelpay invoice"/>
+            <state name="heidelpay invoice created"/>
+            <state name="ready to send invalid email"/>
+            <state name="heidelpay invoice failed" />
+        </states>
+
+        <transitions>
+            <transition happy="true" condition="HeidelpayRest/IsInvoiceCreated">
+                <source>ready for heidelpay invoice</source>
+                <target>heidelpay invoice created</target>
+                <event>create heidelpay invoice</event>
+            </transition>
+
+            <transition>
+                <source>ready for heidelpay invoice</source>
+                <target>ready to send invalid email</target>
+                <event>create heidelpay invoice</event>
+            </transition>
+
+            <transition>
+                <source>ready to send invalid email</source>
+                <target>heidelpay invoice failed</target>
+                <event>send invalid email</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="create heidelpay invoice" onEnter="true" command="HeidelpayRest/CreateInvoice"/>
+            <event name="send invalid email" onEnter="true" manual="true" command="HeidelpayRest/SendInvalidEmail"/>
+        </events>
+    </process>
+</statemachine>

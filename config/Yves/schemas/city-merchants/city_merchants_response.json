@@ -1,0 +1,213 @@
+{
+  "title": "CityMerchantResponse",
+  "type": "object",
+  "required": [
+    "city"
+  ],
+  "properties": {
+    "city": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "merchants": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "b2c_payment_methods",
+          "b2b_payment_methods"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "logo_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "street": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "zip": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "city": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "phone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "terms_of_service": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "heidelpay_public_key": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "b2c_payment_methods": {
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "b2b_payment_methods": {
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "is_wholesale": {
+            "type": "boolean"
+          },
+          "comments_enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "branch_code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "billing": {
+            "type": "object",
+            "properties": {
+              "company": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "street": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "street_number": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "zip_code": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "city": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sales_tax_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "place_jurisdiction": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "eco_control_number": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "person_responsible": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "offers_deposit_pickup": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "payment_provider": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "sepa_mandate_url": {
+            "type": "string"
+          },
+          "payment_methods": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "img_url": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

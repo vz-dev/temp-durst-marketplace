@@ -1,0 +1,19 @@
+{
+  "title": "DriverLogoutRequest",
+  "type": "object",
+  "required":
+  [
+    "token"
+  ],
+  "properties":
+  {
+    "token":
+    {
+      "type":
+      [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="Merchant">
+        <property name="idMerchant" type="int" />
+        <property name="merchantname" type="string" />
+        <property name="salutation" type="string" />
+        <property name="company" type="string" />
+        <property name="password" type="string" />
+        <property name="firstName" type="string" />
+        <property name="status" type="string" />
+        <property name="lastName" type="string" />
+        <property name="lastLogin" type="string" />
+        <property name="merchantPin" type="string" />
+        <property name="fkAclGroup" type="int" />
+        <property name="merchantPin" type="string" />
+    </transfer>
+
+    <transfer name="Mail">
+        <property name="branch" type="Branch" />
+    </transfer>
+
+    <transfer name="Order">
+        <property name="branch" type="Branch"/>
+        <property name="fkBranch" type="int"/>
+        <property name="paymentMethodName" type="string"/>
+    </transfer>
+
+    <transfer name="Quote">
+        <property name="fkBranch" type="int"/>
+    </transfer>
+
+    <transfer name="GetBranchesRequest">
+        <property name="branches" type="Branch[]"/>
+    </transfer>
+
+    <transfer name="GetBranchesResponse">
+        <property name="branches" type="Branch[]" />
+    </transfer>
+
+    <transfer name="BranchCollection">
+        <property name="branches" type="Branch[]" singular="Branch"/>
+    </transfer>
+
+    <transfer name="Branch">
+        <property name="idBranch" type="int" />
+        <property name="fkMerchant" type="int" />
+        <property name="name" type="string" />
+        <property name="defaultMinValueFirst" type="int" />
+        <property name="defaultMinValueFollowing" type="int" />
+        <property name="defaultDeliveryCosts" type="int" />
+        <property name="paymentMethodIds" type="array" />
+        <property name="b2cPaymentMethodIds" type="array" />
+        <property name="b2bPaymentMethodIds" type="array" />
+        <property name="paymentMethods" type="PaymentMethod[]"/>
+        <property name="contactPersonSalutationId" type="int" />
+        <property name="contactPersonPreName" type="string" />
+        <property name="contactPersonName" type="string" />
+        <property name="email" type="string" />
+        <property name="phone" type="string" />
+        <property name="street" type="string" />
+        <property name="number" type="string" />
+        <property name="zip" type="int" />
+        <property name="city" type="string" />
+        <property name="termsOfService" type="string" />
+        <property name="companyProfile" type="string" />
+        <property name="code" type="string" />
+        <property name="logoUrlSmall" type="string" />
+        <property name="logoUrlLarge" type="string" />
+        <property name="status" type="string" />
+        <property name="gln" type="string" />
+        <property name="durstGln" type="string" />
+        <property name="corporateName" type="string" />
+        <property name="sumupAffiliateKey" type="string" />
+        <property name="ediEndpointUrl" type="string" />
+        <property name="AccessToken" type="string" />
+        <property name="basicAuthUsername" type="string" />
+        <property name="basicAuthPassword" type="string" />
+        <property name="unitsOrderedCount" type="int" />
+        <property name="unitsLicenseCount" type="int" />
+        <property name="priceMode" type="string" />
+        <property name="autoEdiExport" type="bool" />
+        <property name="codeSoftwarePackage" type="string" />
+        <property name="warehouseLat" type="float" />
+        <property name="warehouseLng" type="float" />
+        <property name="heidelpayPrivateKey" type="string" />
+        <property name="heidelpayPublicKey" type="string" />
+        <property name="billingCompany" type="string" />
+        <property name="billingStreet" type="string" />
+        <property name="billingNumber" type="string" />
+        <property name="billingZip" type="string" />
+        <property name="billingCity" type="string" />
+        <property name="salesTaxId" type="string" />
+        <property name="placeJurisdiction" type="string" />
+        <property name="ecoControlNumber" type="string" />
+        <property name="personResponsible" type="string" />
+        <property name="billingEmail" type="string" />
+        <property name="dispatcherName" type="string" />
+        <property name="dispatcherEmail" type="string" />
+        <property name="dispatcherPhone" type="string" />
+        <property name="accountingName" type="string" />
+        <property name="accountingEmail" type="string" />
+        <property name="accountingPhone" type="string" />
+        <property name="serviceName" type="string" />
+        <property name="serviceEmail" type="string" />
+        <property name="servicePhone" type="string" />
+        <property name="marketingName" type="string" />
+        <property name="marketingEmail" type="string" />
+        <property name="marketingPhone" type="string" />
+        <property name="dataRetentionDays" type="int" />
+        <property name="heidelpayPublicKey" type="string"/>
+        <property name="heidelpayPrivateKey" type="string"/>
+        <property name="orderOnTimeslot" type="bool"/>
+        <property name="billingBranchInformation" type="string"/>
+        <property name="usesGraphmasters" type="string" />
+    </transfer>
+
+    <transfer name="PaymentMethod">
+        <property name="idPaymentMethod" type="int" />
+        <property name="name" type="string" />
+        <property name="code" type="string"/>
+        <property name="b2c" type="bool"/>
+        <property name="b2b" type="bool"/>
+    </transfer>
+
+    <transfer name="Salutation">
+        <property name="idSalutation" type="int" />
+        <property name="name" type="string" />
+    </transfer>
+
+    <transfer name="DepositSku">
+        <property name="idBranch" type="int"/>
+        <property name="idDeposit" type="int"/>
+        <property name="sku" type="string"/>
+        <property name="skuCase" type="string"/>
+        <property name="skuBottle" type="string"/>
+        <property name="depositValue" type="int"/>
+        <property name="depositCase" type="int"/>
+        <property name="depositBottle" type="int"/>
+        <property name="depositName" type="string"/>
+    </transfer>
+
+    <transfer name="BranchUser">
+        <property name="idBranchUser" type="int"/>
+        <property name="fkBranch" type="int"/>
+        <property name="branch" type="Branch"/>
+        <property name="merchant" type="Merchant"/>
+        <property name="salutation" type="string" />
+        <property name="firstName" type="string" />
+        <property name="lastName" type="string" />
+        <property name="email" type="string" />
+        <property name="password" type="string" />
+        <property name="status" type="string" />
+        <property name="lastLogin" type="string" />
+        <property name="fkAclGroup" type="int" />
+    </transfer>
+
+    <transfer name="MerchantUser">
+        <property name="idMerchantUser" type="int"/>
+        <property name="fkMerchant" type="int"/>
+        <property name="branches" type="Branch[]"/>
+        <property name="merchant" type="Merchant"/>
+        <property name="salutation" type="string" />
+        <property name="firstName" type="string" />
+        <property name="lastName" type="string" />
+        <property name="email" type="string" />
+        <property name="password" type="string" />
+        <property name="status" type="string" />
+        <property name="lastLogin" type="string" />
+        <property name="fkAclGroup" type="int" />
+    </transfer>
+
+</transfers>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<database
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+        namespace="Orm\Zed\Merchant\Persistence"
+        package="src.Orm.Zed.Merchant.Persistence">
+
+    <table name="spy_merchant" idMethod="native" phpName="SpyMerchant">
+        <column name="fk_software_package" required="false" type="INTEGER"/>
+
+        <foreign-key name="spy_merchant-fk_software_package" foreignTable="dst_software_package" phpName="DstSoftwarePackage">
+            <reference local="fk_software_package" foreign="id_software_package"/>
+        </foreign-key>
+    </table>
+
+</database>

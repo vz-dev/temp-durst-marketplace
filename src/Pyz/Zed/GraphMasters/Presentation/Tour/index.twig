@@ -1,0 +1,17 @@
+{% extends '@Application/Layout/layout.twig' %}
+
+{% set widget_title = 'Graphmasters-Touren' %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ table | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

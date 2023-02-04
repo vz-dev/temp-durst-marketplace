@@ -1,0 +1,39 @@
+{% set port = (endpoint | split(':'))[1] | default(80) %} {# 80 port due to HTTP internal request from gateway #}
+{% set externalPort = (endpoint | split(':'))[1] | default(project['_defaultPort']) %}
+{% set host = endpoint | split(':') | first %}
+server {
+{% block server %}
+{% block host %}
+    server_name {{ host }};
+    listen {{ portToListen | default(port) }};
+{% endblock host %}
+{% block auth %}
+{% if endpointData['real-ip'] is not empty %}
+
+{% include "nginx/modules/real-ip.conf.twig"  with {
+    realIp: endpointData['real-ip'] | default({}),
+    endpointData: endpointData,
+    host: host,
+} %}
+
+{% endif %}
+{% if auth['engine'] is not empty %}
+
+{% include "nginx/auth/#{endpointData['auth']['engine']}.conf.twig" with {
+  auth: endpointData['auth'] | default({}),
+  endpointData: endpointData,
+  host: host,
+} %}
+
+{% endif %}
+{% endblock auth %}
+    access_log /dev/stdout combined;
+    error_log /dev/stderr;
+
+{% block locations %}
+    location / {
+        proxy_pass http://{% block upstream %}{{ upstream }}{% endblock upstream %};
+    }
+{% endblock locations %}
+{% endblock server %}
+}

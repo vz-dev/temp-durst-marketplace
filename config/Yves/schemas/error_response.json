@@ -1,0 +1,35 @@
+{
+  "title": "ErrorResponse",
+  "type": "object",
+  "required":
+  [
+    "errors"
+  ],
+  "properties":
+  {
+    "errors":
+    {
+      "type": "array",
+      "items":
+      {
+        "type": "object",
+        "required":
+        [
+          "property",
+          "message"
+        ],
+        "properties":
+        {
+          "property":
+          {
+            "type": "string"
+          },
+          "message":
+          {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

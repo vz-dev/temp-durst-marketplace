@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="durst:state-machine-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="durst:state-machine-01 ../../../../custom-state-machine-01.xsd">
+
+    <process name="WholesaleTour" main="true">
+
+        <states>
+
+            <state name="new"/>
+            <state name="orderable"/>
+            <state name="deleted"/>
+            <state name="no valid orders"/>
+            <state name="empty export to be forced"/>
+            <state name="goods exportable"/>
+            <state name="goods export failed"/>
+            <state name="merchant notified goods"/>
+            <state name="goods exported"/>
+            <state name="in planning"/>
+            <state name="in delivery"/>
+            <state name="loading"/>
+            <state name="journey there"/>
+            <state name="exportable returns"/>
+            <state name="return exportable auto"/>
+            <state name="return exportable manual"/>
+            <state name="return exported"/>
+            <state name="return export failed"/>
+            <state name="merchant notified return"/>
+            <state name="return journey"/>
+            <state name="unloading"/>
+            <state name="finished"/>
+
+        </states>
+
+        <transitions>
+
+            <transition happy="true">
+                <source>new</source>
+                <target>orderable</target>
+                <event>create</event>
+            </transition>
+
+            <transition>
+                <source>orderable</source>
+                <target>deleted</target>
+                <event>delete</event>
+            </transition>
+
+            <transition happy="true" condition="WholesaleTour/HasValidOrders">
+                <source>orderable</source>
+                <target>goods exportable</target>
+                <event>order</event>
+            </transition>
+
+            <transition condition="WholesaleTour/BranchUsesEdiExportV2">
+                <source>orderable</source>
+                <target>empty export to be forced</target>
+                <event>order</event>
+            </transition>
+
+            <transition>
+                <source>orderable</source>
+                <target>no valid orders</target>
+                <event>order</event>
+            </transition>
+
+            <transition>
+                <source>empty export to be forced</source>
+                <target>goods exportable</target>
+                <event>force empty export</event>
+            </transition>
+
+            <transition happy="true" condition="WholesaleTour/AreGoodsExported">
+                <source>goods exportable</source>
+                <target>goods exported</target>
+                <event>export goods</event>
+            </transition>
+
+            <transition>
+                <source>goods exportable</source>
+                <target>goods export failed</target>
+                <event>export goods</event>
+            </transition>
+
+            <transition>
+                <source>goods export failed</source>
+                <target>merchant notified goods</target>
+                <event>notify merchant goods</event>
+            </transition>
+
+            <transition>
+                <source>merchant notified goods</source>
+                <target>goods exportable</target>
+                <event>retry export goods</event>
+            </transition>
+
+            <transition condition="WholesaleTour/IsEmptyExportForced">
+                <source>goods exported</source>
+                <target>exportable returns</target>
+                <event>plan</event>
+            </transition>
+
+            <transition happy="true">
+                <source>goods exported</source>
+                <target>in planning</target>
+                <event>plan</event>
+            </transition>
+
+            <transition happy="true">
+                <source>in planning</source>
+                <target>in delivery</target>
+                <event>deliver</event>
+            </transition>
+
+            <transition>
+                <source>in planning</source>
+                <target>loading</target>
+                <event>load</event>
+            </transition>
+
+            <transition>
+                <source>loading</source>
+                <target>journey there</target>
+                <event>start journey</event>
+            </transition>
+
+            <transition>
+                <source>journey there</source>
+                <target>in delivery</target>
+                <event>start delivery</event>
+            </transition>
+
+            <transition happy="true" condition="WholesaleTour/AllOrdersClosed">
+                <source>in delivery</source>
+                <target>exportable returns</target>
+                <event>finish delivery</event>
+            </transition>
+
+            <transition>
+                <source>in delivery</source>
+                <target>in delivery</target>
+                <event>finish delivery</event>
+            </transition>
+
+            <transition condition="WholesaleTour/AllOrdersClosedOnEnter">
+                <source>in delivery</source>
+                <target>exportable returns</target>
+                <event>finish delivery on enter</event>
+            </transition>
+
+            <transition>
+                <source>in delivery</source>
+                <target>in delivery</target>
+                <event>finish delivery on enter</event>
+            </transition>
+
+            <transition happy="true" condition="WholesaleTour/IsAutoEdiExportEnabled">
+                <source>exportable returns</source>
+                <target>return exportable auto</target>
+                <event>export return</event>
+            </transition>
+
+            <transition>
+                <source>exportable returns</source>
+                <target>return exportable manual</target>
+                <event>export return</event>
+            </transition>
+
+            <transition happy="true" condition="WholesaleTour/IsReturnExported">
+                <source>return exportable auto</source>
+                <target>return exported</target>
+                <event>export return auto</event>
+            </transition>
+
+            <transition>
+                <source>return exportable auto</source>
+                <target>return export failed</target>
+                <event>export return auto</event>
+            </transition>
+
+            <transition>
+                <source>return exportable manual</source>
+                <target>return exportable auto</target>
+                <event>export return manual</event>
+            </transition>
+
+            <transition>
+                <source>return export failed</source>
+                <target>merchant notified return</target>
+                <event>notify merchant return</event>
+            </transition>
+
+            <transition>
+                <source>merchant notified return</source>
+                <target>return exportable auto</target>
+                <event>retry export return</event>
+            </transition>
+
+            <transition condition="WholesaleTour/IsEmptyExportForced">
+                <source>return exported</source>
+                <target>no valid orders</target>
+                <event>end journey</event>
+            </transition>
+
+            <transition happy="true">
+                <source>return exported</source>
+                <target>return journey</target>
+                <event>end journey</event>
+            </transition>
+
+            <transition happy="true">
+                <source>return journey</source>
+                <target>unloading</target>
+                <event>unload</event>
+            </transition>
+
+            <transition happy="true">
+                <source>unloading</source>
+                <target>finished</target>
+                <event>finish</event>
+            </transition>
+
+        </transitions>
+
+        <events>
+
+            <event name="create" onEnter="true"/>
+            <event name="delete" manual="true"/>
+            <event name="order" utcDateTime="\Orm\Zed\Tour\Persistence\DstConcreteTour.preparationStart"/>
+            <event name="force empty export" onEnter="true" command="WholesaleTour/ForceEmptyExport"/>
+            <event name="export goods" onEnter="true" command="WholesaleTour/ExportGoods"/>
+            <event name="retry export goods" manual="true"/>
+            <event name="plan" onEnter="true" command="WholesaleTour/PlanTour" manual="true"/>
+            <event name="deliver" utcDateTime="\Orm\Zed\Tour\Persistence\DstConcreteTour.deliveryStart"  manual="true"/>
+            <event name="notify merchant goods" onEnter="true" command="WholesaleTour/NotifyMerchantGoods"/>
+            <event name="load" manual="true"/>
+            <event name="start journey" manual="true"/>
+            <event name="start delivery" manual="true"/>
+            <event name="export return" timeout="3minutes"/>
+            <event name="finish delivery" manual="true"/>
+            <event name="finish delivery on enter" onEnter="true"/>
+            <event name="export return auto" onEnter="true" command="WholesaleTour/ExportReturnAuto"/>
+            <event name="export return manual" manual="true"/>
+            <event name="retry export return" manual="true"/>
+            <event name="notify merchant return" onEnter="true" command="WholesaleTour/NotifyMerchantReturn"/>
+            <event name="end journey" onEnter="true"/>
+            <event name="unload" onEnter="true"/>
+            <event name="finish" onEnter="true"/>
+
+        </events>
+
+    </process>
+
+</statemachine>

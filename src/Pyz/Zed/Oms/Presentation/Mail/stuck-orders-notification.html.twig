@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="de">
+    <body>
+        <p>Die folgenden Bestellungen sind hängengeblieben:</p>
+        <ul>
+            {% for newStuckOrder in mail.newStuckOrders %}
+                <li><a href="{{ mail.fridgeUrl }}/sales/detail?id-sales-order={{ newStuckOrder.idSalesOrder }}">{{ newStuckOrder.orderReference }}</a> vom {{ newStuckOrder.createdAt | date('d.m.Y') }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

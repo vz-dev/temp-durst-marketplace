@@ -1,0 +1,26 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Create deposit' %}
+
+{% block action %}
+    {{ backActionButton('/merchant-management/deposit', 'Pfand auflisten' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(depositForm) }}
+
+            {{ form_widget(depositForm) }}
+
+            <input type="submit" class="btn btn-primary" value="{{ 'Create' | trans }}" />
+            {{ form_end(depositForm) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

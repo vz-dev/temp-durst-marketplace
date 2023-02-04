@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Product\Persistence"
+          package="src.Orm.Zed.Product.Persistence">
+
+    <table name="spy_product" phpName="SpyProduct">
+        <column name="fk_deposit" type="INTEGER" required ="false"/>
+        <foreign-key name="spy_product-fk_deposit" foreignTable="spy_deposit" phpName="SpyDeposit">
+            <reference foreign="id_deposit" local="fk_deposit"/>
+        </foreign-key>
+    </table>
+</database>

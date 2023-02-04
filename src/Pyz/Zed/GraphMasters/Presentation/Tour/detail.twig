@@ -1,0 +1,20 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% block action %}
+    {{ backActionButton('/graph-masters/tour', 'Zurück zur Übersicht' | trans) }}
+{% endblock %}
+
+{% block section_title %}
+    {{ 'Graphmasters-Tour anzeigen: ID ' | trans }} {{ tour.idGraphmastersTour }}
+{% endblock %}
+
+{% block content %}
+
+    <div id="tour-overview">{% include '@GraphMasters/Tour/boxes/tour-overview.twig' %}</div>
+
+{% endblock %}
+
+{% block head_css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/assets/css/spryker-zed-sales-main.css">
+{% endblock %}

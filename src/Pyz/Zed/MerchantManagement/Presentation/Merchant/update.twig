@@ -1,0 +1,26 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Update merchant #' ~ idMerchant   %}
+
+{% block action %}
+    {{ backActionButton('/merchant-management/merchant', 'List Merchants' | trans) }}
+    {{ createActionButton('/merchant-management/merchant/create', 'Add Merchant' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(merchantForm) }}
+            {{ form_widget(merchantForm) }}
+
+            <input type="submit" class="btn btn-primary" value="{{ 'Update' | trans }}" />
+            {{ form_end(merchantForm) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

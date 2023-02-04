@@ -1,0 +1,44 @@
+{
+  "title": "VoucherResponse",
+  "type": "object",
+  "required":
+  [
+    "voucher_valid"
+  ],
+  "properties":
+  {
+    "voucher_valid":
+    {
+      "type": "boolean"
+    },
+    "merchant":
+    {
+      "type": "object",
+      "properties":
+      {
+        "id":
+        {
+          "type": "number"
+        },
+        "name":
+        {
+          "type": "string"
+        },
+        "city":
+        {
+          "type": "string"
+        },
+        "delivery_areas":
+        {
+          "type": "array",
+          "minItems": 0,
+          "uniqueItems": true,
+          "items":
+          {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

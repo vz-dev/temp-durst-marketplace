@@ -1,0 +1,53 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'HTTP Request ID: %d ansehen'|format(idHttpRequest) %}
+
+{% block action %}
+    {{ backActionButton('/http-request/index/', 'List HTTP Request' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {% if httpRequest != null %}
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                        <p><b>{{ 'HTTP Request ID' | trans }}:</b> {{ httpRequest.idHttpRequest }}</p>
+                        <p><b>{{ 'HTTP Request Uri' | trans }}:</b> {{ httpRequest.requestUri }}</p>
+                        <p><b>{{ 'HTTP Request Options' | trans }}:</b> <pre>{{ httpRequest.requestOptions|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre></p>
+                        <p><b>{{ 'HTTP Request Body' | trans }}:</b> {{ httpRequest.requestBody|json_encode(constant('JSON_PRETTY_PRINT')) }}</p>
+                        <p><b>{{ 'HTTP Request Headers' | trans }}:</b> {{ httpRequest.requestHeaders|json_encode(constant('JSON_PRETTY_PRINT')) }}</p>
+                        <p><b>{{ 'HTTP Request Timeout' | trans }}:</b> {{ httpRequest.requestTimeout }}</p>
+                        <p><b>{{ 'HTTP Request Method' | trans }}:</b> {{ httpRequest.requestMethod }}</p>
+                    </div>
+
+                    <div class="col-xs-12 col-md-4">
+                        <p>&nbsp;</p>
+                        <p><b>{{ 'HTTP Response Code' | trans }}:</b> {{ httpRequest.responseCode }}</p>
+                        <p><b>{{ 'HTTP Response Message' | trans }}:</b> {{ httpRequest.responseMessage }}</p>
+                        <p><b>{{ 'HTTP Response Body' | trans }}:</b> <pre>{{ httpRequest.responseBody|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre></p>
+                        <p><b>{{ 'HTTP Response Headers' | trans }}:</b> {{ httpRequest.responseHeaders|json_encode(constant('JSON_PRETTY_PRINT')) }}</p>
+                        <p><b>{{ 'HTTP Response Errors' | trans }}:</b> {{ httpRequest.responseErrors|json_encode(constant('JSON_PRETTY_PRINT')) }}</p>
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                        <p><b>{{ "Ein HTTP Request mit der ID %d exisiert nicht."|format(idHttpRequest) }}</b></p>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

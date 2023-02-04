@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <http-request>
+        <label>HTTP Request</label>
+        <title>HTTP Request</title>
+        <bundle>http-request</bundle>
+        <controller>index</controller>
+        <action>index</action>
+    </http-request>
+</config>

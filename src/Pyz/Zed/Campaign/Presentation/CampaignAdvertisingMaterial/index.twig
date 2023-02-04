@@ -1,0 +1,21 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Campaign Advertising Material List' %}
+
+{% block action %}
+    {{ createActionButton('/campaign/campaign-advertising-material/create', 'Create new campaign advertising material' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ advertisingMaterials | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

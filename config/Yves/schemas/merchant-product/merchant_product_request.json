@@ -1,0 +1,20 @@
+{
+  "title": "MerchantProductRequest",
+  "type": "object",
+  "required":
+  [
+    "branch_id",
+    "sku"
+  ],
+  "properties":
+  {
+    "branch_id":
+    {
+      "type": "number"
+    },
+    "sku":
+    {
+      "type": "string"
+    }
+  }
+}

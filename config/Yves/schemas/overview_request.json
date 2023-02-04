@@ -1,0 +1,122 @@
+{
+  "title": "OverviewRequest",
+  "type": "object",
+  "properties":
+  {
+    "time_slot_id":
+    {
+      "type": "number"
+    },
+    "cart":
+    {
+      "type": "array",
+      "items":
+      {
+        "type": "object",
+        "properties":
+        {
+          "sku":
+          {
+            "type": "string"
+          },
+          "quantity":
+          {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "voucher_code":
+    {
+      "type":
+        [
+          "string",
+          "null"
+        ]
+    },
+    "shipping_address":
+    {
+      "type": "object",
+      "properties":
+      {
+        "salutation":
+        {
+          "type": "string"
+        },
+        "first_name":
+        {
+          "type": "string"
+        },
+        "last_name":
+        {
+          "type": "string"
+        },
+        "address_1":
+        {
+          "type": "string"
+        },
+        "address_2":
+        {
+          "type": "string"
+        },
+        "address_3":
+        {
+          "type": "string"
+        },
+        "zip_code":
+        {
+          "type": "string"
+        },
+        "city":
+        {
+          "type": "string"
+        },
+        "company":
+        {
+          "type": "string"
+        },
+        "phone":
+        {
+          "type": "string"
+        },
+        "lat":
+        {
+          "type":
+          [
+            "string",
+            "null"
+          ]
+        },
+        "lng":
+        {
+          "type":
+          [
+            "string",
+            "null"
+          ]
+        },
+        "floor":
+        {
+          "type":
+          [
+            "integer",
+            "null"
+          ]
+        },
+        "elevator":
+        {
+          "type":
+          [
+            "boolean",
+            "null"
+          ]
+        },
+        "comment":
+        {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

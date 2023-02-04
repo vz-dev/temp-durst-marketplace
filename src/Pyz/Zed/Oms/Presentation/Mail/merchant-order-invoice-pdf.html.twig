@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" style="background:#2DAFE6!important">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Durst PDF Rechnung</title>
+    <style>
+        /* arabic */
+        @font-face {
+            font-family: 'Mada';
+            font-style: normal;
+            font-weight: 400;
+            src: url({{ mail.pdfAssetsPath }}/fonts/mada_arabic_400.woff2) format('woff2');
+            unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+        }
+        /* latin */
+        @font-face {
+            font-family: 'Mada';
+            font-style: normal;
+            font-weight: 400;
+            src: url({{ mail.pdfAssetsPath }}/fonts/mada_latin_400.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        /* arabic */
+        @font-face {
+            font-family: 'Mada';
+            font-style: normal;
+            font-weight: 700;
+            src: url({{ mail.pdfAssetsPath }}/fonts/mada_arabic_700.woff2) format('woff2');
+            unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+        }
+        /* latin */
+        @font-face {
+            font-family: 'Mada';
+            font-style: normal;
+            font-weight: 700;
+            src: url({{ mail.pdfAssetsPath }}/fonts/mada_latin_700.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        table {
+            page-break-inside: avoid;
+        }
+
+        @page {
+            header: none;
+        }
+
+        @page :first {
+            header: invoiceHeader;
+        }
+
+        table.header {
+            width: 100%;
+            font-family: Mada, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            /*background: #2DAFE6;*/
+            /*color: #ffffff;*/
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+        table.footer {
+            width: 100%;
+            font-family: Mada, Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            background: #2DAFE6;
+            color: #ffffff;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+
+        table.footer {
+            height: 60px;
+        }
+
+        /*table.orderTable {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+        }*/
+
+        table.center {
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        table.orderTable td {
+            font-family: Mada, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight:400;
+            hyphens:auto;
+            color: #000000;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        table.orderTable td {
+            font-family: Mada, Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            color: #000000;
+            font-weight:700;
+            hyphens:auto;
+        }
+
+        table.legalTable {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        table.legalTable td {
+            font-family: Mada, Helvetica, Arial, sans-serif;
+            /*text-align: justify;*/
+            color: #000000;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        td.orderpos {
+            font-size: 11px;
+        }
+
+        table.legalTable td div {
+            width: 1200px;
+        }
+
+
+
+        hr { margin: 8px 0 8px 0; }
+    </style>
+</head>
+<body>
+{% set durst = mail.durst %}
+
+<htmlpageheader name="invoiceHeader">
+    <table class="header">
+        <tr>
+            <td colspan="3"><img src="{{ mail.pdfAssetsPath }}/img/logos/Durst_4C_Logotype.png" alt="Durst Logo" height="100px"/></td>
+            <td align="right" style="font-size: 8px;">Seite {PAGENO} / {nbpg}</td>
+        </tr>
+    </table>
+</htmlpageheader>
+
+<htmlpageheader name="legalHeader">
+    <table class="header">
+        <tr>
+            <td width="40%">
+                <strong style="font-size: 14px;">
+                    Allgemeine Geschäftsbedingungen<br/>
+                    und<br/>
+                    Rechtliche Angaben
+                </strong>
+            </td>
+            <td width="20%" align="center">
+                <img src="{{ mail.pdfAssetsPath }}/img/icons/message.png" alt="Logo" width="100px"/>
+            </td>
+            <td width="40%" style="text-align: right">
+                {% if mail.branch.billingCompany is not empty %}
+                    Im Namen und Auftrag von:<br/>
+                    <strong>{{ mail.branch.billingCompany }}</strong>
+                    <br/>
+                    {{ mail.branch.billingStreet }} {{ mail.branch.billingNumber }} - {{ mail.branch.billingZip }} {{ mail.branch.billingCity }}
+                    <br/>
+                    Ust-ID: {{ mail.branch.salesTaxId }}<br/>
+                    Öko-Kontrollnummer: {{ mail.branch.ecoControlNumber }}<br/>
+                    {{ mail.branch.placeJurisdiction }}
+                {% else %}
+                    {{ durst.name | trans }} - {{ durst.street | trans }} - {{ durst.city | trans }}<br>
+                    {{ durst.vatid | trans }} - {{ durst.bio | trans }}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</htmlpageheader>
+
+<htmlpagefooter name="footer">
+    <table class="footer">
+        <tr>
+            <td width="20%" align="left">
+                <img src="{{ mail.pdfAssetsPath }}/img/logos/durst-logo-footer.jpg" alt="Durst Logo" height="31px">
+            </td>
+            <td width="60%" align="center" style="font-size: 8px">
+                <strong>{{ durst.name | trans }}</strong><br/>
+                {{ durst.street | trans }} - {{ durst.city | trans }}<br/>
+                {{ durst.vatid | trans }} - {{ durst.jurisdiction | trans }}<br/>
+                {{ durst.management | trans }}<br/>
+            </td>
+            <td width="20%" align="right" valign="bottom" style="font-size: 8px">
+                    Seite {PAGENO} von {nbpg}
+            </td>
+        </tr>
+    </table>
+</htmlpagefooter>
+
+<sethtmlpageheader name="invoiceHeader" value="on" show-this-page="1"/>
+
+
+<table class="orderTable" autosize="1">
+
+    <tr>
+        <td colspan="2" width="50%" style="font-size: 12px; padding-top: 40px;">
+            <span style="font-size: 10px;"><strong>{{ durst.name | trans }}</strong> - {{ durst.street | trans }}, {{ durst.city | trans }}<br/>
+            ---------------<br/>
+            </span>
+            {% set address = mail.order.billingAddress %}
+            {% if address.company is not empty %}
+                {{ address.company }}<br/>
+            {% endif %}
+            <strong>
+                {% if address.salutation is not empty %}
+                    {% if address.salutation == 'Mr' %}
+                        Herr
+                    {% elseif address.salutation == 'Ms' or address.salutation == 'Mrs' %}
+                        Frau
+                    {% endif %}
+                {% endif %}{{ address.firstName }} {{ address.lastName }}
+            </strong>
+            <br/>
+            {% if address.address1 is not empty %}
+                {{ address.address1 }}
+                <br/>
+            {% endif %}
+            {% if address.address2 is not empty %}
+                {{ address.address2 }}
+                <br/>
+            {% endif %}
+            {% if address.address3 is not empty %}
+                {{ address.address3 }}
+                <br/>
+            {% endif %}
+            {{ address.zipCode }} {{ address.city }}
+            <br/>
+
+
+        </td>
+        <td colspan="2" width="50%" style="text-align: right; font-size: 12px; padding-top: 40px;">
+            {% if mail.branch.billingCompany is not empty %}
+                Durststrecke GmbH im Namen<br/> und Auftrag von:<br/>
+                <strong>{{ mail.branch.billingCompany }}</strong>
+                <br/>
+                {{ mail.branch.billingStreet }} {{ mail.branch.billingNumber }}<br/>
+                {{ mail.branch.billingZip }} {{ mail.branch.billingCity }}<br/>
+                {% if mail.branch.billingBranchInformation is not empty %}{{ mail.branch.billingBranchInformation }}<br/>{% endif %}
+                Ust-ID: {{ mail.branch.salesTaxId }}<br/>
+                Öko-Kontrollnummer: {{ mail.branch.ecoControlNumber }}<br/>
+                {{ mail.branch.placeJurisdiction }}
+            {% else %}
+                {{ durst.name | trans }} - {{ durst.street | trans }}<br/>
+                {{ durst.city | trans }}<br>
+                {{ durst.vatid | trans }}<br/>
+                {{ durst.bio | trans }}
+            {% endif %}
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4" align="right" style="font-size: 14px; padding-top: 30px; padding-bottom: 20px;">
+            Lieferdatum: {% if mail.order.signedAt is not null %}{{ mail.order.signedAt | date("d.m.Y H:i", "Europe/Berlin") }}{% else %}{{  mail.deliveryTime | date("d.m.Y H:i", "Europe/Berlin") }}{% endif %}<br/>
+            Rechnungsdatum: {{ "now" | date("d.m.Y", "Europe/Berlin") }}<br/>
+            Rechnungsnummer: {{ mail.order.invoiceReference }}
+            {% if mail.shortId is not empty %}
+                <br/>
+                Transaktionsnummer: {{ mail.shortId }}
+            {% endif %}
+            <br/>
+            Bestellungsreferenz: {{ mail.order.orderReference }}
+            {% if mail.durstCustomerReference is not empty %}
+                <br/>
+                Kundenreferenz: {{ mail.durstCustomerReference }}
+            {% endif %}
+            <br/>
+            Zahlart: {{ mail.order.paymentMethodName }}
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4" valign="bottom">
+            <h3>Unsere Rechnung</h3>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4" style="font-size: 14px; padding-top: 10px; padding-bottom: 10px;">
+            Hallo {{ address.firstName }},<br/>
+            vielen Dank für deine Bestellung bei Durst. Nach unserer Lieferung berechnen wir dir folgende Positionen:
+        </td>
+    </tr>
+
+    <tr style="padding:0; padding-top: 20px; text-align:left; vertical-align:top">
+        <td width="10%" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+        <td width="60%" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+        <td width="15%" align="right" class="right small" style="font-family:Mada,Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">Einzelpreis<br />(Brutto)</td>
+        <td width="15%" align="right" class="right small" style="font-family:Mada,Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">Gesamtpreis<br />(Brutto)</td>
+    </tr>
+    <tr>
+        <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px; padding-bottom: 0px;">
+        </td>
+    </tr>
+
+    {% set sumVollgutItems = 0 %}
+
+    {% for item in mail.order.items %}
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td width="10%" valign="middle" class="middle" style="font-size: 14px;display:table-cell;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                {{ item.quantity }} x
+            </td>
+            <td width="60%" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                {{ item.productName }}<br>{{ item.unitName }}
+            </td>
+            <td width="15%" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                {% if item.calculatedDiscounts | length > 0 %}
+                    <s>{{ item.unitGrossPrice | money }}</s><br>
+                {% endif %}
+                {{ item.unitPriceToPayAggregation | money }}
+            </td>
+            <td width="15%" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                {% if item.calculatedDiscounts | length > 0 %}
+                    <s>{{ item.sumGrossPrice | money }}</s><br>
+                {% endif %}
+                {{ item.sumPriceToPayAggregation | money }}
+
+                {% set sumVollgutItems = sumVollgutItems + item.sumPriceToPayAggregation %}
+            </td>
+        </tr>
+        {% for deposit in mail.splitExpensesRefundsReturnDeposits.deposits %}
+            {% set isMatchingDeposit = deposit.type matches '/^deposit-' ~ item.sku ~ '/' %}
+
+            {% if isMatchingDeposit %}
+                <tr>
+                    <td width="10%" class="no-padding" style="font-size: 14px;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                        &nbsp;
+                    </td>
+                    <td width="60%" class="no-padding" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                        Pfand
+                    </td>
+                    <td width="15%" align="right" style="font-size: 14px;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                        {{ deposit.unitPrice | money }}
+                    </td>
+                    <td width="15%" align="right" style="font-size: 14px;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                        {{ deposit.sumPrice | money }}
+
+                        {% set sumVollgutItems = sumVollgutItems + deposit.sumPrice %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+
+        {% if not loop.last %}
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                <hr class="ruler" style="background-color:#8a8a8a;border:none;height:1px">
+            </td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+
+    <tr>
+        <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+        </td>
+    </tr>
+    <tr style="padding:0; paddding-top: 20px; text-align:left; vertical-align:top">
+        <td width="10%" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+        <td width="60%" class="no-padding" style="font-size: 14px;font-weight:700;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <strong>Zwischensumme Vollgut</strong>
+        </td>
+        <td width="15%" align="right" class="right small" style="font-size: 14px;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word"></td>
+        <td width="15%" align="right" class="right small" style="font-size: 14px;font-weight:700;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+            <strong>{{ sumVollgutItems | money }}</strong>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+        </td>
+    </tr>
+
+    {% set totalRefundAmount = 0 %}
+    {% for refund in mail.splitExpensesRefundsReturnDeposits.refunds %}
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td valign="middle" style="font-size: 14px;display:table-cell;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                {{ refund.quantity|default('1') }} x
+            </td>
+            <td style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                Retoure - {{ refund.comment }}
+            </td>
+            <td class="orderpos" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                {% if refund.quantity > 0 %}
+                    -{{ (refund.amount / refund.quantity) | money }}
+                {% endif %}
+            </td>
+            <td class="orderpos" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                -{{ refund.amount | money }}
+                {% set totalRefundAmount = totalRefundAmount - refund.amount %}
+            </td>
+        </tr>
+        {% for depositRefunds in mail.splitExpensesRefundsReturnDeposits.refundDeposits %}
+            {% set isMatchingDepositRefund = depositRefunds.sku matches '/^deposit-' ~ refund.sku ~ '/' %}
+
+            {% if isMatchingDepositRefund and refund.amount > 0 %}
+                <tr>
+                    <td class="orderpos" width="10%" style="font-size: 14px;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                        &nbsp;
+                    </td>
+                    <td class="orderpos" width="60%" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                        Pfand
+                    </td>
+                    <td class="orderpos" width="15%" align="right" style="font-size: 14px;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                        -{{ (depositRefunds.amount / depositRefunds.quantity) | money }}
+                    </td>
+                    <td class="orderpos" width="15%" align="right" style="font-size: 14px;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                        -{{ depositRefunds.amount | money }}
+
+                        {% set totalRefundAmount = totalRefundAmount - depositRefunds.amount %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        {% if not loop.last %}
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                <hr class="ruler" style="background-color:#8a8a8a;border:none;height:1px">
+            </td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+    {% if mail.splitExpensesRefundsReturnDeposits.refunds|length > 0 %}
+        <tr>
+            <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+            </td>
+        </tr>
+        <tr style="padding:0; paddding-top: 20px; text-align:left; vertical-align:top">
+            <td width="10%" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+            <td width="60%" style="font-size: 14px;font-weight:700;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                <strong>Zwischensumme Retoure</strong>
+            </td>
+            <td width="15%" align="right" style="hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word"></td>
+            <td  width="15%" align="right" style="font-size: 14px;font-weight:700;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                <strong>{{ totalRefundAmount | money }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+            </td>
+        </tr>
+    {% endif %}
+
+    {% set totalReturnDeposits = 0 %}
+    {% for returnDeposits in mail.splitExpensesRefundsReturnDeposits.returnDeposits %}
+
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td valign="middle" class="middle" style="display:table-cell;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+
+            </td>
+            <td colspan="3" style="padding:0 10px;font-size: 14px;">
+                Leergut {{ returnDeposits.name }}
+            </td>
+        </tr>
+        {%  if returnDeposits.deposit is defined %}
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td class="orderpos" valign="middle" style="font-size: 14px;display:table-cell;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                {{ returnDeposits.deposit.quantity|default('1') }} x
+            </td>
+            <td class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                {{ returnDeposits.deposit.name }}
+            </td>
+            <td class="orderpos" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                -{{ returnDeposits.deposit.unitPrice | money }}
+            </td>
+            <td class="orderpos" align="right" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                -{{ returnDeposits.deposit.sumPrice | money }}
+                {% set totalReturnDeposits = totalReturnDeposits - returnDeposits.deposit.sumPrice %}
+            </td>
+        </tr>
+        {% endif %}
+        {%  if returnDeposits.cases is defined %}
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td valign="middle" class="orderpos" style="font-size: 14px;display:table-cell;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                    {{ returnDeposits.cases.quantity|default('1') }} x
+                </td>
+                <td class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                    {{ returnDeposits.cases.name }}
+                </td>
+                <td align="right" class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                    -{{ returnDeposits.cases.unitPrice | money }}
+                </td>
+                <td align="right" class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                    -{{ returnDeposits.cases.sumPrice | money }}
+                    {% set totalReturnDeposits = totalReturnDeposits - returnDeposits.cases.sumPrice %}
+                </td>
+            </tr>
+        {% endif %}
+        {% if returnDeposits.bottles is defined %}
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td valign="middle" class="orderpos" style="font-size: 14px;display:table-cell;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                    {{ returnDeposits.bottles.quantity|default('1') }} x
+                </td>
+                <td class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                    {{ returnDeposits.bottles.name }}
+                </td>
+                <td align="right" class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                    -{{ returnDeposits.bottles.unitPrice | money }}
+                </td>
+                <td align="right" class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                    -{{ returnDeposits.bottles.sumPrice | money }}
+                    {% set totalReturnDeposits = totalReturnDeposits - returnDeposits.bottles.sumPrice %}
+                </td>
+            </tr>
+        {% endif %}
+        {% if not loop.last %}
+            <tr style="padding:0;text-align:left;vertical-align:top">
+                <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                    <hr class="ruler" style="background-color:#8a8a8a;border:none;height:1px">
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+
+    {% if mail.splitExpensesRefundsReturnDeposits.returnDeposits|length > 0 %}
+    <tr>
+        <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+        </td>
+    </tr>
+    <tr style="padding:0; paddding-top: 20px; text-align:left; vertical-align:top">
+        <td width="10%" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+        <td width="60%" class="no-padding" style="font-size: 14px;font-weight:700;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <strong>Zwischensumme Leergut</strong>
+        </td>
+        <td width="15%" align="right" class="right small" style="font-size: 14px;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word"></td>
+        <td width="15%" align="right" class="right small" style="font-size: 14px;font-weight:700;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+            <strong>{{ totalReturnDeposits | money }}</strong>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+        </td>
+    </tr>
+    {% endif %}
+
+    {% if mail.splitExpensesRefundsReturnDeposits.deliveryFees|length > 0 %}
+        {% for deliveryFee in mail.splitExpensesRefundsReturnDeposits.deliveryFees %}
+            <tr style="margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
+                <td width="10%" class="orderpos" style="font-size: 14px;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">1 x</td>
+                <td width="60%" class="orderpos" style="font-size: 14px;font-weight:700;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                    Liefergebühr
+                </td>
+                <td width="15%" align="right" class="orderpos" style="font-size: 14px;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word"></td>
+                <td width="15%" align="right" class="orderpos" style="font-size: 14px;font-weight:700;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                    {{ deliveryFee.sumPrice | money }}
+                </td>
+            </tr>
+
+        {% endfor %}
+        <tr>
+            <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+            </td>
+        </tr>
+    {% endif %}
+
+    {% for expense in mail.order.expenses %}
+        {% if expense.type == constant('Pyz\\Shared\\Discount\\DiscountConstants::VOUCHER_CODE_EXPENSE_TYPE') and expense.calculatedDiscounts is iterable %}
+            {% for expenseDiscount in expense.calculatedDiscounts %}
+                <tr style="padding:0;text-align:left;vertical-align:top">
+                    <td valign="middle" class="orderpos" style="font-size: 14px;display:table-cell;hyphens:auto;line-height:20px;margin:0;padding:0 10px;text-align:left;vertical-align:middle;word-wrap:break-word">
+                        {{ expenseDiscount.quantity}} x
+                    </td>
+                    <td class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+                        {{ expenseDiscount.discountName }}
+                    </td>
+                    <td align="right" class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                        -{{ expenseDiscount.unitAmount | money }}
+                    </td>
+                    <td align="right" class="orderpos" style="font-size: 14px;margin:0;padding:0 10px;text-align:right;vertical-align:top;word-wrap:break-word">
+                        -{{ expenseDiscount.sumAmount | money }}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+                    <hr class="ruler" style="background-color:#8a8a8a;border:none;height:2px">
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+
+    <tr style="padding:0;text-align:left;vertical-align:top">
+        <td class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+        <td class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"><strong
+                    style="font-size:16px;font-weight:700">Gesamtbetrag:</strong></td>
+        <td class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+        <td align="right" class="right no-padding" style="font-size:16px;margin:0;padding:0!important;text-align:right;vertical-align:top;word-wrap:break-word"><strong
+                    style="font-weight:700"><u>{{ mail.order.totals.grandTotal | money }}</u></strong></td>
+    </tr>
+
+    {% if mail.order.totals.taxRateTotals|length > 0 %}
+        {% for taxRate in mail.order.totals.taxRateTotals %}
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td style="margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+            <td class="small no-padding" style="font-family:Mada,Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;hyphens:auto;line-height:20px;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">enthaltene
+                Mehrwertsteuer zu {{ taxRate.rate }}%</td>
+            <td class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+            <td align="right" class="right no-padding" style="font-size:12px;margin:0;padding:0!important;text-align:right;vertical-align:top;word-wrap:break-word">{{ taxRate.amount | money }}</td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr style="padding:0;text-align:left;vertical-align:top">
+            <td style="margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+            <td class="small no-padding" style="font-family:Mada,Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;hyphens:auto;line-height:20px;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">enthaltene
+                Mehrwertsteuer zu {{ mail.taxRate }}%</td>
+            <td class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+            <td align="right" class="right no-padding" style="font-size:12px;margin:0;padding:0!important;text-align:right;vertical-align:top;word-wrap:break-word">{{ mail.order.totals.taxTotal.amount | money }}</td>
+        </tr>
+    {% endif %}
+
+    {% set netTotal = mail.order.totals.grandTotal - mail.order.totals.taxTotal.amount %}
+    <tr style="padding:0;text-align:left;vertical-align:top">
+        <td style="margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+        <td class="small no-padding" style="font-family:Mada,Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;hyphens:auto;line-height:20px;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">Nettobetrag</td>
+        <td class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+        <td align="right" class="right no-padding" style="font-size:12px;margin:0;padding:0!important;text-align:right;vertical-align:top;word-wrap:break-word">{{ netTotal | money }}</td>
+    </tr>
+    <tr style="padding:0;text-align:left;vertical-align:top">
+        <td colspan="4" class="no-padding" style="margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">
+            <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+                <tbody>
+                <tr style="padding:0;text-align:left;vertical-align:top">
+                    <td height="10px" style="padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word">&#xA0;</td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr style="padding:0;text-align:left;vertical-align:top">
+        <td style="margin:0;padding:0 10px;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+        <td colspan="2" class="small no-padding" style="font-family:Mada,Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;hyphens:auto;line-height:20px;margin:0;padding:0!important;text-align:left;vertical-align:top;word-wrap:break-word">Alle
+            Beträge inkl. Mehrwertsteuer</td>
+    </tr>
+
+    <tr style="padding-bottom: 10px; padding-bottom: 10px;">
+        <td colspan="2" align="right" valign="top" style="font-size:12px;">Unterschrift Kunde</td>
+
+        <td colspan="2"><img src="{{ mail.order.signatureFilePath }}" alt="Img Unterschrift Kunde" height="100px"/></td>
+    </tr>
+
+    <tr>
+        <td colspan="4" style="font-size: 14px; padding-top: 20px; padding-bottom: 20px;">
+            {% set invoiceHasBeenSettled = (mail.order.paymentMethodName != "Rechnungskauf (garantiert)" and mail.order.paymentMethodName != "Rechnungskauf") %}
+            {% if invoiceHasBeenSettled %}
+                Der Gesamtbetrag von {{ mail.order.totals.grandTotal | money }} wurde
+                per {{ mail.order.paymentMethodName }} beglichen.<br/>
+            {% endif %}
+            {% if mail.order.paymentMethodName == "SEPA-Lastschrift" or mail.order.paymentMethodName == "SEPA-Lastschrift (garantiert)" %}
+                Solltest du Leergut zurückgegeben haben, erfolgt der Ausgleich in den nächsten Tagen mit einer separaten Überweisung.
+            {% elseif not invoiceHasBeenSettled %}
+                {% if mail.order.totals.grandTotal > 0 %}
+                    Bitte überweise den Gesamtbetrag in Höhe von {{ mail.order.totals.grandTotal | money }} innerhalb der nächsten
+                    14 Tage an folgende Bankverbindung:
+                    <br align="center" class="float-center">
+                    <br align="center" class="float-center">
+                    Zahlungsempfänger: {{ mail.heidelpayHolder }}
+                    <br align="center" class="float-center">
+                    IBAN: {{ mail.heidelpayIban }}
+                    <br align="center" class="float-center">
+                    BIC: {{ mail.heidelpayBic }}
+                    <br align="center" class="float-center">
+                    Verwendungszweck: {{ mail.heidelpayDescriptor }}
+                {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" valign="top" style="font-size: 14px;">
+            Lieferadresse:
+        </td>
+        <td colspan="2" style="font-size: 14px;">
+            {% set address = mail.order.shippingAddress %}
+            {% if address.company is not empty %}
+                {{ address.company }}<br/>
+            {% endif %}
+            <strong>
+                {% if address.salutation is not empty %}
+                    {% if address.salutation == 'Mr' %}
+                        Herr
+                    {% elseif address.salutation == 'Ms' or address.salutation == 'Mrs' %}
+                        Frau
+                    {% endif %}
+                {% endif %}{{ address.firstName }} {{ address.lastName }}
+            </strong>
+            <br/>
+            {% if address.address1 is not empty %}
+                {{ address.address1 }}
+                <br/>
+            {% endif %}
+            {% if address.address2 is not empty %}
+                {{ address.address2 }}
+                <br/>
+            {% endif %}
+            {% if address.address3 is not empty %}
+                {{ address.address3 }}
+                <br/>
+            {% endif %}
+            {{ address.zipCode }} {{ address.city }}
+        </td>
+    </tr>
+</table>
+<sethtmlpagefooter name="footer" value="on"/>
+
+<pagebreak/>
+<sethtmlpageheader name="invoiceHeader" value="on" show-this-page="1"/>
+<table class="legalTable" autosize="1" style="width: 100%; max-width: 1200px;">
+    <tr>
+        <td colspan="4" style="font-size: 26px;">
+            <h2>Allgemeine Geschäftsbedingungen und Rechtliche Angaben</h2>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" style="font-size: 12px;">
+            {{ mail.termsOfService|raw }}
+        </td>
+    </tr>
+</table>
+</body>
+</html>

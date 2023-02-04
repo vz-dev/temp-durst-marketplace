@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "index.mapper.dynamic": false
+  },
+  "mappings": {
+    "product_category": {
+      "_all": {
+        "enabled": false
+      },
+      "dynamic": "strict",
+      "properties": {
+        "id_product_category": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "keyword"
+        },
+        "image_url": {
+          "type": "keyword"
+        },
+        "color_code": {
+          "type": "keyword"
+        },
+        "priority": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

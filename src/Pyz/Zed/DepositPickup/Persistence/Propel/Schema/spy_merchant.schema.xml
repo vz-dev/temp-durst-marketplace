@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Merchant\Persistence"
+          package="src.Orm.Zed.Merchant.Persistence">
+    <table name="spy_branch">
+        <column name="offers_deposit_pickup" type="BOOLEAN" required="false" />
+    </table>
+</database>

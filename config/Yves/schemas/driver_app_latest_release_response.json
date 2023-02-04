@@ -1,0 +1,16 @@
+{
+  "title": "DriverLatestReleaseResponse",
+  "type": "object",
+  "required": [
+    "auth_valid",
+    "version"
+  ],
+  "properties": {
+    "auth_valid": {
+      "type": "boolean"
+    },
+    "version": {
+      "type": "string"
+    }
+  }
+}

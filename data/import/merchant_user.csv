@@ -1,0 +1,2 @@
+fk_merchant,salutation,first_name,last_name,email,password,status,fk_acl_group
+5,Mr,Durst,Merchant-User,merchant-user@durst.shop,$2y$10$PSVnnQWqQ.JW6ksW5SSULuZUz2tiuBJb1.6zJCkUxW3kgkffLvv3G,active,1

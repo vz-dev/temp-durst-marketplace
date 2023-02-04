@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="WholesaleOrderSepaDirectDebitGuaranteedItemStates" main="true">
+
+        <subprocesses>
+            <process>Shipment</process>
+            <process>Closing</process>
+            <process>Invoice</process>
+            <process>Capture</process>
+            <process>Refund</process>
+            <process>CheckCustomer</process>
+        </subprocesses>
+
+        <states>
+            <state name="new"/>
+        </states>
+
+        <transitions>
+            <transition happy="true">
+                <source>new</source>
+                <target>ready for customer check</target>
+                <event>start customer check</event>
+            </transition>
+
+            <transition happy="true">
+                <source>customer valid</source>
+                <target>ready for capture</target>
+                <event>start capture process</event>
+            </transition>
+
+            <transition happy="true">
+                <source>capture succeeded</source>
+                <target>ready for shipment</target>
+                <event>start shipment process</event>
+            </transition>
+
+            <transition condition="WholesaleOrder/NeedsRefund">
+                <source>delivered</source>
+                <target>ready for refund</target>
+                <event>start after delivery process</event>
+            </transition>
+
+            <transition happy="true">
+                <source>delivered</source>
+                <target>ready for invoice creation</target>
+                <event>start after delivery process</event>
+            </transition>
+
+            <transition>
+                <source>refund succeeded</source>
+                <target>ready for invoice creation</target>
+                <event>start invoice process</event>
+            </transition>
+
+            <transition happy="true">
+                <source>deposit and refund ordered at wholesaler</source>
+                <target>ready for closing</target>
+                <event>start closing process</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="start customer check" onEnter="true"/>
+            <event name="start shipment process" onEnter="true"/>
+            <event name="start closing process" onEnter="true"/>
+            <event name="start invoice process" onEnter="true"/>
+            <event name="start capture process" onEnter="true"/>
+            <event name="start after delivery process" onEnter="true"/>
+        </events>
+    </process>
+
+    <process name="Shipment" file="WholesaleOrderSubProcessesItemStates/ShipmentSepa.xml"/>
+    <process name="Closing" file="WholesaleOrderSubProcessesItemStates/Closing.xml"/>
+    <process name="Invoice" file="WholesaleOrderSubProcesses/InvoiceSepa.xml"/>
+    <process name="Capture" file="HeidelpayRestSubprocesses/CaptureWithInvalidEmail.xml"/>
+    <process name="Refund" file="HeidelpayRestSubprocesses/Refund.xml"/>
+    <process name="CheckCustomer" file="HeidelpayRestSubprocesses/CheckCustomer.xml"/>
+
+</statemachine>

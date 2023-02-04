@@ -1,0 +1,15 @@
+{
+  "title": "PaymentStatusRequest",
+  "type": "object",
+  "required":
+  [
+    "order_ref"
+  ],
+  "properties":
+  {
+    "order_ref":
+    {
+      "type": "string"
+    }
+  }
+}

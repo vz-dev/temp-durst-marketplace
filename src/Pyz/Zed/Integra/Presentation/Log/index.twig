@@ -1,0 +1,20 @@
+{% extends '@Application/Layout/layout.twig' %}
+
+{% set widget_title = 'Integra Log' %}
+
+{% block action %}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ table | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

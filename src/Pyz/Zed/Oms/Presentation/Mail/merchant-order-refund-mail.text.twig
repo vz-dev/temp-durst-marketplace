@@ -1,0 +1,32 @@
++++ Die Bestellung mit der Rechnungsnummer {{ mail.order.invoiceReference }}
+vom  {{  mail.order.invoiceCreatedAt | date("d.m.Y", "Europe/Berlin")  }}
+enthält Retouren. +++
+
+==================================================
+
+Hier ist ein Link zu den Bestelldetails {{ mail.order.idSalesOrder }}
+
+==================================================
+Die Bestellung wurde vom Fahrer:  {{ mail.driver.firstName }} {{ mail.driver.lastName }} abgeschlossen.
+
+==================================================
+
+{% set depositReturnedValue = 0 %}
+
+{% for refund in mail.order.refunds %}
+    {{ refund.quantity }}x Retoure: {{ refund.comment }}
+    ------------------------------------
+{% endfor %}
+
+Alle Beträge inkl. Mehrwertsteuer
+
+
+==================================================
+
+{% if mail.footerBannerLink | trans %}
+    {{ mail.footerBannerCta | trans }}
+    {{ mail.footerBannerLink | trans }}
+{% endif %}
+
+-----------------
+{% include '@Oms/Mail/partials/footer.text.twig' with {'mail': mail} %}

@@ -1,0 +1,52 @@
+{
+  "settings": {
+    "index.mapper.dynamic": false
+  },
+  "mappings": {
+    "gm_time_slot": {
+      "_all": {
+        "enabled": false
+      },
+      "dynamic": "strict",
+      "properties": {
+        "id_time_slot": {
+          "type": "integer",
+          "index_options": "offsets"
+        },
+        "start_time": {
+          "type": "date",
+          "index_options": "offsets",
+          "format": "epoch_second"
+        },
+        "end_time": {
+          "type": "date",
+          "index_options": "offsets",
+          "format": "epoch_second"
+        },
+        "start_hour_min": {
+          "type": "date",
+          "format": "hour_minute"
+        },
+        "end_hour_min": {
+          "type": "date",
+          "format": "hour_minute"
+        },
+        "date": {
+          "type": "date",
+          "index_options": "offsets"
+        },
+        "day_of_week": {
+          "type": "keyword"
+        },
+        "time_slot_start_date_raw": {
+          "type": "date",
+          "index_options": "offsets"
+        },
+        "time_slot_end_date_raw": {
+          "type": "date",
+          "index_options": "offsets"
+        }
+      }
+    }
+  }
+}

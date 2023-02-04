@@ -1,0 +1,27 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Campaign Period' %}
+
+{% block action %}
+    {{ backActionButton('/campaign/campaign-period', 'Back to Campaign Periods' | trans) }}
+{% endblock %}
+
+{% block section_title %}
+    {{ 'View Campaign Period:' | trans }} {{ campaignPeriod.idcampaignPeriod }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            <div id="order-overview">
+                {% include '@Campaign/Detail/boxes/campaign-period-overview.twig' %}
+            </div>
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% embed '@Gui/Partials/widget.twig' with { widget_title: 'Campaign Period Overview' } %}
+
+    {% block widget_content %}
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <p><b>{{ 'Campaign ID' | trans }}:</b> {{ campaignPeriod.idcampaignPeriod }}</p>
+                <p><b>{{ 'Name' | trans }}:</b> {{ campaignPeriod.campaignName }}</p>
+                <p><b>{{ 'Description' | trans }}:</b> {{ campaignPeriod.campaignDescription }}</p>
+                <p><b>{{ 'Start date' | trans }}:</b> {{ campaignPeriod.campaignStartDate | formatDate }}</p>
+                <p><b>{{ 'End date' | trans }}:</b> {{ campaignPeriod.campaignEndDate | formatDate }}</p>
+                <p><b>{{ 'Lead time (weeks)' | trans }}:</b> {{ campaignPeriod.campaignLeadTime }}</p>
+                <p><b>{{ 'Days until start' | trans }}:</b> {{ campaignPeriod.daysLeft }}</p>
+                <p><b>{{ 'Campaign starts' | trans }}:</b> {{ campaignPeriod.campaignStart | formatDate }}</p>
+                <hr />
+                <p><b>{{ 'Created' | trans }}:</b> {{ campaignPeriod.createdAt | formatDateTime }}</p>
+                <p><b>{{ 'Last updated' | trans }}:</b> {{ campaignPeriod.updatedAt | formatDateTime }}</p>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                {% for material in campaignPeriod.assignedCampaignAdvertisingMaterials %}
+                    <p><b>{{ 'Name' | trans }}:</b> {{ material.campaignAdvertisingMaterialName }}</p>
+                    {% if material.campaignAdvertisingMaterialDescription %}
+                        <p><b>{{ 'Description' | trans }}:</b> {{ material.campaignAdvertisingMaterialDescription }}</p>
+                    {% endif %}
+                    <p><b>{{ 'Lead time (weeks)' | trans }}:</b> {{ material.campaignAdvertisingMaterialLeadTime }}</p>
+                    <p><b>{{ 'Ordering until' | trans }}:</b> {{ material.campaignAdvertisingMaterialEndDate | formatDate }}</p>
+                    <p><b>{{ 'Days left' | trans }}:</b> {{ material.daysLeft }}</p>
+                    <p><b>{{ 'Active' | trans }}:</b>
+                        {% if material.isActive %}
+                            <i class="fa fa-check" style="color: #3adb76"></i>
+                        {% else %}
+                            <i class="fa fa-times" style="color: #851010"></i>
+                        {% endif %}
+                    </p>
+                    <hr />
+                {% endfor %}
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

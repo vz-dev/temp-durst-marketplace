@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="Realax">
+        <property name="header" type="RealaxHeader" />
+        <property name="bookingHead" type="RealaxBookingHead" />
+        <property name="bookingPositions" singular="bookingPosition" type="RealaxBookingPosition[]" />
+    </transfer>
+
+    <transfer name="RealaxHeader">
+        <property name="exportType" type="string" />
+        <property name="identifier" type="string" />
+        <property name="numberHandover" type="string" />
+        <property name="createdAt" type="string" />
+        <property name="applicationNumber" type="string" />
+        <property name="release" type="string" />
+        <property name="accountingArea" type="string" />
+        <property name="updatedAt" type="string" />
+        <property name="description" type="string" />
+        <property name="convertAnsi" type="bool" />
+        <property name="carryover" type="bool" />
+    </transfer>
+
+    <transfer name="RealaxBookingHead">
+        <property name="exportType" type="string" />
+        <property name="identifier" type="string" />
+        <property name="numberHandover" type="string" />
+        <property name="positionHandover" type="string" />
+        <property name="accountType" type="int" />
+        <property name="account" type="string" />
+        <property name="debits" type="int" />
+        <property name="documentNumber" type="string" />
+        <property name="foreignDocumentNumber" type="string" />
+        <property name="oiNumber" type="string" />
+        <property name="documentDate" type="string" />
+        <property name="bookingTypeNumber" type="int" />
+        <property name="bookingState" type="int" />
+        <property name="bookingText" type="string" />
+        <property name="currency" type="string" />
+        <property name="amountCurrency" type="float" />
+        <property name="amount" type="float" />
+        <property name="amountDiscountCurrency" type="float" />
+        <property name="amountDiscount" type="float" />
+        <property name="paymentType" type="int" />
+        <property name="paymentCondition" type="string" />
+        <property name="firstDiscountDate" type="string" />
+        <property name="secondDiscountDate" type="string" />
+        <property name="firstDiscountPercent" type="float" />
+        <property name="secondDiscountPercent" type="float" />
+        <property name="dueDateNet" type="string" />
+        <property name="valueDate" type="string" />
+        <property name="valueDays" type="int" />
+        <property name="autoDunning" type="bool" />
+        <property name="autoRegulation" type="bool" />
+        <property name="discountableAmountCurrency" type="float" />
+        <property name="discountableAmount" type="float" />
+        <property name="periodicBookingStart" type="string" />
+        <property name="periodicBookingEnd" type="string" />
+        <property name="periodCycle" type="int" />
+        <property name="costUnit" type="string" />
+        <property name="costObject" type="string" />
+        <property name="costType" type="string" />
+        <property name="project" type="string" />
+        <property name="baseCurrency" type="string" />
+        <property name="exchangeRate" type="float" />
+        <property name="bearing" type="float" />
+        <property name="exchangeRateToEuro" type="float" />
+        <property name="exchangeRateToBase" type="float" />
+        <property name="dunningGroup" type="int" />
+        <property name="dunningLevel" type="int" />
+        <property name="dunningDate" type="string" />
+        <property name="companyCode" type="string" />
+        <property name="paginationNumber" type="string" />
+        <property name="referenceNumber" type="string" />
+    </transfer>
+
+    <transfer name="RealaxBookingPosition">
+        <property name="exportType" type="string" />
+        <property name="identifier" type="string" />
+        <property name="numberHandover" type="string" />
+        <property name="positionHandover" type="string" />
+        <property name="offsetAccount" type="int" />
+        <property name="accountType" type="int" />
+        <property name="account" type="string" />
+        <property name="debits" type="int" />
+        <property name="bookingText" type="string" />
+        <property name="costUnit" type="string" />
+        <property name="costObject" type="string" />
+        <property name="costType" type="string" />
+        <property name="project" type="string" />
+        <property name="taxType" type="int" />
+        <property name="customsDutyKey" type="int" />
+        <property name="amountCurrencyNet" type="float" />
+        <property name="amountNet" type="float" />
+        <property name="taxAmountCurrency" type="float" />
+        <property name="taxAmount" type="float" />
+        <property name="quantityUnit" type="string" />
+        <property name="quantity" type="float" />
+        <property name="amountDiscountCurrency" type="float" />
+        <property name="amountDiscount" type="float" />
+    </transfer>
+
+</transfers>

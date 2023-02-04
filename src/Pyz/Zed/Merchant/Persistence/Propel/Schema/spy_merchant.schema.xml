@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Merchant\Persistence"
+          package="src.Orm.Zed.Merchant.Persistence">
+
+    <table name="spy_merchant" idMethod="native" phpName="SpyMerchant">
+        <column name="id_merchant" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_locale" type="INTEGER"/>
+        <column name="merchantname" required="true" size="255" type="VARCHAR"/>
+        <column name="salutation" type="ENUM" valueSet="Mr, Mrs, Dr, Ms"/>
+        <column name="first_name" size="100" type="VARCHAR"/>
+        <column name="last_name" size="100" type="VARCHAR"/>
+        <column name="company" size="100" type="VARCHAR"/>
+        <column name="password" default="null" size="255" type="VARCHAR"/>
+        <column name="restore_password_key" size="150" type="VARCHAR" default="NULL"/>
+        <column name="restore_password_date" type="TIMESTAMP" default="NULL"/>
+        <column name="registered" type="DATE" default="NULL"/>
+        <column name="registration_key" size="150" type="VARCHAR" default="NULL"/>
+        <column name="last_login" required="false" type="TIMESTAMP" />
+        <column name="status" required="true" size="10" type="ENUM" valueSet="active,blocked,deleted" defaultValue="active"/>
+        <column name="default_min_value_first" type="INTEGER"/>
+        <column name="default_min_value_following" type="INTEGER"/>
+        <column name="default_delivery_costs" type="INTEGER"/>
+        <column name="merchant_pin" size="4" type="VARCHAR"/>
+        <column name="fk_acl_group" type="INTEGER"/>
+
+        <behavior name="timestampable"/>
+
+        <behavior name="archivable"/>
+
+        <unique name="spy_merchant-merchantname">
+            <unique-column name="merchantname"/>
+        </unique>
+
+        <unique name="spy_merchant-merchant_pin">
+            <unique-column name="merchant_pin"/>
+        </unique>
+
+        <foreign-key name="spy_merchant-fk_locale" foreignTable="spy_locale" phpName="Locale">
+            <reference local="fk_locale" foreign="id_locale"/>
+        </foreign-key>
+
+        <foreign-key name="spy_merchant-fk_acl_group" foreignTable="spy_acl_group" phpName="SpyAclGroup">
+            <reference local="fk_acl_group" foreign="id_acl_group"/>
+        </foreign-key>
+
+        <id-method-parameter value="spy_merchant_pk_seq"/>
+    </table>
+
+    <table name="spy_branch" idMethod="native" phpName="SpyBranch">
+        <column name="id_branch" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_merchant" required="true" type="INTEGER"/>
+        <column name="name" required="true" size="255" type="VARCHAR"/>
+        <column name="fk_contact_person_salutation" type="INTEGER" />
+        <column name="contact_person_pre_name" required="false" size="255" type="VARCHAR"/>
+        <column name="contact_person_name" required="false" size="255" type="VARCHAR"/>
+        <column name="email" required="false" size="255" type="VARCHAR"/>
+        <column name="phone" required="false" size="255" type="VARCHAR"/>
+        <column name="street" required="false" size="255" type="VARCHAR"/>
+        <column name="number" required="false" size="255" type="VARCHAR"/>
+        <column name="zip" required="false" size="255" type="VARCHAR"/>
+        <column name="city" required="false" size="255" type="VARCHAR"/>
+        <column name="terms_of_service" required="false" type="LONGVARCHAR"/>
+        <column name="company_profile" required="false" type="LONGVARCHAR"/>
+        <column name="code" required="false" size="255" type="VARCHAR"/>
+        <column name="image_url_small" type="VARCHAR" size="2048"/>
+        <column name="image_url_large" type="VARCHAR" size="2048"/>
+        <column name="default_min_value_first" type="INTEGER"/>
+        <column name="default_min_value_following" type="INTEGER"/>
+        <column name="default_delivery_costs" type="INTEGER"/>
+        <column name="gln" type="VARCHAR" size="255"/>
+        <column name="durst_gln" type="VARCHAR" size="255"/>
+        <column name="corporate_name" type="VARCHAR" size="255"/>
+        <column name="sumup_affiliate_key" type="VARCHAR" size="255"/>
+        <column name="edi_endpoint_url" required="false" type="VARCHAR" size="255"/>
+        <column name="access_token" required="false" type="VARCHAR" size="255"/>
+        <column name="basic_auth_username" required="false" type="VARCHAR" size="255"/>
+        <column name="basic_auth_password" required="false" type="VARCHAR" size="255"/>
+        <column name="status" required="true" size="10" type="ENUM" valueSet="active,blocked,deleted" defaultValue="blocked"/>
+        <column name="units_ordered_count" type="INTEGER" required="false" default="0" description="/count of units ordered at this branch/" />
+        <column name="units_license_count" type="INTEGER" required="false" default="0" description="/count of units licensed for this branch/" />
+        <column name="price_mode" type="ENUM" valueSet="NET_MODE, GROSS_MODE" required="false"/>
+        <column name="auto_edi_export" type="BOOLEAN" required="true" defaultValue="false"/>
+        <column name="warehouse_lat" type="FLOAT"/>
+        <column name="warehouse_lng" type="FLOAT"/>
+        <column name="heidelpay_private_key" type="VARCHAR" size="255" required="false"/>
+        <column name="heidelpay_public_key" type="VARCHAR" size="255" required="false"/>
+        <column name="billing_company" type="VARCHAR" size="255" required="false"/>
+        <column name="billing_street" type="VARCHAR" size="255" required="false"/>
+        <column name="billing_number" type="VARCHAR" size="255" required="false"/>
+        <column name="billing_zip" type="VARCHAR" size="255" required="false"/>
+        <column name="billing_city" type="VARCHAR" size="255" required="false"/>
+        <column name="sales_tax_id" type="VARCHAR" size="255" required="false"/>
+        <column name="place_jurisdiction" type="VARCHAR" size="255" required="false"/>
+        <column name="eco_control_number" type="VARCHAR" size="255" required="false"/>
+        <column name="person_responsible" type="VARCHAR" size="2048" required="false"/>
+        <column name="billing_email" type="VARCHAR" size="255" required="false"/>
+        <column name="dispatcher_name" type="VARCHAR" size="255" required="false"/>
+        <column name="dispatcher_email" type="VARCHAR" size="255" required="false"/>
+        <column name="dispatcher_phone" type="VARCHAR" size="255" required="false"/>
+        <column name="accounting_name" type="VARCHAR" size="255" required="false"/>
+        <column name="accounting_email" type="VARCHAR" size="255" required="false"/>
+        <column name="accounting_phone" type="VARCHAR" size="255" required="false"/>
+        <column name="service_name" type="VARCHAR" size="255" required="false"/>
+        <column name="service_email" type="VARCHAR" size="255" required="false"/>
+        <column name="service_phone" type="VARCHAR" size="255" required="false"/>
+        <column name="marketing_name" type="VARCHAR" size="255" required="false"/>
+        <column name="marketing_email" type="VARCHAR" size="255" required="false"/>
+        <column name="marketing_phone" type="VARCHAR" size="255" required="false"/>
+        <column name="data_retention_days" type="INTEGER" required="true" unsigned="true" default="1"/>
+        <column name="order_on_timeslot" type="BOOLEAN" defaultValue="false" />
+        <column name="billing_branch_information" type="VARCHAR" size="255" />
+
+        <behavior name="timestampable"/>
+
+        <behavior name="archivable"/>
+
+        <unique name="spy_branch-code">
+            <unique-column name="code"/>
+        </unique>
+
+        <foreign-key name="spy_branch-fk_merchant" foreignTable="spy_merchant" phpName="SpyMerchant">
+            <reference local="fk_merchant" foreign="id_merchant"/>
+        </foreign-key>
+
+        <foreign-key name="spy_branch-fk_contact_person_salutation" foreignTable="spy_enum_salutation" phpName="SpyEnumSalutation">
+            <reference local="fk_contact_person_salutation" foreign="id_enum_salutation"/>
+        </foreign-key>
+
+        <id-method-parameter value="spy_branch_pk_seq"/>
+    </table>
+
+    <table name="spy_branch_to_payment_method" idMethod="native" phpName="SpyBranchToPaymentMethod">
+        <column name="id_branch_to_payment_method" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" required="true" type="INTEGER"/>
+        <column name="fk_payment_method" required="true" type="INTEGER"/>
+        <column name="b2c" type="BOOLEAN"/>
+        <column name="b2b" type="BOOLEAN"/>
+        <foreign-key name="spy_branch_to_payment_method-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+        <foreign-key name="spy_branch_to_payment_method-fk_payment_method" foreignTable="spy_payment_method" phpName="SpyPaymentMethod">
+            <reference local="fk_payment_method" foreign="id_payment_method"/>
+        </foreign-key>
+
+        <id-method-parameter value="spy_branch_to_payment_method_pk_seq"/>
+    </table>
+
+    <table name="spy_payment_method" idMethod="native" phpName="SpyPaymentMethod">
+        <column name="id_payment_method" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="name" required="true" size="255" type="VARCHAR"/>
+        <column name="code" required="true" size="255" type="VARCHAR"/>
+
+        <unique name="spy_payment_method-code">
+            <unique-column name="code"/>
+        </unique>
+
+        <id-method-parameter value="spy_payment_method_pk_seq"/>
+    </table>
+
+    <table name="spy_enum_salutation" idMethod="native" phpName="SpyEnumSalutation">
+        <column name="id_enum_salutation" required="true" type="INTEGER" autoIncrement="true" primaryKey="true" />
+        <column name="name" required="true" size="255" type="VARCHAR" />
+
+        <id-method-parameter value="spy_enum_salutation_pk_seq"/>
+    </table>
+
+    <table name="dst_branch_to_deposit" phpName="DstBranchToDeposit">
+        <column name="fk_branch" required="true" type="INTEGER" primaryKey="true" />
+        <column name="fk_deposit" required="true"  type="INTEGER"  primaryKey="true"/>
+        <column name="sku" required="true" size="255" type="VARCHAR" />
+        <column name="sku_case" required="true" size="255" type="VARCHAR" />
+        <column name="sku_bottle" required="true" size="255" type="VARCHAR" />
+
+        <foreign-key name="dst_branch_to_deposit-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+        <foreign-key name="dst_branch_to_deposit-fk_deposit" foreignTable="spy_deposit" phpName="SpyDeposit">
+            <reference local="fk_deposit" foreign="id_deposit"/>
+        </foreign-key>
+
+    </table>
+
+    <table name="dst_branch_user" phpName="DstBranchUser">
+        <column name="id_branch_user" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_branch" type="INTEGER"/>
+        <column name="salutation" type="ENUM" valueSet="Mr, Mrs, Dr, Ms"/>
+        <column name="first_name" size="100" type="VARCHAR"/>
+        <column name="last_name" size="100" type="VARCHAR"/>
+        <column name="email" size="100" type="VARCHAR"/>
+        <column name="password" default="null" size="255" type="VARCHAR"/>
+        <column name="restore_password_key" size="150" type="VARCHAR" default="NULL"/>
+        <column name="restore_password_date" type="TIMESTAMP" default="NULL"/>
+        <column name="registered" type="DATE" default="NULL"/>
+        <column name="registration_key" size="150" type="VARCHAR" default="NULL"/>
+        <column name="last_login" required="false" type="TIMESTAMP" />
+        <column name="status" required="true" size="10" type="ENUM" valueSet="active,blocked,deleted" defaultValue="active"/>
+        <column name="fk_acl_group" type="INTEGER"/>
+
+        <behavior name="timestampable"/>
+
+        <behavior name="archivable"/>
+
+        <unique name="dst_branch_user-email">
+            <unique-column name="email"/>
+        </unique>
+
+        <foreign-key name="spy_branch_user-fk_branch" foreignTable="spy_branch" phpName="SpyBranch">
+            <reference local="fk_branch" foreign="id_branch"/>
+        </foreign-key>
+
+        <foreign-key name="dst_branch_user-fk_acl_group" foreignTable="spy_acl_group" phpName="SpyAclGroup">
+            <reference local="fk_acl_group" foreign="id_acl_group"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_branch_user_pk_seq"/>
+
+    </table>
+
+    <table name="dst_merchant_user" phpName="DstMerchantUser">
+        <column name="id_merchant_user" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_merchant" type="INTEGER"/>
+        <column name="salutation" type="ENUM" valueSet="Mr, Mrs, Dr, Ms"/>
+        <column name="first_name" size="100" type="VARCHAR"/>
+        <column name="last_name" size="100" type="VARCHAR"/>
+        <column name="email" size="100" type="VARCHAR"/>
+        <column name="password" default="null" size="255" type="VARCHAR"/>
+        <column name="restore_password_key" size="150" type="VARCHAR" default="NULL"/>
+        <column name="restore_password_date" type="TIMESTAMP" default="NULL"/>
+        <column name="registered" type="DATE" default="NULL"/>
+        <column name="registration_key" size="150" type="VARCHAR" default="NULL"/>
+        <column name="last_login" required="false" type="TIMESTAMP" />
+        <column name="status" required="true" size="10" type="ENUM" valueSet="active,blocked,deleted" defaultValue="active"/>
+        <column name="fk_acl_group" type="INTEGER"/>
+
+        <behavior name="timestampable"/>
+
+        <behavior name="archivable"/>
+
+        <unique name="dst_merchant_user-email">
+            <unique-column name="email"/>
+        </unique>
+
+        <foreign-key name="spy_merchant_user-fk_merchant" foreignTable="spy_merchant" phpName="SpyMerchant">
+            <reference local="fk_merchant" foreign="id_merchant"/>
+        </foreign-key>
+
+        <foreign-key name="dst_merchant_user-fk_acl_group" foreignTable="spy_acl_group" phpName="SpyAclGroup">
+            <reference local="fk_acl_group" foreign="id_acl_group"/>
+        </foreign-key>
+
+        <id-method-parameter value="dst_merchant_user_pk_seq"/>
+
+    </table>
+
+</database>

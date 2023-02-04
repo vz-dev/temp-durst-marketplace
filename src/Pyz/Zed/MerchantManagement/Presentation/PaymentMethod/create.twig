@@ -1,0 +1,26 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Create payment method' %}
+
+{% block action %}
+    {{ backActionButton('/merchant-management/payment-method', 'List Payment Methods' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(form) }}
+
+            {{ form_widget(form) }}
+
+            <input type="submit" class="btn btn-primary" value="{{ 'Create' | trans }}" />
+            {{ form_end(form) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

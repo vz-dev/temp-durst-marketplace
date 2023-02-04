@@ -1,0 +1,22 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Create campaign advertising material' %}
+
+{% block action %}
+    {{ backActionButton('/campaign/campaign-advertising-material/', 'Back' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(form) }}
+            {{ form_end(form) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

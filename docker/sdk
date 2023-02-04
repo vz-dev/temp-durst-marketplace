@@ -1,0 +1,82 @@
+#!/bin/bash
+
+set -e
+
+export SELF_SCRIPT=$0
+SOURCE_DIR="${BASH_SOURCE%/*}"
+
+pushd "${BASH_SOURCE%/*}" >/dev/null
+. ./bin/framework.sh
+popd >/dev/null
+
+Registry::Help::section 'Basic usage:'
+Registry::Help::command -s -e "SPRYKER_PROJECT_NAME=<project-name>" -a "<command> [args...]" "Runs the command for the specified ${HELP_HIGH}<project-name>${HELP_DESC}."
+Registry::Help::command -s -c "${HELP_ENV}[-p <project-name>]${NC}" -a "<command> [args...]" "Runs the command for the specified ${HELP_HIGH}<project-name>${HELP_DESC}."
+
+import environment/cross-platform.sh
+import environment/check-directories.sh
+import command/install/bootstrap.sh
+
+import command/install/config.sh
+
+SPRYKER_PROJECT_NAME=${SPRYKER_PROJECT_NAME:-default}
+
+while getopts ":p:" opt; do
+    case ${opt} in
+        p)
+            SPRYKER_PROJECT_NAME=$OPTARG
+            if [ "${SPRYKER_PROJECT_NAME}" != "${SPRYKER_PROJECT_NAME%[[:space:]]*}" ]; then
+                Console::error "${WARN}The project name cannot contain spaces.${NC}"
+                exit 1
+            fi
+            ;;
+        # Unknown option specified
+        \?)
+            Registry::printHelp
+            Console::error "\nUnknown option ${INFO}-${OPTARG}${WARN} is acquired."
+            exit 1
+            ;;
+        # Specified argument without required value
+        :)
+            Registry::printHelp
+            Console::error "Option ${INFO}-${OPTARG}${WARN} requires an argument."
+            exit 1
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+System::Bootstrap
+
+readonly DESTINATION_DIR="${SOURCE_DIR}/deployment/${SPRYKER_PROJECT_NAME}"
+readonly DEPLOY_SCRIPT=${DESTINATION_DIR}/deploy
+
+Registry::Help::section 'Quick start:'
+Registry::Help::row "${SELF_SCRIPT} bootstrap && ${SELF_SCRIPT} up"
+
+command=$1
+shift || true
+
+case "${command}" in
+    config)
+        bash "${FRAMEWORK_CWD}/standalone/logo/spryker-sdk.sh" >&2
+        Command::config "${@}"
+        ;;
+    boot | bootstrap)
+        bash "${FRAMEWORK_CWD}/standalone/logo/spryker-sdk.sh" >&2
+        Command::bootstrap "${@}"
+        ;;
+    help | '')
+        bash "${FRAMEWORK_CWD}/standalone/logo/spryker-sdk.sh" >&2
+        Registry::printHelp
+        [ -f "${DEPLOY_SCRIPT}" ] && ${DEPLOY_SCRIPT} help "${@}"
+        ;;
+    *)
+        if [ ! -f "${DEPLOY_SCRIPT}" ]; then
+            Registry::printHelp
+            Console::error "${WARN}The project is not initialized yet. Run ${YELLOW}${SELF_SCRIPT} bootstrap${WARN} before any command.${NC}"
+            exit 1
+        fi
+        ${DEPLOY_SCRIPT} "${command}" "${@}"
+        ;;
+esac

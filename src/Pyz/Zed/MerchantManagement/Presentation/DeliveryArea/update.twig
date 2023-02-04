@@ -1,0 +1,26 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Update delivery area #' ~ idDeliveryArea   %}
+
+{% block action %}
+    {{ backActionButton('/merchant-management/delivery-area', 'List Delivery Areas' | trans) }}
+    {{ createActionButton('/merchant-management/delivery-area/create', 'Add Delivery Area' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(deliveryAreaForm) }}
+            {{ form_widget(deliveryAreaForm) }}
+
+            <input type="submit" class="btn btn-primary" value="{{ 'Update' | trans }}" />
+            {{ form_end(deliveryAreaForm) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

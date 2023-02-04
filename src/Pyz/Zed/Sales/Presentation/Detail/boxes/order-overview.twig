@@ -1,0 +1,115 @@
+{% embed '@Gui/Partials/widget.twig' with { widget_title: 'Order Overview' } %}
+
+    {% block widget_content %}
+        <div class="row">
+            <div class="col-xs-12 col-md-3">
+                <p><b>{{ 'Order Reference' | trans }}:</b> {{ order.orderReference }}</p>
+                <p><b>{{ 'Order date' | trans }}:</b> {{ order.createdAt | formatDateTime }}</p>
+                <p><b>{{ 'Grand total' | trans }}:</b> {{ order.totals.grandTotal | money(true, order.currencyIsoCode) }}</p>
+                <p><b>{{ 'Discount' | trans }}:</b> {{ order.totals.discountTotal | money(true, order.currencyIsoCode) }}</p>
+                <p><b>{{ 'Unique Product Quantity' | trans }}:</b> {{ order.uniqueProductQuantity }}</p>
+                {% if order.cancelAt %}
+                    <p><b>{{ 'Cancellation' | trans }}:</b> {{ order.cancelAt | formatDateTime }}</p>
+                    <p><b>{{ 'Cancel by' | trans }}:</b>
+                        {{ order.cancelIssuer | capitalize }}
+                    </p>
+                {% endif %}
+                <p>{{ backActionButton('/sales/invoice/resend?id-sales-order=' ~ order.idSalesOrder, 'Rechnung erneut senden' | trans) }}</p>
+                {% if order.integraCustomerNo is null and
+                    order.branch.codeSoftwarePackage != constant('Pyz\\Shared\\SoftwarePackage\\SoftwarePackageConstants::SOFTWARE_PACKAGE_RETAIL_CODE') and
+                    order.concreteTimeSlot is not null
+                %}
+                <p>{{ cancelToken(order) }}</p>
+                {% endif %}
+                {% if order.invoiceReference %}
+                    <p>{{ viewActionButton('/sales/invoice/view?id-sales-order=' ~ order.idSalesOrder, 'Rechnung anzeigen' | trans, {'target': '_blank'}) }}</p>
+                {% endif %}
+            </div>
+            <div class="col-xs-12 col-md-3">
+                {% if order.customerReference %}
+                    <p><b>{{ 'Customer Reference' | trans }}:</b>
+                      {{ order.customerReference }}
+                    </p>
+                {% endif %}
+                {% if order.durstCustomerReference %}
+                    <p><b>{{ 'Durst customer reference' | trans }}:</b>
+                        {{ order.durstCustomerReference }}
+                    </p>
+                {% endif %}
+                <p><b>{{ 'Customer name' | trans }}:</b>
+                    {% if order.customerReference %}
+                        <a href="{{ url('/customer/view', {'id-customer': order.fkCustomer}) }}" target="_blank">{{ order.salutation }} {{ order.firstName }} {{ order.lastName }}</a>
+                    {% else %}
+                        {{ order.salutation }} {{ order.firstName }} {{ order.lastName }}
+                    {% endif %}
+                </p>
+              {% if order.customer is not null and order.customer.dateOfBirth %}
+                  <p><b>{{ 'Date of Birth' | trans }}:</b>
+                    {{ order.customer.dateOfBirth | formatDate }}
+                  </p>
+              {% endif %}
+                <p><b>{{ 'HP Customer Id' }}:</b> {{ order.heidelpayRestCustomerId|default("-") }}</p>
+                <p><b>{{ 'Payment method' | trans }}:</b> {{ order.paymentMethodName }}</p>
+                <p><b>{{ 'Customer Type' }}:</b> {% if order.isPrivate is null %}-{% else %}{{ order.isPrivate ? 'B2C' : 'B2B' }}{% endif %}</p>
+                <p><b>{{ 'Email' | trans }}:</b> {{ order.email }}</p>
+                <p><b>{{ 'Status' | trans }}:</b>
+                    {% for state in distinctOrderStates %}
+                      <span class="label label-info">{{ state }}</span>
+                    {% endfor %}
+                </p>
+                 {% if order.totalOrderCount > 0 %}
+                    <p><b>{{ 'All orders of the customer' | trans }}:</b> ({{ order.totalOrderCount }})</p>
+                 {% endif %}
+            </div>
+            <div class="col-xs-12 col-md-3">
+                <p><b>{{ 'Branch' | trans }}:</b> {{ order.branch.name }}</p>
+                {% if order.concreteTimeSlot is not null %}
+                    <p><b>{{ 'Timeslot' | trans }}:</b> {{ order.concreteTimeSlot.startTime | formatDateTime }} - {{ order.concreteTimeSlot.endTime | formatTime}}</p>
+                    <p><b>{{ 'Timeslot Id' | trans }}:</b> {{ order.concreteTimeSlot.idConcreteTimeSlot }}</p>
+                    <p><b>{{ 'Tour Id' | trans }}:</b> {{ order.concreteTimeSlot.fkConcreteTour }}</p>
+                {% else %}
+                    <p><b>{{ 'GM Timeslot' | trans }}:</b> {{ order.gmStartTime | formatDateTime }} - {{order.gmEndTime | formatDateTime}}</p>
+                {% endif %}
+
+                {% if order.isReseller == true %}
+                <p>
+                    <b>{{ 'Reseller' | trans }}:</b> {{ 'Ja' | trans }}
+                </p>
+                {% endif %}
+
+                {% if order.platform != NULL %}
+                <p>
+                    <b>{{ 'Platform' | trans }}:</b> {{ order.platform }}
+                </p>
+                {% endif %}
+
+                {% if order.version != NULL  %}
+                <p>
+                    <b>{{ 'Version' | trans }}:</b> {{ order.version }}
+                </p>
+                {% endif %}
+
+                {% if order.deviceType != NULL %}
+                <p>
+                    <b>{{ 'Device Type' | trans }}:</b> {{ order.deviceType }}
+                </p>
+                {% endif %}
+
+                {% if order.integraCustomerNo is not null %}
+                <hr>
+                    <h3>Integra Infos:</h3>
+                    <p><b>{{ 'Integra Customer No.' | trans }}:</b> {{ order.integraCustomerNo }}</p>
+                    <p><b>{{ 'Beleg DID' | trans }}:</b> {{ order.integraReceiptDid }}</p>
+                    <p><b>{{ 'Exportable' | trans }}:</b> {{ order.isExportable ? 'Yes' : 'No' }}</p>
+                    <p><b>{{ 'Closable' | trans }}:</b> {{ order.isClosable ? 'Yes' : 'No' }}</p>
+                {% endif %}
+            </div>
+            <div class="col-xs-12 col-md-3">
+                {{ render(controller('/sales/comment/list', {'request': app.request})) }}
+                {{ add_comments | raw }}
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

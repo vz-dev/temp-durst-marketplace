@@ -1,0 +1,355 @@
+{
+  "title": "MerchantProductsResponse",
+  "type": "object",
+  "required":
+    [
+      "categories"
+    ],
+  "properties":
+  {
+    "categories":
+    {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items":
+      {
+        "type": "object",
+        "required":
+        [
+          "id"
+        ],
+        "properties":
+        {
+          "id":
+          {
+            "type": "string"
+          },
+          "name":
+          {
+            "type":
+              [
+                "string",
+                "null"
+              ]
+          },
+          "image_url":
+          {
+            "type":
+            [
+              "string",
+              "null"
+            ]
+          },
+          "color_code":
+          {
+            "type":
+            [
+              "string",
+              "null"
+            ]
+          },
+          "priority":
+          {
+            "type":
+            [
+              "number",
+              "null"
+            ]
+          },
+          "sub_categories":
+          {
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items": {
+              "products": {
+                "type": "array",
+                "minItems": 0,
+                "uniqueItems": true,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "sku",
+                    "name"
+                  ],
+                  "properties": {
+                    "sku": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "relevance": {
+                      "type": "number"
+                    },
+                    "image_bottle_thumb": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "manufacturer": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "tags": {
+                      "type": "array",
+                      "minItems": 0,
+                      "uniqueItems": false,
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "units": {
+                      "type": "array",
+                      "minItems": 0,
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "deposit": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "material": {
+                            "type": "string"
+                          },
+                          "code": {
+                            "type": "string"
+                          },
+                          "volume": {
+                            "type": "number"
+                          },
+                          "bottleshot_product_unit_placeholder_url": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "price": {
+                            "type": "array",
+                            "minItems": 0,
+                            "uniqueItems": true,
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "price": {
+                                  "type": "number"
+                                },
+                                "price_original": {
+                                  "type": [
+                                    "number",
+                                    "null"
+                                  ]
+                                },
+                                "discount": {
+                                  "type": [
+                                    "number",
+                                    "null"
+                                  ]
+                                },
+                                "is_expired_discount": {
+                                  "type": [
+                                    "boolean",
+                                    "null"
+                                  ]
+                                },
+                                "is_carousel": {
+                                  "type": [
+                                    "boolean",
+                                    "null"
+                                  ]
+                                },
+                                "carousel_priority": {
+                                  "type": [
+                                    "integer",
+                                    "null"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "products":
+          {
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items":
+            {
+              "type": "object",
+              "required":
+                [
+                  "sku",
+                  "name"
+                ],
+              "properties":
+              {
+                "sku":
+                {
+                  "type": "string"
+                },
+                "name":
+                {
+                  "type": "string"
+                },
+                "relevance":
+                {
+                  "type": "number"
+                },
+                "image_bottle_thumb":
+                {
+                  "type":
+                    [
+                      "string",
+                      "null"
+                    ]
+                },
+                "manufacturer":
+                {
+                  "type": "object",
+                  "properties":
+                  {
+                    "name":
+                    {
+                      "type":
+                      [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                },
+                "tags":
+                {
+                  "type": "array",
+                  "minItems": 0,
+                  "uniqueItems": false,
+                  "items":
+                  {
+                    "type": "string"
+                  }
+                },
+                "units":
+                {
+                  "type": "array",
+                  "minItems": 0,
+                  "uniqueItems": true,
+                  "items":
+                  {
+                    "type": "object",
+                    "properties":
+                    {
+                      "deposit":
+                      {
+                        "type": "number"
+                      },
+                      "name":
+                      {
+                        "type": "string"
+                      },
+                      "material":
+                      {
+                        "type": "string"
+                      },
+                      "code":
+                      {
+                        "type": "string"
+                      },
+                      "volume":
+                      {
+                        "type": "number"
+                      },
+                      "bottleshot_product_unit_placeholder_url":
+                      {
+                        "type":
+                        [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "price":
+                      {
+                        "type": "array",
+                        "minItems": 0,
+                        "uniqueItems": true,
+                        "items":
+                        {
+                          "type": "object",
+                          "properties":
+                          {
+                            "price":
+                            {
+                              "type": "number"
+                            },
+                            "price_original":
+                            {
+                              "type":
+                                [
+                                  "number",
+                                  "null"
+                                ]
+                            },
+                            "discount":
+                            {
+                              "type":
+                                [
+                                  "number",
+                                  "null"
+                                ]
+                            },
+                            "is_expired_discount":
+                            {
+                              "type":
+                                [
+                                  "boolean",
+                                  "null"
+                                ]
+                            },
+                            "is_carousel":
+                            {
+                              "type":
+                                [
+                                  "boolean",
+                                  "null"
+                                ]
+                            },
+                            "carousel_priority":
+                            {
+                              "type":
+                                [
+                                  "integer",
+                                  "null"
+                                ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <integra>
+        <label>Orga-Soft Integra</label>
+        <title>Integra</title>
+        <bundle>integra</bundle>
+        <controller>index</controller>
+        <action>index</action>
+        <icon>fa-server</icon>
+    </integra>
+
+    <maintenance>
+        <pages>
+            <integra>
+                <label>INTEGRA log</label>
+                <title>INTEGRA log</title>
+                <bundle>integra</bundle>
+                <controller>log</controller>
+                <action>index</action>
+                <icon>fa-server</icon>
+            </integra>
+        </pages>
+    </maintenance>
+</config>

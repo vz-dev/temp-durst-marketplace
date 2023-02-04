@@ -1,0 +1,110 @@
+{
+  "title": "DriverDepositResponse",
+  "type": "object",
+  "required":
+  [
+    "auth_valid",
+    "deposit_entries"
+  ],
+  "properties":
+  {
+    "auth_valid":
+    {
+      "type": "boolean"
+    },
+    "deposit_entries":
+    {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items":
+      {
+        "type": "object",
+        "required":
+        [
+          "deposit_id",
+          "name",
+          "deposit",
+          "code",
+          "bottles",
+          "material",
+          "deposit_case",
+          "deposit_per_bottle",
+          "volume_per_bottle",
+          "presentation_name",
+          "weight",
+          "gtins"
+        ],
+        "properties":
+        {
+          "deposit_id":
+          {
+            "type": "number"
+          },
+          "name":
+          {
+            "type": "string"
+          },
+          "deposit":
+          {
+            "type": "number"
+          },
+          "deposit_b2b":
+          {
+            "type": "number"
+          },
+          "code":
+          {
+            "type": "string"
+          },
+          "bottles":
+          {
+            "type": "number"
+          },
+          "material":
+          {
+            "type": "string"
+          },
+          "deposit_case":
+          {
+            "type": "number"
+          },
+          "deposit_case_b2b":
+          {
+            "type": "number"
+          },
+          "deposit_per_bottle":
+          {
+            "type": "number"
+          },
+          "deposit_per_bottle_b2b":
+          {
+            "type": "number"
+          },
+          "volume_per_bottle":
+          {
+            "type": "number"
+          },
+          "presentation_name":
+          {
+            "type": "string"
+          },
+          "weight":
+          {
+            "type": "number"
+          },
+          "gtins":
+          {
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items":
+            {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

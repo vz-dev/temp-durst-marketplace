@@ -1,0 +1,79 @@
+{
+  "title": "MerchantTimeSlotResponse",
+  "type": "object",
+  "properties":
+  {
+    "timeSlots":
+    {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items":
+      {
+        "type": "object",
+        "properties":
+        {
+          "start_time":
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          "end_time":
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          "importance":
+          {
+            "type": "integer",
+            "minimum": 0
+          },
+          "reason":
+          {
+            "type": "string"
+          },
+          "evaluation_succeeded":
+          {
+            "type": "boolean"
+          },
+          "time_slot_possible":
+          {
+            "type": "boolean"
+          },
+          "cost_in_extra_driving_time_minutes":
+          {
+            "type": "number"
+          },
+          "eta":
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          "total_missing_min_value":
+          {
+            "type": "number"
+          },
+          "error":
+          {
+            "type": "string"
+          },
+          "number_of_actual_orders": {
+            "type": "number"
+          },
+          "number_of_predicted_orders": {
+            "type": "number"
+          },
+          "number_of_unperformed_orders": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "error_code" : {
+      "type" : "number"
+    },
+    "error_message" : {
+      "type": "string"
+    }
+  }
+}

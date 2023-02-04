@@ -1,0 +1,47 @@
+{% block _settings_form_openingTimes_entry_row %}
+    <div id="{{ form.vars.id }}" class="item opening-time-item">
+        <div class="row">
+            <div class="col-lg-2">
+                {{ form_row(form.weekday) }}
+            </div>
+            <div class="col-lg-2">
+                {{ form_row(form.startTime) }}
+            </div>
+            <div class="col-lg-2">
+                {{ form_row(form.endTime) }}
+            </div>
+            <div class="col-lg-2">
+                {{ form_row(form.pauseStartTime) }}
+            </div>
+            <div class="col-lg-2">
+                {{ form_row(form.pauseEndTime) }}
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btn-outline btn-danger remove-item remove-opening-time-item">
+                    <i class="fa fa-trash"></i> {{ 'Entfernen' | trans }}
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _settings_form_commissioningTimes_entry_row %}
+    <div id="{{ form.vars.id }}" class="item commissioning-time-item">
+        <div class="row">
+            <div class="col-lg-2">
+                {{ form_row(form.weekday) }}
+            </div>
+            <div class="col-lg-2">
+                {{ form_row(form.startTime) }}
+            </div>
+            <div class="col-lg-2">
+                {{ form_row(form.endTime) }}
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btn-outline btn-danger remove-item remove-commissioning-time-item">
+                    <i class="fa fa-trash"></i> {{ 'Entfernen' | trans }}
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

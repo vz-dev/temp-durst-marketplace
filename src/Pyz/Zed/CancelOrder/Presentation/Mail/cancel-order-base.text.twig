@@ -1,0 +1,32 @@
+
++++ Deine Bestellung {{ mail.order.orderReference }} wurde storniert +++
+
+==================================================
+
+Hallo {{ mail.order.firstName }},
+
+{% if mail.order.cancelIssuer == constant('Pyz\\Shared\\CancelOrder\\CancelOrderConstants::FRIDGE') %}
+    Deine Durst Bestellung wurde durch den Durst Kundenservice storniert. Hierfür entstehen Dir keine Kosten.
+{% elseif mail.order.cancelIssuer == constant('Pyz\\Shared\\CancelOrder\\CancelOrderConstants::CUSTOMER') %}
+    Hiermit bestätigen wir Dir die Stornierung Deiner Durst Bestellung. Hierfür entstehen Dir keine Kosten.
+{% elseif mail.order.cancelIssuer == constant('Pyz\\Shared\\CancelOrder\\CancelOrderConstants::DRIVER') %}
+    {% if mail.order.cancelMessage == constant('Pyz\\Shared\\CancelOrder\\CancelOrderConstants::CANCEL_MESSAGE_NOT_AT_HOME') %}
+        Der Fahrer hat versucht Dich zu beliefern, aber leider nicht angetroffen. Daher haben wir die Bestellung kostenfrei storniert und abgeschlossen. Natürlich kannst Du jederzeit eine erneute Bestellung tätigen.
+    {% elseif mail.order.cancelMessage == constant('Pyz\\Shared\\CancelOrder\\CancelOrderConstants::CANCEL_MESSAGE_NOT_ACCEPTED') %}
+        Schade, dass Du die Belieferung durch unseren Fahrer abgelehnt hast. Deine Bestellung wurde kostenfrei retourniert und abgeschlossen.
+    {% endif %}
+{% endif %}
+
+{% block payment_info %}{% endblock %}
+
+Bei Fragen steht Dir unser Kundenservice gerne unter service@durst.shop zur Verfügung.
+
+==================================================
+
+{% if mail.footerBannerLink | trans %}
+    {{ mail.footerBannerCta | trans }}
+    {{ mail.footerBannerLink | trans }}
+{% endif %}
+
+-----------------
+{% include '@Oms/Mail/partials/footer.text.twig' with {'mail': mail} %}

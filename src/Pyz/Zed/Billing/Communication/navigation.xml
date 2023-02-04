@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config>
+    <billing>
+        <label>Billing</label>
+        <title>Billing</title>
+        <bundle>billing</bundle>
+        <controller>billing-period</controller>
+        <action>index</action>
+        <icon>fa-bank</icon>
+
+        <pages>
+            <billing-period>
+                <label>Billing Period</label>
+                <title>Billing Period</title>
+                <bundle>billing</bundle>
+                <controller>billing-period</controller>
+                <action>index</action>
+                <icon>fa-clock-o</icon>
+            </billing-period>
+            <billing-item>
+                <label>Billing Items</label>
+                <title>Billing Items</title>
+                <bundle>billing</bundle>
+                <controller>billing-item</controller>
+                <action>index</action>
+                <visible>1</visible>
+                <icon>fa-money</icon>
+            </billing-item>
+        </pages>
+
+    </billing>
+</config>

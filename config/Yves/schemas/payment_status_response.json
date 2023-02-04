@@ -1,0 +1,25 @@
+{
+  "title": "PaymentStatusResponse",
+  "type": "object",
+  "required":
+  [
+    "is_success",
+    "is_pending",
+    "is_error"
+  ],
+  "properties":
+  {
+    "is_success":
+    {
+      "type": "boolean"
+    },
+    "is_pending":
+    {
+      "type": "boolean"
+    },
+    "is_error":
+    {
+      "type": "boolean"
+    }
+  }
+}

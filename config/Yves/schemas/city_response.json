@@ -1,0 +1,19 @@
+{
+  "title": "CityResponse",
+  "type": "object",
+  "required":
+  [
+    "zip_valid"
+  ],
+  "properties":
+  {
+    "zip_valid":
+    {
+      "type": "boolean"
+    },
+    "city":
+    {
+      "type": "string"
+    }
+  }
+}

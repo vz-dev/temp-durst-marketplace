@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<statemachine
+        xmlns="spryker:oms-01"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="ShipmentSepa">
+        <states>
+            <state name="ready for shipment"/>
+            <state name="confirm order"/>
+            <state name="confirmed"/>
+            <state name="ready for delivery"/>
+            <state name="delivered"/>
+            <state name="mark damaged"/>
+            <state name="mark missing"/>
+            <state name="mark delivered"/>
+            <state name="mark declined"/>
+            <state name="confirmation failed"/>
+            <state name="confirm rollback"/>
+            <state name="start cancel"/>
+            <state name="refund cancel payment"/>
+            <state name="recalculate cancellation"/>
+            <state name="revert tour"/>
+            <state name="send cancel mail"/>
+            <state name="integra cancel"/>
+            <state name="persist cancellation"/>
+            <state name="continue tour"/>
+            <state name="canceled user"/>
+            <state name="mark cancelled"/>
+            <state name="canceled driver"/>
+            <state name="canceled driver early"/>
+        </states>
+
+        <transitions>
+            <transition happy="true">
+                <source>ready for shipment</source>
+                <target>confirm order</target>
+                <event>confirm</event>
+            </transition>
+
+            <transition condition="WholesaleOrder/IsOrderConfirmed" happy="true">
+                <source>confirm order</source>
+                <target>confirmed</target>
+                <event>order confirm</event>
+            </transition>
+
+            <transition>
+                <source>confirm order</source>
+                <target>confirmation failed</target>
+                <event>order confirm</event>
+            </transition>
+
+            <transition>
+                <source>confirmation failed</source>
+                <target>confirm rollback</target>
+                <event>rollback confirm</event>
+            </transition>
+
+            <transition happy="true">
+                <source>confirmed</source>
+                <target>ready for delivery</target>
+                <event>order items at wholesaler</event>
+            </transition>
+
+            <transition>
+                <source>ready for delivery</source>
+                <target>mark damaged</target>
+                <event>markDamage</event>
+            </transition>
+
+            <transition>
+                <source>ready for delivery</source>
+                <target>mark missing</target>
+                <event>markLose</event>
+            </transition>
+
+            <transition happy="true">
+                <source>ready for delivery</source>
+                <target>mark delivered</target>
+                <event>markDeliver</event>
+            </transition>
+
+            <transition>
+                <source>ready for delivery</source>
+                <target>mark declined</target>
+                <event>markDecline</event>
+            </transition>
+
+            <transition condition="CancelOrder/IsOrderCancelable">
+                <source>ready for delivery</source>
+                <target>start cancel</target>
+                <event>startCancel</event>
+            </transition>
+
+            <transition>
+                <source>ready for delivery</source>
+                <target>ready for delivery</target>
+                <event>startCancel</event>
+            </transition>
+
+            <transition>
+                <source>mark damaged</source>
+                <target>delivered</target>
+                <event>recalculate</event>
+            </transition>
+
+            <transition>
+                <source>mark missing</source>
+                <target>delivered</target>
+                <event>recalculate</event>
+            </transition>
+
+            <transition happy="true">
+                <source>mark delivered</source>
+                <target>delivered</target>
+                <event>recalculate</event>
+            </transition>
+
+            <transition>
+                <source>mark declined</source>
+                <target>delivered</target>
+                <event>recalculate</event>
+            </transition>
+
+            <transition>
+                <source>start cancel</source>
+                <target>refund cancel payment</target>
+                <event>refundPayment</event>
+            </transition>
+
+            <transition>
+                <source>refund cancel payment</source>
+                <target>recalculate cancellation</target>
+                <event>recalculateCancel</event>
+            </transition>
+
+            <transition>
+                <source>recalculate cancellation</source>
+                <target>revert tour</target>
+                <event>revertingTour</event>
+            </transition>
+
+            <transition>
+                <source>revert tour</source>
+                <target>send cancel mail</target>
+                <event>sendCancelMail</event>
+            </transition>
+
+            <transition>
+                <source>send cancel mail</source>
+                <target>integra cancel</target>
+                <event>cancelIntegra</event>
+            </transition>
+
+            <transition>
+                <source>integra cancel</source>
+                <target>persist cancellation</target>
+                <event>saveCancellation</event>
+            </transition>
+
+            <transition condition="CancelOrder/IsIssuerDriver">
+                <source>persist cancellation</source>
+                <target>continue tour</target>
+                <event>continueTour</event>
+            </transition>
+
+            <transition>
+                <source>persist cancellation</source>
+                <target>canceled user</target>
+                <event>continueTour</event>
+            </transition>
+
+            <transition condition="CancelOrder/IsTourExported">
+                <source>continue tour</source>
+                <target>mark cancelled</target>
+                <event>markCancel</event>
+            </transition>
+
+            <transition>
+                <source>mark cancelled</source>
+                <target>canceled driver</target>
+                <event>markCancelDeliveryStatus</event>
+            </transition>
+
+            <transition>
+                <source>continue tour</source>
+                <target>canceled driver early</target>
+                <event>markCancel</event>
+            </transition>
+
+        </transitions>
+
+        <events>
+            <event name="order items at wholesaler" onEnter="true" command="WholesaleOrder/OrderWholesale"/>
+            <event name="confirm" onEnter="true"/>
+            <event name="order confirm" onEnter="true" command="WholesaleOrder/ConfirmOrderSepa"/>
+            <event name="confirm failed" manual="true"/>
+            <event name="rollback confirm" onEnter="true" command="WholesaleOrder/FailConfirmation"/>
+            <event name="recalculate" manual="true" command="WholesaleOrder/Recalculate"/>
+            <event name="markDecline" manual="true" command="WholesaleOrder/MarkDecline"/>
+            <event name="markDeliver" manual="true" command="WholesaleOrder/MarkDeliver"/>
+            <event name="markLose" manual="true" command="WholesaleOrder/MarkLose"/>
+            <event name="markDamage" manual="true" command="WholesaleOrder/MarkDamage"/>
+
+            <event name="startCancel" manual="true" command="CancelOrder/StartCancel"/>
+            <event name="refundPayment" timeout="1 minutes" command="CancelOrder/RefundPayment"/>
+            <event name="recalculateCancel" onEnter="true" command="CancelOrder/RecalculateCancel"/>
+            <event name="revertingTour" onEnter="true" command="CancelOrder/RevertTour"/>
+            <event name="sendCancelMail" onEnter="true" command="CancelOrder/SendCancelMail"/>
+            <event name="cancelIntegra" onEnter="true" command="CancelOrder/IntegraCancellation"/>
+            <event name="saveCancellation" onEnter="true" command="CancelOrder/SaveCancellation"/>
+            <event name="continueTour" onEnter="true" command="CancelOrder/ContinueTour"/>
+            <event name="markCancel" onEnter="true" command="CancelOrder/MarkCancel"/>
+            <event name="markCancelDeliveryStatus" onEnter="true" command="CancelOrder/MarkCancelDeliveryStatus"/>
+        </events>
+    </process>
+</statemachine>

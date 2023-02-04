@@ -1,0 +1,12 @@
+{
+  "title": "DriverBranchRequest",
+  "type": "object",
+  "required": [
+    "merchant_pin"
+  ],
+  "properties": {
+    "merchant_pin": {
+      "type": "string"
+    }
+  }
+}

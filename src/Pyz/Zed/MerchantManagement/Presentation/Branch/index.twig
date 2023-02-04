@@ -1,0 +1,22 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Branches List' %}
+
+{% block action %}
+    {{ createActionButton('/merchant-management/branch/create', 'Add New Branch' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ branches | raw }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{% extends '@Gui/Layout/layout.twig' %}
+
+{% set widget_title = 'Create branch user' %}
+
+{% block action %}
+    {{ backActionButton('/merchant-management/branch-user', 'List Branch Users' | trans) }}
+{% endblock %}
+
+{% block content %}
+
+    {% embed '@Gui/Partials/widget.twig' %}
+
+        {% block widget_content %}
+
+            {{ form_start(branchUserForm) }}
+
+            <fieldset>
+                <h2>Niederlassung</h2>
+                {{ form_row(branchUserForm.fkBranch) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Rechte</h2>
+                {{ form_row(branchUserForm.fkAclGroup) }}
+            </fieldset>
+
+            <fieldset>
+                <h2>Benutzer</h2>
+                {{ form_row(branchUserForm.salutation) }}
+                {{ form_row(branchUserForm.firstName) }}
+                {{ form_row(branchUserForm.lastName) }}
+                {{ form_row(branchUserForm.email) }}
+                {{ form_row(branchUserForm.password) }}
+            </fieldset>
+
+            {{ form_row(branchUserForm.submit, { attr: { class: 'btn btn-primary' } }) }}
+
+            {{ form_end(branchUserForm) }}
+
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

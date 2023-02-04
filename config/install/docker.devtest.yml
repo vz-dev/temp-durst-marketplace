@@ -1,0 +1,152 @@
+env:
+    APPLICATION_ENV: docker.devtest
+    NEW_RELIC_ENABLED: 0
+    SPRYKER_LOG_STDOUT: /dev/null
+
+sections:
+    build:
+        generate-transfers:
+            command: "vendor/bin/console transfer:generate"
+
+        twig-cache-warmup:
+            command: "vendor/bin/console twig:cache:warmer"
+
+        navigation-cache-warmup:
+            command: "vendor/bin/console navigation:build-cache"
+
+        rest-request-validation-cache-warmup:
+            command: "vendor/bin/console glue:rest:build-request-validation-cache"
+
+        propel-config:
+            command: "vendor/bin/console propel:config:convert"
+
+        propel-copy-schema:
+            command: "vendor/bin/console propel:schema:copy"
+
+        propel-build:
+            command: "vendor/bin/console propel:model:build"
+
+    build-development:
+        generate-transfers:
+            command: "vendor/bin/console transfer:generate"
+
+        generate-transfer-databuilders:
+            command: "vendor/bin/console transfer:databuilder:generate"
+
+        codeception-build:
+            command: "vendor/bin/codecept build"
+
+        rest-api-generate-documentation:
+            command: "vendor/bin/console rest-api:generate:documentation"
+
+    build-static:
+        dependencies-install:
+            command: "vendor/bin/console frontend:project:install-dependencies"
+
+        yves-install-dependencies:
+            command: "vendor/bin/console frontend:yves:install-dependencies"
+
+        zed-install-dependencies:
+            command: "vendor/bin/console frontend:zed:install-dependencies"
+
+    build-static-production:
+        excluded: true
+        yves-build-frontend:
+            command: "vendor/bin/console frontend:yves:build -e production"
+
+        zed-build-frontend:
+            command: "vendor/bin/console frontend:zed:build -e production"
+
+    build-static-development:
+        yves-build-frontend:
+            command: "vendor/bin/console frontend:yves:build"
+
+        zed-build-frontend:
+            command: "vendor/bin/console frontend:zed:build"
+
+    init-storages-per-store:
+        setup-search:
+            command: "vendor/bin/console setup:search"
+
+    init-storages-per-region:
+        propel-copy-schema:
+            command: "vendor/bin/console propel:schema:copy"
+
+        propel-postgres-compatibility:
+            command: "vendor/bin/console propel:pg-sql-compat"
+
+        propel-migration-delete:
+            command: "vendor/bin/console propel:migration:delete"
+
+        propel-diff:
+            command: "vendor/bin/console propel:diff"
+
+        propel-migrate:
+            command: "vendor/bin/console propel:migrate"
+
+        propel-migration-cleanup:
+            command: 'vendor/bin/console propel:migration:delete'
+
+        init-database:
+            command: "vendor/bin/console setup:init-db"
+
+    demodata:
+        import-store:
+            command: "vendor/bin/console data:import:store"
+
+        import-currency:
+            command: "vendor/bin/console data:import:currency"
+
+        import-deposit:
+            command: "vendor/bin/console data:import:deposit"
+
+        import-payment-method:
+            command: "vendor/bin/console data:import:payment-method"
+
+        import-software-package:
+            command: "vendor/bin/console data:import:software-package"
+
+        import-software-feature:
+            command: "vendor/bin/console data:import:software-feature"
+
+        import-merchant:
+            command: "vendor/bin/console data:import:merchant"
+
+        import-enum-salutation:
+            command: "vendor/bin/console data:import:enum-salutation"
+
+        import-branch:
+            command: "vendor/bin/console data:import:branch"
+
+        import-delivery-area:
+            command: "vendor/bin/console data:import:delivery-area"
+
+        import-driving-licence:
+            command: "vendor/bin/console data:import:driving-license"
+
+        import-driver:
+            command: "vendor/bin/console data:import:driver"
+
+        import-vehicle-category:
+            command: "vendor/bin/console data:import:vehicle-category"
+
+        import-vehicle-type:
+            command: "vendor/bin/console data:import:vehicle-type"
+
+        import-time-slot:
+            command: "vendor/bin/console data:import:time-slot"
+
+        import-tour:
+            command: "vendor/bin/console data:import:tour"
+
+        import-concrete-tour:
+            command: "vendor/bin/console data:import:concrete-tour"
+
+        import-concrete-time-slot:
+            command: "vendor/bin/console data:import:concrete-time-slot"
+
+        import-driver-app-release:
+            command: "vendor/bin/console data:import:driver-app-release"
+
+        import-branch-user:
+            command: "vendor/bin/console data:import:branch-user"

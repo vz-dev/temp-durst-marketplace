@@ -1,0 +1,23 @@
+.item {
+    &:first-child {
+        .control-label {
+            display: block;
+        }
+
+        @media (min-width: 1200px) {
+            .remove-item {
+                margin-top: 23px;
+            }
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .control-label {
+            display: none;
+        }
+    }
+
+    .remove-item {
+        margin-bottom: 15px;
+    }
+}

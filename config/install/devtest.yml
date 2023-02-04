@@ -1,0 +1,149 @@
+env:
+    APPLICATION_ENV: devtest
+
+sections:
+
+    generate:
+        generate-transfers:
+            command: "vendor/bin/console transfer:generate"
+
+        generate-databuilder:
+            command: "vendor/bin/console transfer:databuilder:generate"
+
+    codeception:
+        codeception-build:
+            command: "vendor/bin/codecept build"
+
+    cache:
+        twig-cache-warmup:
+            command: "vendor/bin/console twig:cache:warmer"
+
+        navigation-cache-warmup:
+            command: "vendor/bin/console navigation:build-cache"
+
+
+    database-flush:
+        delete-migration-files:
+            command: "vendor/bin/console propel:migration:delete"
+
+
+    database-migrate:
+        drop-database:
+            command: "vendor/bin/console propel:database:drop"
+
+        propel-config:
+            command: "vendor/bin/console propel:config:convert"
+
+        propel-create:
+            command: "vendor/bin/console propel:database:create"
+
+        propel-postgres-compatibility:
+            command: "vendor/bin/console propel:pg-sql-compat"
+
+        propel-copy-schema:
+            command: "vendor/bin/console propel:schema:copy"
+
+        propel-build:
+            command: "vendor/bin/console propel:model:build"
+
+        propel-diff:
+            command: "vendor/bin/console propel:diff"
+
+        propel-migrate:
+            command: "vendor/bin/console propel:migrate"
+
+        init-database:
+            command: "vendor/bin/console setup:init-db"
+
+        setup-search:
+            command: "vendor/bin/console setup:search"
+
+
+    generate-entity-transfer:
+        generate-transfers:
+            command: "vendor/bin/console transfer:generate"
+
+
+    demodata:
+        import-store:
+            command: "vendor/bin/console data:import:store"
+        import-currency:
+            command: "vendor/bin/console data:import:currency"
+        import-deposit:
+            command: "vendor/bin/console data:import:deposit"
+        import-payment-method:
+            command: "vendor/bin/console data:import:payment-method"
+        import-software-package:
+            command: "vendor/bin/console data:import:software-package"
+        import-software-feature:
+            command: "vendor/bin/console data:import:software-feature"
+        import-merchant:
+            command: "vendor/bin/console data:import:merchant"
+        import-enum-salutation:
+            command: "vendor/bin/console data:import:enum-salutation"
+        import-branch:
+            command: "vendor/bin/console data:import:branch"
+        import-delivery-area:
+            command: "vendor/bin/console data:import:delivery-area"
+        import-driving-licence:
+            command: "vendor/bin/console data:import:driving-license"
+        import-driver:
+            command: "vendor/bin/console data:import:driver"
+        import-vehicle-category:
+            command: "vendor/bin/console data:import:vehicle-category"
+        import-vehicle-type:
+            command: "vendor/bin/console data:import:vehicle-type"
+        import-time-slot:
+            command: "vendor/bin/console data:import:time-slot"
+        import-tour:
+            command: "vendor/bin/console data:import:tour"
+        import-concrete-tour:
+            command: "vendor/bin/console data:import:concrete-tour"
+        import-concrete-time-slot:
+            command: "vendor/bin/console data:import:concrete-time-slot"
+        import-driver-app-release:
+            command: "vendor/bin/console data:import:driver-app-release"
+        import-branch-user:
+            command: "vendor/bin/console data:import:branch-user"
+        import-graphmasters-settings:
+            command: "vendor/bin/console data:import:graphmasters-settings"
+        import-graphmasters-delivery-area-category:
+            command: "vendor/bin/console data:import:graphmasters-delivery-area-category"
+
+
+    restore:
+        excluded: true
+        drop-database:
+            command: "vendor/bin/console propel:database:drop"
+
+        create-database:
+            command: "vendor/bin/console propel:database:create"
+
+        restore-database:
+            command: "vendor/bin/console propel:database:import data/db.backup"
+
+
+    collectors:
+        excluded: true
+        search-collector:
+            command: "vendor/bin/console collector:search:export"
+
+        storage-collector:
+            command: "vendor/bin/console collector:storage:export"
+
+
+    frontend:
+        dependencies-install:
+            command: "vendor/bin/console frontend:project:install-dependencies"
+
+        yves-install-dependencies:
+            command: "vendor/bin/console frontend:yves:install-dependencies"
+
+        yves-build-frontend:
+            command: "vendor/bin/console frontend:yves:build"
+
+        zed-install-dependencies:
+            command: "vendor/bin/console frontend:zed:install-dependencies"
+
+        zed-build-frontend:
+            command: "vendor/bin/console frontend:zed:build"

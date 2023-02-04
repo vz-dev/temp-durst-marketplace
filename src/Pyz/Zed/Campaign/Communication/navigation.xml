@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <campaign>
+        <label>Kampagnen</label>
+        <title>Kampagnen</title>
+        <bundle>campaign</bundle>
+        <controller>CampaignPeriod</controller>
+        <action>index</action>
+        <icon>fa-area-chart</icon>
+        <pages>
+            <campaign-period>
+                <label>Zeiträume</label>
+                <title>Zeiträume</title>
+                <bundle>campaign</bundle>
+                <controller>campaign-period</controller>
+                <action>index</action>
+                <icon>fa-calendar</icon>
+            </campaign-period>
+            <campaign-advertising-material>
+                <label>Werbemittel</label>
+                <title>Werbemittel</title>
+                <bundle>campaign</bundle>
+                <controller>campaign-advertising-material</controller>
+                <action>index</action>
+                <icon>fa-calendar</icon>
+            </campaign-advertising-material>
+            <campaign-period-branch-order>
+                <label>Bestellungen</label>
+                <title>Bestellungen</title>
+                <bundle>campaign</bundle>
+                <controller>campaign-period-branch-order</controller>
+                <action>index</action>
+                <icon>fa-calendar</icon>
+            </campaign-period-branch-order>
+        </pages>
+    </campaign>
+</config>

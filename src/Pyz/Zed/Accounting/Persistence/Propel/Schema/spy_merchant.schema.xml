@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Merchant\Persistence"
+          package="src.Orm.Zed.Merchant.Persistence">
+
+    <table name="spy_merchant" idMethod="native" phpName="SpyMerchant">
+        <column name="license_fixed" type="INTEGER"/>
+        <column name="license_variable" type="INTEGER"/>
+        <column name="license_note" size="255" type="VARCHAR" default="NULL"/>
+        <column name="realax_debitor" size="255" type="VARCHAR" default="NULL"/>
+        <column name="marketing_fixed" type="INTEGER"/>
+    </table>
+
+</database>

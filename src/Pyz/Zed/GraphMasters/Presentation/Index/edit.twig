@@ -1,0 +1,81 @@
+{% extends '@Application/Layout/layout.twig' %}
+
+{% form_theme form '@GraphMasters/_partials/settings_form.twig' %}
+
+{% block head_css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/assets/css/pyz-zed-graph-masters-main.css">
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+        <fieldset>
+            <h3>{{ 'Allgemein' | trans }}</h3>
+            {{ form_row(form.isActive) }}
+            {{ form_row(form.fkBranch) }}
+        </fieldset>
+
+        <fieldset>
+            <h3>{{ 'Depot' | trans }}</h3>
+            {{ form_row(form.depotApiId) }}
+            {{ form_row(form.depotPath) }}
+        </fieldset>
+
+        <fieldset>
+            <h3>{{ 'Zeitfenster' | trans }}</h3>
+
+            <h4>{{ form_label(form.openingTimes) }}</h4>
+            <div class="collection opening-time-collection" data-index="{{ form.openingTimes | length }}" data-prototype="{{ form_row(form.openingTimes.vars.prototype) | escape('html_attr') }}">
+                {% for openingTime in form.openingTimes %}
+                    {{ form_row(openingTime) }}
+                {% endfor %}
+                {% do form.openingTimes.setRendered %}
+            </div>
+            <button class="btn btn-outline btn-primary add-item add-opening-time-item m-b">
+                <i class="fa fa-plus"></i> {{ 'Hinzufügen' | trans }}
+            </button>
+
+            <div class="form-group{% if (form.leadTime.vars.errors | length) > 0 %} has-error{% endif %}">
+                {{ form_label(form.leadTime) }}
+                <div class="input-group">
+                    {{ form_widget(form.leadTime) }}
+                    <div class="input-group-addon">Min.</div>
+                </div>
+                {{ form_errors(form.leadTime) }}
+            </div>
+
+            <div class="form-group{% if (form.bufferTime.vars.errors | length) > 0 %} has-error{% endif %}">
+                {{ form_label(form.bufferTime) }}
+                <div class="input-group">
+                    {{ form_widget(form.bufferTime) }}
+                    <div class="input-group-addon">Min.</div>
+                </div>
+                {{ form_errors(form.bufferTime) }}
+            </div>
+
+            <h4>{{ form_label(form.commissioningTimes) }}</h4>
+            <div class="collection commissioning-time-collection" data-index="{{ form.commissioningTimes | length }}" data-prototype="{{ form_row(form.commissioningTimes.vars.prototype) | escape('html_attr') }}">
+                {% for commissioningTime in form.commissioningTimes %}
+                    {{ form_row(commissioningTime) }}
+                {% endfor %}
+                {% do form.commissioningTimes.setRendered %}
+            </div>
+            <button class="btn btn-outline btn-primary add-item add-commissioning-time-item m-b">
+                <i class="fa fa-plus"></i> {{ 'Hinzufügen' | trans }}
+            </button>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary inline">
+            {{ 'Speichern' | trans }}
+        </button>
+
+        <a href="/graph-masters/index" class="btn btn-default inline m-l-xs">
+            {{ 'Zurück' | trans }}
+        </a>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block footer_js %}
+    {{ parent() }}
+    <script src="/assets/js/pyz-zed-graph-masters-main.js"></script>
+{% endblock %}

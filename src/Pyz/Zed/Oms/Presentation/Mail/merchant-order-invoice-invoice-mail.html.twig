@@ -1,0 +1,17 @@
+{% extends "@oms/mail/merchant-order-invoice-mail.html.twig" %}
+
+{% block payment_info_callout %}
+    {% if mail.order.totals.grandTotal > 0 %}
+        Bitte überweise den Gesamtbetrag in Höhe von {{ mail.order.totals.grandTotal | money }} innerhalb der nächsten
+        14 Tage an folgende Bankverbindung:
+        <br align="center" class="float-center">
+        <br align="center" class="float-center">
+        Zahlungsempfänger: {{ mail.heidelpayHolder }}
+        <br align="center" class="float-center">
+        IBAN: {{ mail.heidelpayIban }}
+        <br align="center" class="float-center">
+        BIC: {{ mail.heidelpayBic }}
+        <br align="center" class="float-center">
+        Verwendungszweck: {{ mail.heidelpayDescriptor }}
+    {% endif %}
+{% endblock %}
